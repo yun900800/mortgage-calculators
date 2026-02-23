@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mobile.css">
+  <title>Mortgage Repayment Calculator</title>
+</head>
+<body>
+
+  <div class="main-content">
+    <div class="left-content">
+      <div class="header-container">
+        <h1 data-i18n="title">Mortgage Calculator</h1>
+        <div class="header-controls">
+          <select id="lang-select">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="ms">Melayu</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <button class="clear-all-btn" data-i18n="clearAll">Clear All</button>
+        </div>
+      </div>
+      
+      <form id="my-form">
+        <div class="mortgage-amount-container">
+          <label for="mortgage-amount" data-i18n="amount">Mortgage Amount</label>
+          <div class="input-container">
+            <p id="currency-display">£</p>
+            <input type="text" id="mortgage-amount">
+          </div>
+        </div>
+
+        <div class="mortgage-term-container">
+          <label for="mortgage-term" data-i18n="term">Mortgage Term</label>
+          <div class="input-container">
+            <input type="text" id="mortgage-term">
+            <p data-i18n="years">years</p>
+          </div>
+        </div>
+
+        <div class="interest-rate-container">
+          <label for="interest-rate" data-i18n="rate">Interest Rate</label>
+          <div class="input-container">
+            <input type="text" id="interest-rate">
+            <p>%</p>
+          </div>
+        </div>
+
+        <div class="mortgage-type-container">
+          <label data-i18n="type">Mortgage Type</label>
+          <div class="radio-input-container">
+            <input type="radio" name="mortgage-type" value="repayment">
+            <label data-i18n="repayment">Repayment</label>
+          </div>
+          <div class="radio-input-container">
+            <input type="radio" name="mortgage-type" value="interest-only">
+            <label data-i18n="interestOnly">Interest Only</label>
+          </div>
+        </div>
+      </form>
+
+      <button class="calculate-btn" type="submit" form="my-form">
+        <img src="assets/images/icon-calculator.svg" alt="icon">
+        <span data-i18n="calculate">Calculate Repayments</span>
+      </button>
+    </div>
+
+    <div class="right-content">
+      <div class="before-results-container">
+        <img src="assets/images/illustration-empty.svg" alt="empty">
+        <h2 data-i18n="emptyTitle">Results shown here</h2>
+        <p data-i18n="emptyDesc">Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+      </div>
+
+      <div class="after-results-container hidden">
+        <div class="results-header">
+          <h2 data-i18n="resultsTitle">Your results</h2>
+          <p data-i18n="resultsDesc">Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.</p>
+        </div>
+        <div class="results-description">
+          <div class="results-monthly-repayments">
+            <span data-i18n="monthlyRepay">Your monthly repayments</span>
+            <p id="monthly-repayments">£0.00</p>
+          </div>
+          <div class="line"></div>
+          <div class="results-total-over-term">
+            <span data-i18n="totalRepay">Total you'll repay over the term</span>
+            <p id="total-over-the-term">£0.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
