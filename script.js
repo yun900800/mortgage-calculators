@@ -1,4 +1,4 @@
-// 1. 翻译数据配置
+/// 1. 翻译数据配置
 const translations = {
     en: {
         title: "Mortgage Calculator",
@@ -20,7 +20,11 @@ const translations = {
         years: "years",
         currencySymbol: "£", 
         locale: "en-GB",
-        currencyCode: "GBP"
+        currencyCode: "GBP",
+        decreasing: "Decreasing (Equal Principal)",
+        targetMonthLabel: "View Specific Month (Optional)",
+        monthUnit: "Mo.",
+        specificMonthNote: "(Month {n})"
     },
     zh: {
         title: "贷款计算器",
@@ -42,7 +46,11 @@ const translations = {
         years: "年",
         currencySymbol: "¥", 
         locale: "zh-CN",
-        currencyCode: "CNY"
+        currencyCode: "CNY",
+        decreasing: "等额本金",
+        targetMonthLabel: "查看特定月份 (选填)",
+        monthUnit: "月",
+        specificMonthNote: "(第 {n} 个月)"
     },
     ja: {
         title: "住宅ローン計算機",
@@ -54,8 +62,8 @@ const translations = {
         repayment: "元利均等返済",
         interestOnly: "利息のみ返済",
         calculate: "返済額を計算する",
-        resultsTitle: "计算结果",
-        resultsDesc: "入力された情報に基づく計算結果は以下の通りです。",
+        resultsTitle: "計算結果",
+        resultsDesc: "入力された情報に基づく計算結果は以下の通りです。調整するには、フォームを編集して再度「返済額を計算する」をクリックしてください。",
         monthlyRepay: "毎月の返済額",
         totalRepay: "総返済額",
         emptyTitle: "ここに結果が表示されます",
@@ -64,7 +72,11 @@ const translations = {
         years: "年",
         currencySymbol: "¥", 
         locale: "ja-JP",
-        currencyCode: "JPY"
+        currencyCode: "JPY",
+        decreasing: "元金均等返済",
+        targetMonthLabel: "特定の月を表示 (任意)",
+        monthUnit: "ヶ月",
+        specificMonthNote: "({n}ヶ月目)"
     },
     ko: {
         title: "대출 계산기",
@@ -77,7 +89,7 @@ const translations = {
         interestOnly: "이자만 상환",
         calculate: "상환액 계산하기",
         resultsTitle: "계산 결과",
-        resultsDesc: "입력하신 정보를 바탕으로 한 결과입니다.",
+        resultsDesc: "입력하신 정보를 바탕으로 한 결과입니다. 수정하려면 양식을 편집하고 '상환액 계산하기'를 다시 클릭하세요.",
         monthlyRepay: "월 상환액",
         totalRepay: "총 상환액",
         emptyTitle: "결과가 여기에 표시됩니다",
@@ -86,7 +98,11 @@ const translations = {
         years: "년",
         currencySymbol: "₩", 
         locale: "ko-KR",
-        currencyCode: "KRW"
+        currencyCode: "KRW",
+        decreasing: "원금 균등 상환",
+        targetMonthLabel: "특정 월 조회 (선택 사항)",
+        monthUnit: "월",
+        specificMonthNote: "({n}개월차)"
     },
     ms: {
         title: "Kalkulator Pinjaman",
@@ -95,11 +111,11 @@ const translations = {
         term: "Tempoh Pinjaman",
         rate: "Kadar Faedah",
         type: "Jenis Pinjaman",
-        repayment: "Bayaran Balik",
+        repayment: "Anuiti (Prinsipal + Faedah)",
         interestOnly: "Faedah Sahaja",
         calculate: "Kira Bayaran Balik",
         resultsTitle: "Keputusan anda",
-        resultsDesc: "Keputusan anda ditunjukkan di bawah berdasarkan maklumat yang diberikan.",
+        resultsDesc: "Keputusan anda ditunjukkan di bawah berdasarkan maklumat yang diberikan. Untuk pelarasan, edit borang dan klik semula “kira bayaran balik”.",
         monthlyRepay: "Bayaran bulanan anda",
         totalRepay: "Jumlah bayaran balik keseluruhan",
         emptyTitle: "Keputusan dipaparkan di sini",
@@ -108,7 +124,11 @@ const translations = {
         years: "tahun",
         currencySymbol: "RM", 
         locale: "ms-MY",
-        currencyCode: "MYR"
+        currencyCode: "MYR",
+        decreasing: "Prinsipal Sama Rata",
+        targetMonthLabel: "Lihat Bulan Tertentu (Pilihan)",
+        monthUnit: "Bln",
+        specificMonthNote: "(Bulan {n})"
     },
     hi: {
         title: "ऋण कैलकुलेटर",
@@ -117,11 +137,11 @@ const translations = {
         term: "ऋण अवधि",
         rate: "ब्याज दर",
         type: "ऋण का प्रकार",
-        repayment: "पुनर्भुगतान",
+        repayment: "समान मासिक किस्त (EMI)",
         interestOnly: "केवल ब्याज",
         calculate: "पुनर्भुगतान की गणना करें",
         resultsTitle: "आपका परिणाम",
-        resultsDesc: "प्रदान की गई जानकारी के आधार पर आपके परिणाम नीचे दिए गए हैं।",
+        resultsDesc: "प्रदान की गई जानकारी के आधार पर आपके परिणाम नीचे दिए गए हैं। सुधार के लिए, फ़ॉर्म संपादित करें और फिर से क्लिक करें।",
         monthlyRepay: "आपका मासिक पुनर्भुगतान",
         totalRepay: "कुल पुनर्भुगतान",
         emptyTitle: "परिणाम यहाँ दिखाए गए हैं",
@@ -130,7 +150,11 @@ const translations = {
         years: "वर्ष",
         currencySymbol: "₹", 
         locale: "hi-IN",
-        currencyCode: "INR"
+        currencyCode: "INR",
+        decreasing: "समान मूलधन (Decreasing)",
+        targetMonthLabel: "विशिष्ट महीना देखें (वैकल्पिक)",
+        monthUnit: "माह",
+        specificMonthNote: "(महीना {n})"
     }
 };
 
@@ -261,43 +285,60 @@ function checkInputs() {
 }
 
 // --- 步骤 1: 修改计算函数，只返回纯数字 ---
-function calculate(amount, term, rate, type) {
-    let monthlyPayment;
+function calculate(amount, term, rate, type, targetMonth = 1) {
     const monthlyInterestRate = rate / 12 / 100;
     const numberOfPayments = term * 12;
+    let monthlyPayment;
+    let totalRepay;
+
+    // 限制月份范围
+    targetMonth = Math.max(1, Math.min(targetMonth, numberOfPayments));
 
     if (type === 'repayment') {
+        // 等额本息：每月固定
         monthlyPayment = (amount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
             (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+        totalRepay = monthlyPayment * numberOfPayments;
+    } else if (type === 'decreasing') {
+        // 等额本金：每月本金固定，利息递减
+        const monthlyPrincipal = amount / numberOfPayments;
+        // 第 m 个月利息 = [贷款本金 - 累计已还本金] * 月利率
+        const interestForSpecificMonth = (amount - (targetMonth - 1) * monthlyPrincipal) * monthlyInterestRate;
+        monthlyPayment = monthlyPrincipal + interestForSpecificMonth;
+        
+        // 总利息 = [(首月利息 + 末月利息) / 2] * 期数
+        const totalInterest = (numberOfPayments + 1) * amount * monthlyInterestRate / 2;
+        totalRepay = amount + totalInterest;
     } else {
-        // 仅还利息逻辑：贷款总额 * 月利率
+        // 仅还利息
         monthlyPayment = amount * monthlyInterestRate;
+        totalRepay = (monthlyPayment * numberOfPayments) + amount;
     }
 
-    const totalRepay = monthlyPayment * numberOfPayments;
-
-    // 重要：直接返回数字，不要在这里做 toFixed 或 format
     return [monthlyPayment, totalRepay];
 }
 
 // --- 步骤 2: 修改显示函数，统一处理格式化 ---
-function showResults(monthly, total) {
+function showResults(monthly, total, targetMonth = 1) {
     const lang = langSelect.value;
     const config = translations[lang];
-    
-    // 获取对应的货币代码 (GBP, CNY等)
+    const typeChecked = document.querySelector('input[name="mortgage-type"]:checked').value;
     const currencyCode = getCurrencyCode(lang);
 
     document.querySelector('.before-results-container').classList.add('hidden');
     document.querySelector('.after-results-container').classList.remove('hidden');
     
-    // 核心修正：确保传入的是数字，Intl 会自动处理千分位和小数点
     const formatter = new Intl.NumberFormat(config.locale, {
-        style: 'currency',
-        currency: currencyCode,
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        style: 'currency', currency: currencyCode,
+        minimumFractionDigits: 2, maximumFractionDigits: 2
     });
+
+    // 处理标题文字：如果是等额本金，显示具体月份
+    let labelText = config.monthlyRepay;
+    if (typeChecked === 'decreasing') {
+        labelText += " " + config.specificMonthNote.replace('{n}', targetMonth);
+    }
+    document.querySelector('.results-monthly-repayments span').innerText = labelText;
 
     document.querySelector('#monthly-repayments').innerText = formatter.format(monthly);
     document.querySelector('#total-over-the-term').innerText = formatter.format(total);
@@ -312,10 +353,14 @@ function getCurrencyCode(lang) {
 // --- 步骤 4: 提交监听 ---
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = checkInputs(); // 确保这里返回的是解析后的数字 [amount, term, rate, type]
+    const data = checkInputs(); // [amount, term, rate, type]
+    const targetMonthInput = document.getElementById('target-month').value;
+    const targetMonth = parseInt(targetMonthInput) || 1;
+
     if (data) {
-        const [monthly, total] = calculate(...data);
-        showResults(monthly, total);
+        // data 展开后是 amount, term, rate, type，最后传入 targetMonth
+        const [monthly, total] = calculate(...data, targetMonth);
+        showResults(monthly, total, targetMonth);
     }
 });
 

@@ -63,6 +63,14 @@
           </div>
         </div>
 
+        <div class="input-container">
+          <label for="target-month" data-i18n="targetMonthLabel">View Specific Month (Optional)</label>
+          <div class="input-div">
+            <input type="number" id="target-month" placeholder="1">
+            <p data-i18n="monthUnit">Mo.</p>
+          </div>
+        </div>
+
         <div class="mortgage-type-container">
           <label data-i18n="type">Mortgage Type</label>
           <div class="radio-input-container">
@@ -72,6 +80,10 @@
           <div class="radio-input-container">
             <input type="radio" name="mortgage-type" value="interest-only">
             <label data-i18n="interestOnly">Interest Only</label>
+          </div>
+          <div class="radio-input-container">
+            <input type="radio" name="mortgage-type" value="decreasing">
+            <label data-i18n="decreasing">Decreasing (Equal Principal)</label>
           </div>
         </div>
       </form>

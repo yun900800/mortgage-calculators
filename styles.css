@@ -7,7 +7,7 @@
 
 body {
     background-color: #E4F4FD;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     display: flex;
     align-items: center;
