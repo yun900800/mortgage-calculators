@@ -24,6 +24,7 @@ const translations = {
         decreasing: "Decreasing (Equal Principal)",
         targetMonthLabel: "View Specific Month (Optional)",
         monthUnit: "Mo.",
+        viewMethods: "View Cal Method",
         specificMonthNote: "(Month {n})"
     },
     zh: {
@@ -50,6 +51,7 @@ const translations = {
         decreasing: "等额本金",
         targetMonthLabel: "查看特定月份 (选填)",
         monthUnit: "月",
+        viewMethods: "查看计算方法",
         specificMonthNote: "(第 {n} 个月)"
     },
     ja: {
@@ -76,6 +78,7 @@ const translations = {
         decreasing: "元金均等返済",
         targetMonthLabel: "特定の月を表示 (任意)",
         monthUnit: "ヶ月",
+        viewMethods: "計算方法を確認する",
         specificMonthNote: "({n}ヶ月目)"
     },
     ko: {
@@ -102,6 +105,7 @@ const translations = {
         decreasing: "원금 균등 상환",
         targetMonthLabel: "특정 월 조회 (선택 사항)",
         monthUnit: "월",
+        viewMethods: "계산 방법 보기",
         specificMonthNote: "({n}개월차)"
     },
     ms: {
@@ -128,6 +132,7 @@ const translations = {
         decreasing: "Prinsipal Sama Rata",
         targetMonthLabel: "Lihat Bulan Tertentu (Pilihan)",
         monthUnit: "Bln",
+        viewMethods: "Lihat Kaedah Pengiraan",
         specificMonthNote: "(Bulan {n})"
     },
     hi: {
@@ -154,6 +159,7 @@ const translations = {
         decreasing: "समान मूलधन (Decreasing)",
         targetMonthLabel: "विशिष्ट महीना देखें (वैकल्पिक)",
         monthUnit: "माह",
+        viewMethods: "गणना विधि देखें",
         specificMonthNote: "(महीना {n})"
     }
 };
