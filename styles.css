@@ -443,3 +443,16 @@ body {
     color: #133041;
     font-weight: bold;
 }
+
+
+/* 在 styles.css 中添加或修改 */
+.left-content input {
+    font-size: 16px !important; /* 强制设为 16px 阻止 iOS 缩放 */
+}
+
+/* 如果你觉得 16px 太大，可以利用 scale 缩小视觉效果，但保持像素值为 16 */
+@media screen and (max-width: 800px) {
+    .left-content input {
+        font-size: 16px;
+    }
+}
