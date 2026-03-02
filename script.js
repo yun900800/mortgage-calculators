@@ -25,7 +25,11 @@ const translations = {
         targetMonthLabel: "View Specific Month (Optional)",
         monthUnit: "Mo.",
         viewMethods: "View Cal Method",
-        specificMonthNote: "(Month {n})"
+        specificMonthNote: "(Month {n})",
+        methodsTitle: "Calculation Methods",
+        repaymentMethodDesc: "Monthly payment stays the same. Interest is higher at the start.",
+        decreasingMethodDesc: "Principal is split equally. Total interest is lower.",
+        interestOnlyMethodDesc: "You only pay interest. Principal remains unchanged."
     },
     zh: {
         title: "贷款计算器",
@@ -52,7 +56,11 @@ const translations = {
         targetMonthLabel: "查看特定月份 (选填)",
         monthUnit: "月",
         viewMethods: "查看计算方法",
-        specificMonthNote: "(第 {n} 个月)"
+        specificMonthNote: "(第 {n} 个月)",
+        methodsTitle: "计算方法详解",
+        repaymentMethodDesc: "每月还款金额固定。前期利息占比大，后期本金占比大。",
+        decreasingMethodDesc: "本金每月平摊，利息随本金减少而递减，前期还款压力大。",
+        interestOnlyMethodDesc: "每月只还利息，不还本金。总利息支出最高。"
     },
     ja: {
         title: "住宅ローン計算機",
@@ -79,7 +87,11 @@ const translations = {
         targetMonthLabel: "特定の月を表示 (任意)",
         monthUnit: "ヶ月",
         viewMethods: "計算方法を確認する",
-        specificMonthNote: "({n}ヶ月目)"
+        specificMonthNote: "({n}ヶ月目)",
+        methodsTitle: "計算方法の解説",
+        repaymentMethodDesc: "毎月の返済額が一定です。最初は利息の割合が高く、徐々に元金の返済が進みます。",
+        decreasingMethodDesc: "元金を均等に返済します。利息は残高に応じて減るため、総返済額は少なくなります。",
+        interestOnlyMethodDesc: "毎月利息のみを支払い、元金は減りません。総利息負担が最も大きくなります。"
     },
     ko: {
         title: "대출 계산기",
@@ -106,7 +118,11 @@ const translations = {
         targetMonthLabel: "특정 월 조회 (선택 사항)",
         monthUnit: "월",
         viewMethods: "계산 방법 보기",
-        specificMonthNote: "({n}개월차)"
+        specificMonthNote: "({n}개월차)",
+        methodsTitle: "상환 방식 안내",
+        repaymentMethodDesc: "매월 상환액이 일정합니다. 초기에는 이자 비중이 높고 후기로 갈수록 원금 비중이 높아집니다.",
+        decreasingMethodDesc: "원금을 매달 균등하게 나누어 갚습니다. 이자가 줄어듦에 따라 총 상환액도 감소합니다.",
+        interestOnlyMethodDesc: "매월 이자만 지불하며 원금은 줄어들지 않습니다. 총 이자 비용이 가장 많이 발생합니다."
     },
     ms: {
         title: "Kalkulator Pinjaman",
@@ -133,7 +149,11 @@ const translations = {
         targetMonthLabel: "Lihat Bulan Tertentu (Pilihan)",
         monthUnit: "Bln",
         viewMethods: "Lihat Kaedah Pengiraan",
-        specificMonthNote: "(Bulan {n})"
+        specificMonthNote: "(Bulan {n})",
+        methodsTitle: "Kaedah Pengiraan",
+        repaymentMethodDesc: "Bayaran bulanan tetap sepanjang tempoh. Faedah lebih tinggi di peringkat awal.",
+        decreasingMethodDesc: "Prinsipal dibahagi sama rata. Jumlah faedah keseluruhan adalah lebih rendah.",
+        interestOnlyMethodDesc: "Hanya bayar faedah setiap bulan; jumlah prinsipal tidak akan berkurang."
     },
     hi: {
         title: "ऋण कैलकुलेटर",
@@ -160,7 +180,11 @@ const translations = {
         targetMonthLabel: "विशिष्ट महीना देखें (वैकल्पिक)",
         monthUnit: "माह",
         viewMethods: "गणना विधि देखें",
-        specificMonthNote: "(महीना {n})"
+        specificMonthNote: "(महीना {n})",
+        methodsTitle: "गणना के तरीके",
+        repaymentMethodDesc: "पूरे कार्यकाल में मासिक भुगतान स्थिर रहता है। शुरुआत में ब्याज अधिक होता है।",
+        decreasingMethodDesc: "मूलधन को समान रूप से विभाजित किया जाता है। कुल ब्याज भुगतान कम होता है।",
+        interestOnlyMethodDesc: "आप केवल ब्याज का भुगतान करते हैं; मूल राशि में कोई कमी नहीं होती है।"
     }
 };
 
@@ -177,6 +201,8 @@ const totalOverTheTermTextContent = document.querySelector('#total-over-the-term
 const langSelect = document.querySelector('#lang-select');
 // 获取符号显示元素
 const currencyDisplay = document.querySelector('#currency-display');
+// 1. 获取特定月份的容器
+const targetMonthContainer = document.getElementById('target-month-container');
 
 
 /**
@@ -227,6 +253,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const initialLang = savedLang || (translations[browserLang] ? browserLang : 'en');
     
     updateLanguage(initialLang, false); // 初始化不需要再次保存
+
+    updateTargetMonthVisibility();
 });
 
 // 4. 输入处理逻辑 (保留你原本的格式化功能)
@@ -242,8 +270,28 @@ mortgageAmountInput.addEventListener('input', () => {
 
 mortgageTermInput.addEventListener('input', () => removeError(mortgageTermInput));
 interestRateInput.addEventListener('input', () => removeError(interestRateInput));
-radioInputs.forEach(radio => radio.addEventListener('change', () => removeError(radio)));
 
+// 定义切换显示状态的函数
+function updateTargetMonthVisibility() {
+    // 获取当前被选中的还款方式
+    const selectedType = document.querySelector('input[name="mortgage-type"]:checked');
+    
+    if (selectedType && selectedType.value === 'decreasing') {
+        targetMonthContainer.style.display = 'block'; // 或者 'flex'，取决于你的布局
+    } else {
+        targetMonthContainer.style.display = 'none';
+        // 隐藏时清空输入值，防止影响计算结果
+        document.getElementById('target-month').value = ''; 
+    }
+}
+
+// 修改你原有的 radioInputs 监听器
+radioInputs.forEach(radio => {
+    radio.addEventListener('change', () => {
+        removeError(radio);
+        updateTargetMonthVisibility(); // 每次切换单选框时检查一次
+    });
+});
 function removeError(input) {
     const parent = input.closest('.mortgage-amount-container, .mortgage-term-container, .interest-rate-container, .mortgage-type-container');
     const errorMsg = parent.querySelector('.error-msg');
@@ -359,12 +407,37 @@ function getCurrencyCode(lang) {
 // --- 步骤 4: 提交监听 ---
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = checkInputs(); // [amount, term, rate, type]
-    const targetMonthInput = document.getElementById('target-month').value;
-    const targetMonth = parseInt(targetMonthInput) || 1;
+    const data = checkInputs(); // 原有的校验逻辑 [amount, term, rate, type]
+    
+    // 获取特定月份输入
+    const targetMonthInput = document.getElementById('target-month');
+    let targetMonth = parseInt(targetMonthInput.value);
 
+    // --- 新增校验逻辑 ---
     if (data) {
-        // data 展开后是 amount, term, rate, type，最后传入 targetMonth
+        const [amount, term, rate, type] = data;
+        const totalMonths = term * 12;
+
+        // 如果用户选择了“等额本金”模式且输入了月份
+        if (type === 'decreasing' && targetMonthInput.value !== "") {
+            // 如果月份小于等于 0 或者不是数字
+            if (isNaN(targetMonth) || targetMonth <= 0) {
+                alert("Please enter a valid month (greater than 0)"); // 这里可以换成你更美观的报错提示
+                targetMonthInput.focus();
+                return;
+            }
+            // 进阶校验：如果月份超过了总还款期限
+            if (targetMonth > totalMonths) {
+                alert(`The month cannot exceed the total term (${totalMonths} months)`);
+                targetMonthInput.focus();
+                return;
+            }
+        } else {
+            // 非等额本金模式或未输入时，默认按第 1 个月计算
+            targetMonth = 1;
+        }
+
+        // 执行计算和显示
         const [monthly, total] = calculate(...data, targetMonth);
         showResults(monthly, total, targetMonth);
     }
@@ -377,4 +450,10 @@ clearAllBtn.addEventListener('click', () => {
     document.querySelector('.before-results-container').classList.remove('hidden');
     document.querySelector('.after-results-container').classList.add('hidden');
     rightContent.classList.remove('after-reset');
+});
+
+document.getElementById('target-month').addEventListener('input', function() {
+    if (this.value !== "" && this.value < 1) {
+        this.value = 1; // 自动强制纠正为 1
+    }
 });

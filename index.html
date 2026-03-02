@@ -65,18 +65,10 @@
           </div>
         </div>
 
-        <div class="input-container">
-          <label for="target-month" data-i18n="targetMonthLabel">View Specific Month (Optional)</label>
-          <div class="input-div">
-            <input type="number" id="target-month" placeholder="1">
-            <p data-i18n="monthUnit">Mo.</p>
-          </div>
-        </div>
-
         <div class="mortgage-type-container">
           <label data-i18n="type">Mortgage Type</label>
           <div class="radio-input-container">
-            <input type="radio" name="mortgage-type" value="repayment">
+            <input type="radio" name="mortgage-type" value="repayment" checked>
             <label data-i18n="repayment">Repayment</label>
           </div>
           <div class="radio-input-container">
@@ -86,6 +78,13 @@
           <div class="radio-input-container">
             <input type="radio" name="mortgage-type" value="decreasing">
             <label data-i18n="decreasing">Decreasing (Equal Principal)</label>
+          </div>
+        </div>
+        <div class="specific-month-container" id="target-month-container" style="display: none;">
+          <label for="target-month" data-i18n="targetMonthLabel">View Specific Month (Optional)</label>
+          <div class="input-container">
+            <input type="number" id="target-month" placeholder="1" min="1">
+            <p data-i18n="monthUnit">Mo.</p>
           </div>
         </div>
       </form>
@@ -122,6 +121,42 @@
       </div>
     </div>
   </div>
+
+  <section class="calculation-methods-section">
+  <div class="methods-container">
+    <h2 data-i18n="methodsTitle">Loan Calculation Methods</h2>
+    <div class="methods-grid">
+      
+      <div class="method-card">
+        <h3 data-i18n="repayment">Repayment (EMI)</h3>
+        <p data-i18n="repaymentMethodDesc">The monthly payment remains constant throughout the term.</p>
+        <div class="formula">
+          $$M = P \times \frac{r(1+r)^n}{(1+r)^n-1}$$
+        </div>
+      </div>
+
+      <div class="method-card">
+        <h3 data-i18n="decreasing">Decreasing (Equal Principal)</h3>
+        <p data-i18n="decreasingMethodDesc">The principal is divided equally, and interest decreases over time.</p>
+        <div class="formula">
+          $$M_t = \frac{P}{n} + (P - \frac{P}{n} \times (t-1)) \times r$$
+        </div>
+      </div>
+
+      <div class="method-card">
+        <h3 data-i18n="interestOnly">Interest Only</h3>
+        <p data-i18n="interestOnlyMethodDesc">You only pay the interest charges each month; the principal remains the same.</p>
+        <div class="formula">
+          $$M = P \times r$$
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <script src="script.js"></script>
 </body>

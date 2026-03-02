@@ -387,3 +387,59 @@ body {
     align-items: center;
     gap: 2px; /* 下拉框和按钮之间的间距 */
 }
+
+.input-container input[type="number"] {
+    border: none;
+    width: 100%;
+    padding: 0 16px;
+}
+
+
+.calculation-methods-section {
+    width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 24px;
+}
+
+.methods-container h2 {
+    color: #133041;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+    gap: 20px;
+}
+
+.method-card {
+    background: #FAFAE0; /* 呼应你的黄色调 */
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #D2D421;
+}
+
+.method-card h3 {
+    color: #4E6E7E;
+    margin-bottom: 10px;
+}
+
+.method-card p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.formula {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    overflow-x: auto;
+    color: #133041;
+    font-weight: bold;
+}
