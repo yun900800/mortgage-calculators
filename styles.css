@@ -45,6 +45,10 @@ body {
     font-size: 1.5rem;
     color: #133041;
     font-weight: 700;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 16px;
+    white-space: nowrap;
 }
 
 .left-content .header-container>button {
@@ -162,6 +166,10 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.interest-rate-container label {
+    white-space: nowrap;
 }
 
 
@@ -334,7 +342,7 @@ body {
     border: none;
     background: transparent;
     color: #4E6E7E;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-decoration: underline; /* 保持下划线符合交互直觉 */
     text-underline-offset: 4px; /* 下划线与文字的距离，更优雅 */
@@ -377,5 +385,5 @@ body {
 .header-controls {
     display: flex;
     align-items: center;
-    gap: 16px; /* 下拉框和按钮之间的间距 */
+    gap: 2px; /* 下拉框和按钮之间的间距 */
 }
