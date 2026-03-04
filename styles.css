@@ -456,3 +456,142 @@ body {
         font-size: 16px;
     }
 }
+
+/* 提前还款开关 */
+.early-repay-switch-container {
+    grid-column: 1/3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.switch-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.switch-wrapper input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #9ABED5;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #D8DB2F; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+.switch-label { font-weight: 700; color: #133041; font-size: 0.9rem; }
+
+/* 高级面板折叠逻辑 */
+.advanced-panel {
+    grid-column: 1/3;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s;
+    background: #F9FBFC;
+    border-radius: 8px;
+    border: 1px solid #E4F4FD;
+}
+
+.advanced-panel.collapsed {
+    max-height: 0;
+    opacity: 0;
+    border: none;
+    margin: 0;
+}
+
+/* Tab 切换 */
+.tab-header {
+    display: flex;
+    border-bottom: 1px solid #E4F4FD;
+}
+
+.tab-item {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #4E6E7E;
+    transition: 0.3s;
+}
+
+.tab-item.active {
+    background: #E4F4FD;
+    color: #133041;
+    font-weight: 700;
+}
+
+.tab-content { padding: 15px; }
+
+.balance-hint-container {
+    margin-top: 15px;
+    border-top: 1px dashed #E4F4FD;
+    padding-top: 10px;
+}
+
+.repay-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field label {
+    font-size: 0.75rem;
+    color: #4E6E7E;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 修正：确保在移动端或窄列下不会溢出 */
+.input-container input { min-width: 0; }
+
+#total-over-the-term {
+    color: #D8E2E7;
+}
+
+
+.comparison-box {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #9ABED5;
+}
+
+.compare-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.old-value {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.compare-row.highlight {
+    color: #D8DB2F; /* 亮黄色高亮节省金额 */
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.save-value {
+    font-size: 1.1rem;
+}

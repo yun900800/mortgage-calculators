@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -87,6 +87,50 @@
             <p data-i18n="monthUnit">Mo.</p>
           </div>
         </div>
+        <div class="early-repay-switch-container">
+          <label class="switch-wrapper">
+            <input type="checkbox" id="early-repay-toggle">
+            <span class="slider"></span>
+          </label>
+          <span data-i18n="advancedTitle" class="switch-label">Early Repayment Options</span>
+        </div>
+
+        <div id="advanced-panel" class="advanced-panel collapsed">
+          <div class="tab-header">
+            <div class="tab-item active" data-mode="lump-sum" data-i18n="lumpSumOption">Lump Sum</div>
+            <div class="tab-item" data-mode="monthly-extra" data-i18n="monthlyExtraOption">Monthly Extra</div>
+          </div>
+          
+          <div class="tab-content">
+            <div id="lump-sum-fields" class="repay-group">
+              <div class="field">
+                <label data-i18n="repayAmount">Repay Amount</label>
+                <div class="input-container"><input type="text" id="lump-sum-amount"></div>
+              </div>
+              <div class="field">
+                <label data-i18n="repayAtMonth">At Month</label>
+                <div class="input-container"><input type="number" id="lump-sum-month" placeholder="12"></div>
+              </div>
+            </div>
+
+            <div id="monthly-extra-fields" class="repay-group hidden">
+              <div class="field">
+                <label data-i18n="extraMonthly">Monthly Extra</label>
+                <div class="input-container"><input type="text" id="monthly-extra-amount"></div>
+              </div>
+              <div class="field">
+                <label data-i18n="startFrom">Start From Month</label>
+                <div class="input-container"><input type="number" id="monthly-extra-start" placeholder="1"></div>
+              </div>
+            </div>
+
+            
+              
+          </div>
+          <div class="balance-hint-container" style="margin-top: 15px; border-top: 1px dashed #E4F4FD; padding-top: 10px;">
+              <p id="remaining-balance-hint" style="font-size: 0.8rem; color: #4E6E7E; font-weight: 600;"></p>
+            </div>
+        </div>
       </form>
 
       <button class="calculate-btn" type="submit" form="my-form">
@@ -105,17 +149,38 @@
       <div class="after-results-container hidden">
         <div class="results-header">
           <h2 data-i18n="resultsTitle">Your results</h2>
-          <p data-i18n="resultsDesc">Your results are shown below based on the information you provided. To adjust the results, edit the form and click “calculate repayments” again.</p>
+          <p data-i18n="resultsDesc">Your results are shown below based on the information you provided.</p>
         </div>
         <div class="results-description">
           <div class="results-monthly-repayments">
-            <span data-i18n="monthlyRepay">Your monthly repayments</span>
+            <span id="monthly-label" data-i18n="monthlyRepay">Your monthly repayments</span>
             <p id="monthly-repayments">£0.00</p>
+            <div class="monthly-breakdown" style="display: flex; gap: 15px; margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">
+              <div>
+                <span data-i18n="principalLabel" style="font-size: 0.8rem; color: #9ABED5;">Principal:</span>
+                <span id="monthly-principal" style="color: white; margin-left: 4px;">£0.00</span>
+              </div>
+              <div>
+                <span data-i18n="interestLabel" style="font-size: 0.8rem; color: #9ABED5;">Interest:</span>
+                <span id="monthly-interest" style="color: white; margin-left: 4px;">£0.00</span>
+              </div>
+            </div>
           </div>
           <div class="line"></div>
           <div class="results-total-over-term">
             <span data-i18n="totalRepay">Total you'll repay over the term</span>
             <p id="total-over-the-term">£0.00</p>
+          </div>
+          <div id="savings-box" class="hidden">
+            <div class="line" style="border-top: 1px dashed rgba(154, 190, 213, 0.3); margin: 20px 0;"></div>
+            <div class="results-total-over-term">
+              <span data-i18n="totalSaved" style="color: #22c55e;">Interest Saved</span>
+              <p id="total-saved" style="color: #22c55e; font-size: 1.5rem;">£0.00</p>
+            </div>
+            <div class="results-total-over-term" style="margin-top: 10px;">
+              <span data-i18n="termShortened">Term Shortened</span>
+              <p id="term-shortened" style="color: white; font-size: 1.1rem;">0 months</p>
+            </div>
           </div>
         </div>
       </div>

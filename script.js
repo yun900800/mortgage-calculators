@@ -1,4 +1,3 @@
-/// 1. 翻译数据配置
 const translations = {
     en: {
         title: "Mortgage Calculator",
@@ -29,7 +28,19 @@ const translations = {
         methodsTitle: "Calculation Methods",
         repaymentMethodDesc: "Monthly payment stays the same. Interest is higher at the start.",
         decreasingMethodDesc: "Principal is split equally. Total interest is lower.",
-        interestOnlyMethodDesc: "You only pay interest. Principal remains unchanged."
+        interestOnlyMethodDesc: "You only pay interest. Principal remains unchanged.",
+        advancedTitle: "Early Repayment Options",
+        lumpSumOption: "Lump Sum",
+        monthlyExtraOption: "Monthly Extra",
+        repayAmount: "Repay Amount",
+        repayAtMonth: "At Month",
+        extraMonthly: "Monthly Extra",
+        startFrom: "Start From Month",
+        totalSaved: "Interest Saved",
+        termShortened: "Term Shortened",
+        remainingBalance: "Remaining Balance:",
+        principalLabel: "Principal",
+        interestLabel: "Interest",
     },
     zh: {
         title: "贷款计算器",
@@ -60,7 +71,19 @@ const translations = {
         methodsTitle: "计算方法详解",
         repaymentMethodDesc: "每月还款金额固定。前期利息占比大，后期本金占比大。",
         decreasingMethodDesc: "本金每月平摊，利息随本金减少而递减，前期还款压力大。",
-        interestOnlyMethodDesc: "每月只还利息，不还本金。总利息支出最高。"
+        interestOnlyMethodDesc: "每月只还利息，不还本金。总利息支出最高。",
+        advancedTitle: "提前还款选项 (高级)",
+        lumpSumOption: "单次大额冲抵",
+        monthlyExtraOption: "每月额外增额",
+        repayAmount: "还款金额",
+        repayAtMonth: "在第几个月",
+        extraMonthly: "每月多还",
+        startFrom: "起始月份",
+        totalSaved: "节省利息",
+        termShortened: "提前结清时间",
+        remainingBalance: "该月剩余本金:",
+        principalLabel: "本金",
+        interestLabel: "利息",
     },
     ja: {
         title: "住宅ローン計算機",
@@ -91,7 +114,19 @@ const translations = {
         methodsTitle: "計算方法の解説",
         repaymentMethodDesc: "毎月の返済額が一定です。最初は利息の割合が高く、徐々に元金の返済が進みます。",
         decreasingMethodDesc: "元金を均等に返済します。利息は残高に応じて減るため、総返済額は少なくなります。",
-        interestOnlyMethodDesc: "毎月利息のみを支払い、元金は減りません。総利息負担が最も大きくなります。"
+        interestOnlyMethodDesc: "毎月利息のみを支払い、元金は減りません。総利息負担が最も大きくなります。",
+        advancedTitle: "繰越返済オプション (高度)",
+        lumpSumOption: "一括返済",
+        monthlyExtraOption: "毎月の増額",
+        repayAmount: "返済額",
+        repayAtMonth: "返済月 (何ヶ月目)",
+        extraMonthly: "毎月の増額分",
+        startFrom: "開始月",
+        totalSaved: "節約された利息",
+        termShortened: "短縮された期間",
+        remainingBalance: "その月のローン残高:",
+        principalLabel: "元金",
+        interestLabel: "利息",
     },
     ko: {
         title: "대출 계산기",
@@ -122,7 +157,19 @@ const translations = {
         methodsTitle: "상환 방식 안내",
         repaymentMethodDesc: "매월 상환액이 일정합니다. 초기에는 이자 비중이 높고 후기로 갈수록 원금 비중이 높아집니다.",
         decreasingMethodDesc: "원금을 매달 균등하게 나누어 갚습니다. 이자가 줄어듦에 따라 총 상환액도 감소합니다.",
-        interestOnlyMethodDesc: "매월 이자만 지불하며 원금은 줄어들지 않습니다. 총 이자 비용이 가장 많이 발생합니다."
+        interestOnlyMethodDesc: "매월 이자만 지불하며 원금은 줄어들지 않습니다. 총 이자 비용이 가장 많이 발생합니다.",
+        advancedTitle: "중도 상환 옵션 (고급)",
+        lumpSumOption: "일시 상환",
+        monthlyExtraOption: "매월 추가 상환",
+        repayAmount: "상환 금액",
+        repayAtMonth: "상환 시점 (개월)",
+        extraMonthly: "매월 추가액",
+        startFrom: "시작 개월",
+        totalSaved: "절약된 이자",
+        termShortened: "단축된 기간",
+        remainingBalance: "해당 월 잔액:",
+        principalLabel: "원금",
+        interestLabel: "이자",
     },
     ms: {
         title: "Kalkulator Pinjaman",
@@ -153,7 +200,19 @@ const translations = {
         methodsTitle: "Kaedah Pengiraan",
         repaymentMethodDesc: "Bayaran bulanan tetap sepanjang tempoh. Faedah lebih tinggi di peringkat awal.",
         decreasingMethodDesc: "Prinsipal dibahagi sama rata. Jumlah faedah keseluruhan adalah lebih rendah.",
-        interestOnlyMethodDesc: "Hanya bayar faedah setiap bulan; jumlah prinsipal tidak akan berkurang."
+        interestOnlyMethodDesc: "Hanya bayar faedah setiap bulan; jumlah prinsipal tidak akan berkurang.",
+        advancedTitle: "Pilihan Bayaran Balik Awal",
+        lumpSumOption: "Bayaran Sekaligus",
+        monthlyExtraOption: "Tambahan Bulanan",
+        repayAmount: "Amaun Bayaran",
+        repayAtMonth: "Pada Bulan Ke-",
+        extraMonthly: "Tambahan Bulanan",
+        startFrom: "Bulan Permulaan",
+        totalSaved: "Faedah Dijimatkan",
+        termShortened: "Tempoh Dipendekkan",
+        remainingBalance: "Baki Pinjaman:",
+        principalLabel: "Prinsipal",
+        interestLabel: "Faedah",
     },
     hi: {
         title: "ऋण कैलकुलेटर",
@@ -184,7 +243,19 @@ const translations = {
         methodsTitle: "गणना के तरीके",
         repaymentMethodDesc: "पूरे कार्यकाल में मासिक भुगतान स्थिर रहता है। शुरुआत में ब्याज अधिक होता है।",
         decreasingMethodDesc: "मूलधन को समान रूप से विभाजित किया जाता है। कुल ब्याज भुगतान कम होता है।",
-        interestOnlyMethodDesc: "आप केवल ब्याज का भुगतान करते हैं; मूल राशि में कोई कमी नहीं होती है।"
+        interestOnlyMethodDesc: "आप केवल ब्याज का भुगतान करते हैं; मूल राशि में कोई कमी नहीं होती है।",
+        advancedTitle: "समय से पहले भुगतान के विकल्प",
+        lumpSumOption: "एकमुश्त भुगतान",
+        monthlyExtraOption: "मासिक अतिरिक्त",
+        repayAmount: "भुगतान राशि",
+        repayAtMonth: "महीने में",
+        extraMonthly: "मासिक अतिरिक्त राशि",
+        startFrom: "प्रारंभ महीना",
+        totalSaved: "बचाया गया ब्याज",
+        termShortened: "अवधि कम हुई",
+        remainingBalance: "शेष ऋण राशि:",
+        principalLabel: "मूलधन",
+        interestLabel: "ब्याज",
     }
 };
 
@@ -203,6 +274,203 @@ const langSelect = document.querySelector('#lang-select');
 const currencyDisplay = document.querySelector('#currency-display');
 // 1. 获取特定月份的容器
 const targetMonthContainer = document.getElementById('target-month-container');
+
+const repayToggle = document.getElementById('early-repay-toggle');
+const advancedPanel = document.getElementById('advanced-panel');
+const tabs = document.querySelectorAll('.tab-item');
+let activeMode = 'lump-sum';
+
+// 示例：用户在输入“提前还款月份”时，自动提示他那时还欠多少钱
+const monthInput = document.getElementById('monthly-extra-start');
+const hintDisplay = document.getElementById('remaining-balance-hint'); // 假设你有个显示提示的标签
+
+/**
+ * 核心：获取干净的数字（处理逗号和非数字字符）
+ */
+function getCleanNumber(id) {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    // 移除逗号并转换为浮点数
+    const val = parseFloat(el.value.replace(/,/g, ''));
+    return isNaN(val) ? 0 : val;
+}
+
+/**
+ * 核心：格式化货币显示
+ */
+function formatCurrency(value) {
+    const lang = document.getElementById('lang-select').value;
+    const config = translations[lang];
+    return new Intl.NumberFormat(config.locale, {
+        style: 'currency',
+        currency: config.currencyCode,
+    }).format(value);
+}
+
+/**
+ * 核心：计算特定月份剩余本金
+ */
+function getRemainingBalance(P, years, annualRate, type, targetMonth) {
+    const r = annualRate / 100 / 12;
+    const n = years * 12;
+    if (targetMonth <= 0) return P;
+    if (targetMonth >= n) return 0;
+
+    if (type === 'repayment') {
+        const monthlyPayment = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        const balance = P * Math.pow(1 + r, targetMonth) - 
+                        (monthlyPayment * (Math.pow(1 + r, targetMonth) - 1)) / r;
+        return Math.max(0, balance);
+    } else if (type === 'decreasing') {
+        return Math.max(0, P - (P / n) * targetMonth);
+    } else if (type === 'interest-only') {
+        return P; // 仅还利息模式下，本金在最后一月前不变
+    }
+    return 0;
+}
+
+/**
+ * 更新 UI 上的余额提示
+ */
+function updateBalanceHint() {
+    const P = getCleanNumber('mortgage-amount');
+    const years = getCleanNumber('mortgage-term');
+    const rate = getCleanNumber('interest-rate');
+    const type = document.querySelector('input[name="mortgage-type"]:checked').value;
+    
+    // 根据当前选中的 Tab 决定取哪个月份
+    // activeMode 变量应该在你切换 Tab 的逻辑中维护 ('lump-sum' 或 'monthly-extra')
+    let targetMonth = 0;
+    if (activeMode === 'lump-sum') {
+        targetMonth = parseInt(document.getElementById('lump-sum-month').value);
+    } else {
+        targetMonth = parseInt(document.getElementById('monthly-extra-start').value);
+    }
+
+    const hintElement = document.getElementById('remaining-balance-hint');
+    
+    if (!P || !years || !rate || isNaN(targetMonth) || targetMonth <= 0) {
+        hintElement.innerText = "";
+        return;
+    }
+
+    const balance = getRemainingBalance(P, years, rate, type, targetMonth);
+    const lang = document.getElementById('lang-select').value;
+    const label = translations[lang].remainingBalance || "Remaining:";
+
+    hintElement.innerText = `${label} ${formatCurrency(balance)}`;
+}
+
+// 1. 监听基础表单变化（如果改了总金额，余额提示也要变）
+['mortgage-amount', 'mortgage-term', 'interest-rate'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateBalanceHint);
+});
+
+// 2. 监听还款方式单选框
+document.querySelectorAll('input[name="mortgage-type"]').forEach(radio => {
+    radio.addEventListener('change', updateBalanceHint);
+});
+
+// 3. 监听两个模式的月份输入
+document.getElementById('lump-sum-month').addEventListener('input', updateBalanceHint);
+document.getElementById('monthly-extra-start').addEventListener('input', updateBalanceHint);
+
+// --- 开关控制 ---
+repayToggle.addEventListener('change', () => {
+    advancedPanel.classList.toggle('collapsed', !repayToggle.checked);
+});
+
+// --- Tab 切换 ---
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeMode = tab.dataset.mode;
+        document.getElementById('lump-sum-fields').classList.toggle('hidden', activeMode !== 'lump-sum');
+        document.getElementById('monthly-extra-fields').classList.toggle('hidden', activeMode !== 'monthly-extra');
+    });
+});
+
+
+/**
+ * 计算在第 n 个月还款后的剩余本金
+ * @param {number} P - 贷款原始本金
+ * @param {number} years - 贷款年限
+ * @param {number} annualRate - 年利率 (如 5.5)
+ * @param {string} type - 还款方式 ('repayment', 'decreasing', 'interest-only')
+ * @param {number} targetMonth - 目标月份
+ * @returns {number} - 第 n 个月还款后的余额
+ */
+function getRemainingBalance(P, years, annualRate, type, targetMonth) {
+    const r = annualRate / 100 / 12;
+    const n = years * 12;
+    let balance = P;
+    
+    // 如果目标月份为0，直接返回初始本金
+    if (targetMonth <= 0) return P;
+
+    if (type === 'repayment') {
+        // 等额本息：使用复利公式直接计算剩余本金（比循环更快）
+        const monthlyPayment = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        balance = P * Math.pow(1 + r, targetMonth) - 
+                  (monthlyPayment * (Math.pow(1 + r, targetMonth) - 1)) / r;
+    } else if (type === 'decreasing') {
+        // 等额本金：剩余本金 = 总本金 - 已还本金
+        const principalPerMonth = P / n;
+        balance = P - (principalPerMonth * targetMonth);
+    } else if (type === 'interest-only') {
+        // 仅还利息：除非是最后一个月，否则本金永远不变
+        balance = (targetMonth >= n) ? 0 : P;
+    }
+
+    return Math.max(0, balance); // 确保余额不为负数
+}
+
+// --- 核心计算引擎 (逐月迭代) ---
+function runCalculation(P, years, annualRate, type, extra) {
+    const r = annualRate / 100 / 12;
+    const n = years * 12;
+    let balance = P;
+    let totalInterest = 0;
+    let month = 0;
+    let baseM = 0;
+
+    // 计算标准月供用于基准对比
+    if (type === 'repayment') {
+        baseM = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    } else if (type === 'interest-only') {
+        baseM = P * r;
+    } else {
+        baseM = (P / n) + (P * r); // 等额本金首月
+    }
+
+    while (balance > 0.01 && month < n + 1) {
+        month++;
+        let interest = balance * r;
+        let principal = 0;
+
+        if (type === 'repayment') {
+            principal = baseM - interest;
+        } else if (type === 'decreasing') {
+            principal = P / n;
+        } else if (type === 'interest-only') {
+            principal = (month === n) ? balance : 0;
+        }
+
+        balance -= principal;
+
+        // 注入提前还款逻辑
+        if (extra.active) {
+            if (extra.mode === 'lump-sum' && month === extra.lumpMonth) balance -= extra.lumpAmount;
+            if (extra.mode === 'monthly-extra' && month >= extra.startMonth) balance -= extra.monthlyExtra;
+        }
+
+        totalInterest += interest;
+        if (balance < 0) balance = 0;
+    }
+
+    return { monthly: baseM, total: totalInterest + P, actualMonths: month };
+}
 
 
 /**
@@ -338,42 +606,153 @@ function checkInputs() {
     return [parseFloat(amount), parseInt(term), parseFloat(rate), typeChecked.value];
 }
 
-// --- 步骤 1: 修改计算函数，只返回纯数字 ---
-function calculate(amount, term, rate, type, targetMonth = 1) {
-    const monthlyInterestRate = rate / 12 / 100;
-    const numberOfPayments = term * 12;
-    let monthlyPayment;
-    let totalRepay;
+/**
+ * 计算贷款数据
+ * @param {number} amount - 贷款总额 (P)
+ * @param {number} term - 期限 (年)
+ * @param {number} rate - 年利率 (%)
+ * @param {string} type - 还款类型
+ * @param {number} targetMonth - 目标月份 (t)
+ * @returns {Object} - 包含月供详情和总额的对象
+ */
+// function calculate(amount, term, rate, type, targetMonth = 1) {
+//     const monthlyInterestRate = rate / 12 / 100; // r
+//     const numberOfPayments = term * 12;          // n
+    
+//     let monthlyPayment = 0; // 当月总还款额
+//     let principal = 0;      // 当月应还本金
+//     let interest = 0;       // 当月应还利息
+//     let totalRepay = 0;     // 整个期限的总还款额
 
-    // 限制月份范围
-    targetMonth = Math.max(1, Math.min(targetMonth, numberOfPayments));
+//     // 确保目标月份在有效范围内
+//     targetMonth = Math.max(1, Math.min(targetMonth, numberOfPayments));
 
-    if (type === 'repayment') {
-        // 等额本息：每月固定
-        monthlyPayment = (amount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
-            (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
-        totalRepay = monthlyPayment * numberOfPayments;
-    } else if (type === 'decreasing') {
-        // 等额本金：每月本金固定，利息递减
-        const monthlyPrincipal = amount / numberOfPayments;
-        // 第 m 个月利息 = [贷款本金 - 累计已还本金] * 月利率
-        const interestForSpecificMonth = (amount - (targetMonth - 1) * monthlyPrincipal) * monthlyInterestRate;
-        monthlyPayment = monthlyPrincipal + interestForSpecificMonth;
+//     if (type === 'repayment') {
+//         // --- 1. 等额本息 (Standard EMI) ---
+//         // 公式: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+//         monthlyPayment = (amount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+//                          (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
         
-        // 总利息 = [(首月利息 + 末月利息) / 2] * 期数
-        const totalInterest = (numberOfPayments + 1) * amount * monthlyInterestRate / 2;
-        totalRepay = amount + totalInterest;
+//         // 计算第 t 个月的利息: 当前剩余本金 * 月利率
+//         // 第 t 个月的剩余本金 = P(1+r)^(t-1) - M[(1+r)^(t-1) - 1]/r
+//         const remainingBalanceBefore = amount * Math.pow(1 + monthlyInterestRate, targetMonth - 1) - 
+//                                      (monthlyPayment * (Math.pow(1 + monthlyInterestRate, targetMonth - 1) - 1)) / monthlyInterestRate;
+        
+//         interest = Math.max(0, remainingBalanceBefore * monthlyInterestRate);
+//         principal = monthlyPayment - interest;
+//         totalRepay = monthlyPayment * numberOfPayments;
+
+//     } else if (type === 'decreasing') {
+//         // --- 2. 等额本金 (Equal Principal) ---
+//         // 每月本金固定
+//         principal = amount / numberOfPayments;
+        
+//         // 第 t 个月利息 = [贷款本金 - (t-1) * 每月本金] * 月利率
+//         interest = (amount - (targetMonth - 1) * principal) * monthlyInterestRate;
+//         monthlyPayment = principal + interest;
+        
+//         // 总还款额 = 本金 + 总利息
+//         const totalInterest = ((amount * monthlyInterestRate + (amount / numberOfPayments) * monthlyInterestRate) / 2) * numberOfPayments;
+//         totalRepay = amount + totalInterest;
+
+//     } else if (type === 'interest-only') {
+//         // --- 3. 仅还利息 (Interest Only) ---
+//         interest = amount * monthlyInterestRate;
+//         // 除了最后一个月还本金，其余月份本金为 0
+//         principal = (targetMonth === numberOfPayments) ? amount : 0;
+//         monthlyPayment = interest + principal;
+//         totalRepay = (interest * numberOfPayments) + amount;
+//     }
+
+//     // 返回对象，方便解构使用
+//     return [
+//         monthlyPayment, 
+//         totalRepay,
+//         principal, 
+//         interest
+//     ];
+// }
+
+// 修改后的 calculate 函数，兼容你原来的 [monthly, total, principal, interest] 返回格式
+function calculate(P, years, annualRate, type, targetMonth, extra = { active: false }) {
+    const r = annualRate / 100 / 12;
+    const n = years * 12;
+    let balance = P;
+    let totalInterest = 0;
+    
+    // 用于存储“特定月份”的数据（对应你原来的逻辑）
+    let targetMonthly = 0;
+    let targetPrincipal = 0;
+    let targetInterest = 0;
+
+    // 预计算初始月供（用于 UI 显示首月或标准值）
+    let firstMonthPayment = 0;
+    if (type === 'repayment') {
+        firstMonthPayment = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    } else if (type === 'interest-only') {
+        firstMonthPayment = P * r;
     } else {
-        // 仅还利息
-        monthlyPayment = amount * monthlyInterestRate;
-        totalRepay = (monthlyPayment * numberOfPayments) + amount;
+        firstMonthPayment = (P / n) + (P * r);
     }
 
-    return [monthlyPayment, totalRepay];
+    // 逐月模拟计算
+    for (let month = 1; month <= 600; month++) {
+        if (balance <= 0) break;
+
+        let interest = balance * r;
+        let principal = 0;
+
+        // 1. 确定本月基础还本金额
+        if (type === 'repayment') {
+            let standardM = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            principal = Math.min(balance, standardM - interest);
+        } else if (type === 'decreasing') {
+            principal = Math.min(balance, P / n);
+        } else if (type === 'interest-only') {
+            principal = (month === n) ? balance : 0;
+        }
+
+        // 2. 记录特定月份的数据 (保留你原来的逻辑)
+        if (month === targetMonth) {
+            targetInterest = interest;
+            targetPrincipal = principal;
+            targetMonthly = principal + interest;
+        }
+
+        // 3. 执行常规还本
+        balance -= principal;
+
+        // 4. 提前还款逻辑注入
+        if (extra.active) {
+            if (extra.mode === 'lump-sum' && month === extra.lumpMonth) {
+                balance -= extra.lumpAmount;
+            }
+            if (extra.mode === 'monthly-extra' && month >= extra.startMonth) {
+                balance -= extra.monthlyExtra;
+            }
+        }
+
+        totalInterest += interest;
+        if (balance < 0) balance = 0;
+        
+        // 记录实际还清的月份
+        var actualEndMonth = month;
+    }
+
+    // 返回格式：[月供, 总还款额, 选中月本金, 选中月利息, 实际还款月数, 总利息]
+    // 这样不会破坏你原来的 showResults 调用
+    return [
+        targetMonth === 1 ? firstMonthPayment : targetMonthly, 
+        totalInterest + P, 
+        targetPrincipal, 
+        targetInterest,
+        actualEndMonth,
+        totalInterest
+    ];
 }
 
-// --- 步骤 2: 修改显示函数，统一处理格式化 ---
-function showResults(monthly, total, targetMonth = 1) {
+// 修改函数签名，增加 principal 和 interest 参数
+function showResults(monthly, total, targetMonth = 1, principal, interest) {
     const lang = langSelect.value;
     const config = translations[lang];
     const typeChecked = document.querySelector('input[name="mortgage-type"]:checked').value;
@@ -383,19 +762,28 @@ function showResults(monthly, total, targetMonth = 1) {
     document.querySelector('.after-results-container').classList.remove('hidden');
     
     const formatter = new Intl.NumberFormat(config.locale, {
-        style: 'currency', currency: currencyCode,
-        minimumFractionDigits: 2, maximumFractionDigits: 2
+        style: 'currency', 
+        currency: currencyCode,
+        minimumFractionDigits: 2, 
+        maximumFractionDigits: 2
     });
 
-    // 处理标题文字：如果是等额本金，显示具体月份
+    // 1. 处理标题文字（等额本金显示具体月份）
     let labelText = config.monthlyRepay;
     if (typeChecked === 'decreasing') {
         labelText += " " + config.specificMonthNote.replace('{n}', targetMonth);
     }
-    document.querySelector('.results-monthly-repayments span').innerText = labelText;
+    document.querySelector('#monthly-label').innerText = labelText;
 
+    // 2. 赋值主金额
     document.querySelector('#monthly-repayments').innerText = formatter.format(monthly);
     document.querySelector('#total-over-the-term').innerText = formatter.format(total);
+
+    // 3. 赋值拆分后的本金和利息 (新增逻辑)
+    if (principal !== undefined && interest !== undefined) {
+        document.querySelector('#monthly-principal').innerText = formatter.format(principal);
+        document.querySelector('#monthly-interest').innerText = formatter.format(interest);
+    }
 }
 
 // --- 步骤 3: 辅助函数确认 ---
@@ -405,43 +793,138 @@ function getCurrencyCode(lang) {
 }
 
 // --- 步骤 4: 提交监听 ---
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const data = checkInputs(); // 原有的校验逻辑 [amount, term, rate, type]
+    
+//     // 获取特定月份输入
+//     const targetMonthInput = document.getElementById('target-month');
+//     let targetMonth = parseInt(targetMonthInput.value);
+
+//     // --- 新增校验逻辑 ---
+//     if (data) {
+//         const [amount, term, rate, type] = data;
+//         const totalMonths = term * 12;
+
+//         // 如果用户选择了“等额本金”模式且输入了月份
+//         if (type === 'decreasing' && targetMonthInput.value !== "") {
+//             // 如果月份小于等于 0 或者不是数字
+//             if (isNaN(targetMonth) || targetMonth <= 0) {
+//                 alert("Please enter a valid month (greater than 0)"); // 这里可以换成你更美观的报错提示
+//                 targetMonthInput.focus();
+//                 return;
+//             }
+//             // 进阶校验：如果月份超过了总还款期限
+//             if (targetMonth > totalMonths) {
+//                 alert(`The month cannot exceed the total term (${totalMonths} months)`);
+//                 targetMonthInput.focus();
+//                 return;
+//             }
+//         } else {
+//             // 非等额本金模式或未输入时，默认按第 1 个月计算
+//             targetMonth = 1;
+//         }
+
+//         // 执行计算和显示
+//         // 执行计算：现在 result 是一个数组 [monthly, total, principal, interest]
+//         const result = calculate(...data, targetMonth);
+        
+//         // 使用数组索引取值，或者使用解构赋值：
+//         const [monthly, total, principal, interest] = result;
+
+//         // 调用显示函数
+//         showResults(
+//             monthly, 
+//             total, 
+//             targetMonth, 
+//             principal, 
+//             interest
+//         );
+//     }
+// });
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = checkInputs(); // 原有的校验逻辑 [amount, term, rate, type]
-    
-    // 获取特定月份输入
+    const data = checkInputs();
+    //     // 获取特定月份输入
     const targetMonthInput = document.getElementById('target-month');
     let targetMonth = parseInt(targetMonthInput.value);
-
-    // --- 新增校验逻辑 ---
     if (data) {
-        const [amount, term, rate, type] = data;
-        const totalMonths = term * 12;
+        const P = getCleanNumber('mortgage-amount');
+        const years = getCleanNumber('mortgage-term');
+        const rate = getCleanNumber('interest-rate');
+        const type = document.querySelector('input[name="mortgage-type"]:checked').value;
+        let targetMonth = parseInt(targetMonthInput.value) || 1;
 
-        // 如果用户选择了“等额本金”模式且输入了月份
-        if (type === 'decreasing' && targetMonthInput.value !== "") {
-            // 如果月份小于等于 0 或者不是数字
-            if (isNaN(targetMonth) || targetMonth <= 0) {
-                alert("Please enter a valid month (greater than 0)"); // 这里可以换成你更美观的报错提示
-                targetMonthInput.focus();
-                return;
-            }
-            // 进阶校验：如果月份超过了总还款期限
-            if (targetMonth > totalMonths) {
-                alert(`The month cannot exceed the total term (${totalMonths} months)`);
-                targetMonthInput.focus();
-                return;
-            }
-        } else {
-            // 非等额本金模式或未输入时，默认按第 1 个月计算
-            targetMonth = 1;
-        }
+        // 提前还款数据
+        const isAdvanced = document.getElementById('early-repay-toggle').checked;
+        const extraData = {
+            active: isAdvanced,
+            mode: activeMode,
+            lumpAmount: getCleanNumber('lump-sum-amount'),
+            lumpMonth: parseInt(document.getElementById('lump-sum-month').value) || 1,
+            monthlyExtra: getCleanNumber('monthly-extra-amount'),
+            startMonth: parseInt(document.getElementById('monthly-extra-start').value) || 1
+        };
 
-        // 执行计算和显示
-        const [monthly, total] = calculate(...data, targetMonth);
-        showResults(monthly, total, targetMonth);
+        // 1. 计算常规（用于对比）
+        const normalRes = calculate(P, years, rate, type, targetMonth, { active: false });
+        
+        // 2. 计算当前（可能带提前还款）
+        const currentRes = calculate(P, years, rate, type, targetMonth, extraData);
+
+        // 调用显示函数 (传入两个数组进行对比)
+        showDetailedResults(currentRes, normalRes, isAdvanced);
     }
 });
+
+function showDetailedResults(current, normal, isAdvanced) {
+    // 解构数组 (对应上面的返回顺序)
+    const [monthly, total, principal, interest, actualMonths, totalInt] = current;
+    const [,,, , normalMonths, normalInt] = normal;
+
+    // 更新你原本的 UI 元素
+    monthlyPaymentTextContent.innerText = formatCurrency(monthly);
+    totalOverTheTermTextContent.innerText = formatCurrency(total);
+    
+    // 更新你原来的本金/利息标签
+    if (document.getElementById('monthly-principal')) {
+        document.getElementById('monthly-principal').innerText = formatCurrency(principal);
+        document.getElementById('monthly-interest').innerText = formatCurrency(interest);
+    }
+
+    // 动态统计对比
+    let summaryDiv = document.getElementById('comparison-summary');
+    if (!summaryDiv) {
+        summaryDiv = document.createElement('div');
+        summaryDiv.id = 'comparison-summary';
+        summaryDiv.className = 'comparison-box';
+        totalOverTheTermTextContent.parentElement.appendChild(summaryDiv);
+    }
+
+    if (isAdvanced) {
+        const lang = langSelect.value;
+        const config = translations[lang];
+        summaryDiv.innerHTML = `
+            <div class="save-item">
+                <span>${config.totalSaved}:</span>
+                <span class="green">${formatCurrency(normalInt - totalInt)}</span>
+            </div>
+            <div class="save-item">
+                <span>${config.termShortened}:</span>
+                <span>${normalMonths - actualMonths} ${config.monthUnit}</span>
+            </div>
+        `;
+        summaryDiv.style.display = 'block';
+    } else {
+        summaryDiv.style.display = 'none';
+    }
+
+    // 面板切换逻辑保持不变
+    document.querySelector('.before-results-container').classList.add('hidden');
+    document.querySelector('.after-results-container').classList.remove('hidden');
+    rightContent.classList.add('after-reset');
+}
 
 clearAllBtn.addEventListener('click', () => {
     form.reset();
