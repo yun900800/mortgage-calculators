@@ -261,21 +261,32 @@ const translations = {
 
 // 2. DOM 元素获取
 const form = document.querySelector('form');
+// 贷款额度、期限、利率输入框
 const mortgageAmountInput = document.querySelector('#mortgage-amount');
 const mortgageTermInput = document.querySelector('#mortgage-term');
 const interestRateInput = document.querySelector('#interest-rate');
+
+// 还款方式单选框
 const radioInputs = document.querySelectorAll('input[name="mortgage-type"]');
+// 计算按钮
 const clearAllBtn = document.querySelector('.clear-all-btn');
+// 结果显示容器
 const rightContent = document.querySelector('.right-content');
+
+// 每月还款和总还款显示元素
 const monthlyPaymentTextContent = document.querySelector('#monthly-repayments');
 const totalOverTheTermTextContent = document.querySelector('#total-over-the-term');
+
+// 语言选择下拉菜单
 const langSelect = document.querySelector('#lang-select');
 // 获取符号显示元素
 const currencyDisplay = document.querySelector('#currency-display');
 // 1. 获取特定月份的容器
 const targetMonthContainer = document.getElementById('target-month-container');
 
+// 高级选项相关元素
 const repayToggle = document.getElementById('early-repay-toggle');
+// 提前还款模式的输入容器
 const advancedPanel = document.getElementById('advanced-panel');
 const tabs = document.querySelectorAll('.tab-item');
 let activeMode = 'lump-sum';
