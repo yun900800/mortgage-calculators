@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>关于我们 - 房贷计算器</title>
+  <style>
+    :root {
+      --primary-color: #133041;
+      --accent-color: #D8DB2F;
+      --bg-color: #E4F4FD;
+      --text-color: #4E6E7E;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    h1 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 20px; }
+    h2 { color: var(--primary-color); font-size: 1.4rem; margin-top: 30px; border-left: 4px solid var(--accent-color); padding-left: 15px; }
+    p { margin-bottom: 20px; font-size: 1.05rem; }
+    .highlight-card {
+      background: #f9fbfc;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #e4f4fd;
+      margin: 20px 0;
+    }
+    .footer-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 20px;
+      background: var(--accent-color);
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+    .footer-link:hover { transform: translateY(-2px); }
+    @media (max-width: 600px) {
+      .container { margin: 20px; padding: 25px; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>关于我们 (About Us)</h1>
+    
+    <p>欢迎来到我们的房贷计算器。我们致力于为全球购房者提供最直观、最精准、且完全透明的财务规划工具。</p>
+
+    <h2>我们的使命</h2>
+    <p>买房是人生中最重要的财务决策之一。然而，复杂的利息计算、不同的还款方式以及“提前还贷是否划算”的纠结，常常让普通用户感到困惑。我们的使命是利用技术手段，将复杂的金融模型转化为任何人都能秒懂的视觉结果，帮助您省下不必要的利息开支。</p>
+
+    
+
+    <h2>为什么选择我们的工具？</h2>
+    <div class="highlight-card">
+      <ul>
+        <li><strong>独家提前还贷对比：</strong> 我们不仅计算月供，还能精准模拟单次大额还款或每月多还后的省钱效果。</li>
+        <li><strong>多语言支持：</strong> 无论您身在何处，我们提供中文、英文、日语、韩语等多种语言支持。</li>
+        <li><strong>隐私至上：</strong> 我们坚信您的财务隐私权。本工具所有计算均在您的本地浏览器完成，数据永不上传服务器。</li>
+        <li><strong>完全免费：</strong> 我们通过简洁的广告维持运营，为所有用户提供永久免费的深度计算服务。</li>
+      </ul>
+    </div>
+
+    <h2>专业性承诺</h2>
+    <p>本站点的核心算法基于标准的金融数学模型，并经过多次测试校对，涵盖了等额本息（EMI）、等额本金以及仅还利息等多种主流还款模式。我们持续关注各国最新的金融政策，确保工具的时效性。</p>
+
+    <h2>联系与反馈</h2>
+    <p>我们是一个由独立开发者维护的项目，您的反馈是我们前进的动力。如果您在使用过程中有任何建议，或者发现了计算偏差，欢迎随时通过邮件与我们联系：</p>
+    <p><strong>电子邮箱：</strong> <a href="mailto:yun900800@126.com" style="color: var(--primary-color);">yun900800@126.com</a></p>
+
+    <a href="index.html" class="footer-link">← 开始计算您的房贷</a>
+  </div>
+
+</body>
+</html>

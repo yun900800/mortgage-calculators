@@ -2,13 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="2026 房贷计算器 - 提前还贷省钱分析 & 等额本金/本息对比 | 计算月供、总还款额，探索提前还款节省的利息和时间。适用于不同还款方式，助您做出明智的贷款决策。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="mobile.css">
-  <title>Mortgage Repayment Calculator</title>
+  <title>2026 房贷计算器 - 提前还贷省钱分析 & 等额本金/本息对比</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Mortgage Calculator with Early Repayment",
+    "operatingSystem": "WEB",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    },
+    "description": "A professional mortgage calculator supporting EMI, Decreasing Principal and Early Repayment analysis."
+  }
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-54HJLXPDLF"></script>
   <script>
@@ -22,7 +37,7 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-
+  <div class="main-container">
   <div class="main-content">
     <div class="left-content">
       <div class="header-container">
@@ -186,7 +201,11 @@
           </div>
         </div>
       </div>
+      <div class="disclaimer-container">
+        <p data-i18n="disclaimer" class="disclaimer-text"></p>
     </div>
+    </div>
+    
   </div>
 
   <section class="calculation-methods-section">
@@ -221,6 +240,85 @@
       </div>
     </div>
   </section>
+
+
+  <section class="user-guide-section">
+  <div class="guide-container">
+    <h2 data-i18n="guideTitle">如何使用此计算器</h2>
+    
+    <div class="guide-steps">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3 data-i18n="step1Title">输入基础贷款信息</h3>
+          <p data-i18n="step1Desc">在左侧表单中输入您的贷款总额、还款期限（年）以及年利率。</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3 data-i18n="step2Title">选择还款方式</h3>
+          <p data-i18n="step2Desc">选择“等额本息”（每月还款固定）或“等额本金”（每月本金固定，总利息更省）。</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 data-i18n="step3Title">探索提前还款 (可选)</h3>
+          <p data-i18n="step3Desc">开启“高级选项”，输入单次或每月额外的还款额，查看能为您节省多少利息和时间。</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3 data-i18n="step4Title">查看详细对比结果</h3>
+          <p data-i18n="step4Desc">点击“计算”后，右侧将即时显示月供、总额及省钱详情。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="faq-section">
+  <div class="faq-container">
+    <h2 data-i18n="faqTitle">常见问题解答 (FAQ)</h2>
+    
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary data-i18n="faqQ1">什么时候提前还贷最划算？</summary>
+        <div class="faq-answer">
+          <p data-i18n="faqA1">
+            核心原则是“省下的利息 > 投资收益”。从时间点看，还款周期的前 1/3 是黄金期。
+            此时本金占比高，利息产生快，提前还款能极大削减总利息。
+            此外，当房贷利率处于高位（如 > 4.5%）且您没有更好的投资渠道时，提前还款相当于获得了一份稳健的高收益。
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary data-i18n="faqQ2">缩短年限和减少月供哪个更好？</summary>
+        <div class="faq-answer">
+          <p data-i18n="faqA2">
+            这取决于您的目标：
+            1. 追求省钱：选“缩短年限”。因为借钱时间缩短，利息节省效果最强，通常比减少月供多省下数倍利息。
+            2. 追求生活质量：选“减少月供”。这能直接增加您每月的可支配现金流，缓解经济压力，适合近期有大额支出或职业变动的人群。
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="about.html" data-i18n="aboutUs">About Us</a>
+      <a href="privacy.html" data-i18n="privacyPolicy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="termsOfService">Terms of Service</a>
+    </div>
+    <p>© 2026 <span data-i18n="footerTitle">Mortgage Calculator</span>. All rights reserved.</p>
+  </footer>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>

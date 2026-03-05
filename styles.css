@@ -8,10 +8,56 @@
 body {
     background-color: #E4F4FD;
     /* height: 100vh; */
+    /* width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.main-container {
+    /* height: 100vh; */
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.site-footer {
+    width: 100%;
+    background-color: #133041;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disclaimer-container {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2); /* 适配右侧蓝色背景 */
+}
+
+.disclaimer-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #9ABED5; /* 浅蓝色，不抢主视觉 */
+    text-align: left;
+}
+
+/* 如果在左侧（白色背景）使用，颜色可以调深一点 */
+.left-content .disclaimer-text {
+    color: #7e734e;
+}
+
+.footer-links a {
+    color: #9ABED5;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    text-wrap: nowrap;
 }
 
 .main-content {
@@ -594,4 +640,141 @@ input:checked + .slider:before { transform: translateX(22px); }
 
 .save-value {
     font-size: 1.1rem;
+}
+
+
+.user-guide-section {
+    padding: 60px 20px;
+    background-color: #fff;
+    margin-top: 40px;
+}
+
+.guide-container {
+    max-width: 1008px;
+    margin: 0 auto;
+}
+
+.guide-container h2 {
+    color: #133041;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    background: #F9FBFC;
+    border-radius: 16px;
+    border: 1px solid #E4F4FD;
+    transition: transform 0.3s ease;
+}
+
+.step-item:hover {
+    transform: translateY(-5px);
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    background-color: #D8DB2F;
+    color: #133041;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.step-content h3 {
+    color: #133041;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.step-content p {
+    color: #4E6E7E;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+
+
+
+.faq-section {
+    padding: 60px 20px;
+    background-color: #F9FBFC; /* 浅灰色背景，与操作指南区分 */
+    width: 840px;
+    margin-top: 40px;
+}
+
+.faq-container {
+    max-width: 1008px;
+    margin: 0 auto;
+}
+
+.faq-container h2 {
+    color: #133041;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #E4F4FD;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item[open] {
+    border-color: #D8DB2F;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+summary {
+    padding: 20px;
+    font-weight: 700;
+    color: #133041;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    font-size: 1.2rem;
+}
+
+.faq-item[open] summary::after {
+    content: '-';
+}
+
+.faq-answer {
+    padding: 0 20px 20px 20px;
+    color: #4E6E7E;
+    line-height: 1.8;
+    font-size: 0.95rem;
 }

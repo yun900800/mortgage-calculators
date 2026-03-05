@@ -2,11 +2,15 @@
 
 
     body {
+        padding: 0;
+    }
+
+    .main-container {
         padding: 40px;
         height: 100%;
         display: flex;
         flex-direction: column;
-    }
+    }   
 
     .main-content {
         flex-direction: column;
@@ -25,20 +29,29 @@
     .calculation-methods-section{
         width: 100%;
     }
+    .faq-section {
+        width: 100%;
+    }
 
     .methods-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
         gap: 20px;
     }
+
 }
 
 @media (max-width: 400px) {
     body {
         padding: 0;
+    }
+
+    .main-container {
+        padding: 6px;
+        height: 100%;
         display: flex;
         flex-direction: column;
-    }
+    }  
 
     .main-content {
         border-radius: 0px;
@@ -63,10 +76,25 @@
         width: 100%;
     }
 
+    .faq-section {
+        width: 100%;
+    }
+
     .methods-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
         gap: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+     .footer-links a {
+        width: 100%;
+        text-align: left;
     }
 
 

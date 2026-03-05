@@ -41,6 +41,27 @@ const translations = {
         remainingBalance: "Remaining Balance:",
         principalLabel: "Principal",
         interestLabel: "Interest",
+        disclaimer: "Note: The calculation results are for reference only and do not serve as a basis for the actual loan. Please refer to your bank contract for the actual repayment amount.",
+        aboutUs: "About Us",
+        privacyPolicy: "Privacy Policy",
+        termsOfService: "Terms of Service",
+        footerTitle: "Mortgage Calculator",
+        guideTitle: "How to Use This Calculator",
+        step1Title: "Enter Basic Info",
+        step1Desc: "Fill in the loan amount, term (years), and interest rate in the left form.",
+        step2Title: "Select Payment Type",
+        step2Desc: "Choose between 'Repayment' (constant payment) or 'Decreasing' (save more interest).",
+        step3Title: "Explore Advanced Options",
+        step3Desc: "Enable early repayment to see how much interest and time you can save.",
+        step4Title: "Review Comparison",
+        step4Desc: "Click calculate to see your monthly payments and total savings instantly.",
+        pageTitle: "Mortgage Calculator 2026 - Early Repayment & Interest Savings Analysis",
+        pageDesc: "Use our 2026 Mortgage Calculator to compare EMI and Decreasing Principal. Analyze how early repayment and monthly extras can save your interest and shorten your loan term.",
+        faqTitle: "Frequently Asked Questions",
+faqQ1: "When is the best time to pay off a mortgage early?",
+faqA1: "The core principle is 'Savings > Investment Return'. The first 1/3 of the loan term is the golden window. At this stage, the principal balance is high, and interest accumulates quickly; early repayment significantly slashes total interest costs. Also, if your mortgage rate is high (>4.5%) and you lack better investment options, paying early is like getting a guaranteed return.",
+faqQ2: "Should I shorten the term or reduce the monthly payment?",
+faqA2: "It depends on your goal: 1. To save most money: Choose 'Shorten Term'. By reducing the borrowing time, you maximize interest savings. 2. For better cash flow: Choose 'Reduce Monthly Payment'. This increases your disposable income each month, perfect for those with upcoming big expenses or job changes.",
     },
     zh: {
         title: "贷款计算器",
@@ -84,6 +105,27 @@ const translations = {
         remainingBalance: "该月剩余本金:",
         principalLabel: "本金",
         interestLabel: "利息",
+        disclaimer: "注：计算结果仅供参考，不作为贷款依据。实际还款额请以银行合同为准。",
+        aboutUs: "关于我们",
+        privacyPolicy: "隐私政策",
+        termsOfService: "服务协议",
+        footerTitle: "房贷计算器",
+        guideTitle: "如何使用此计算器",
+        step1Title: "输入基础信息",
+        step1Desc: "在左侧表单填写贷款金额、期限（年）和利率。",
+        step2Title: "选择还款模式",
+        step2Desc: "选择“等额本息”（月供固定）或“等额本金”（省利息）。",
+        step3Title: "探索提前还款",
+        step3Desc: "开启高级选项，模拟额外还款后的省钱效果。",
+        step4Title: "查看对比结果",
+        step4Desc: "点击计算，右侧即刻显示月供、总额及节省详情。",
+        pageTitle: "2026 房贷计算器 - 提前还贷省钱分析 & 等额本金/本息对比",
+        pageDesc: "使用 2026 最新房贷计算器对比等额本息与等额本金。分析提前还贷、每月额外还款如何帮您节省利息支出并缩短还款年限。",
+        faqTitle: "常见问题解答 (FAQ)",
+faqQ1: "什么时候提前还贷最划算？",
+faqA1: "核心原则是“省下的利息 > 投资收益”。从时间点看，还款周期的前 1/3 是黄金期。此时本金占比高，利息产生快，提前还款能极大削减总利息。此外，当房贷利率处于高位且您没有更好的投资渠道时，提前还款相当于获得了一个稳赚的收益。",
+faqQ2: "缩短年限和减少月供哪个更好？",
+faqA2: "这取决于您的目标：1. 追求极致省钱：选“缩短年限”。借钱时间缩短，利息节省效果最强。 2. 追求现金流：选“减少月供”。这能直接增加每月的可支配支出，提升生活容错率，适合近期有大开支计划的人群。",
     },
     ja: {
         title: "住宅ローン計算機",
@@ -127,6 +169,11 @@ const translations = {
         remainingBalance: "その月のローン残高:",
         principalLabel: "元金",
         interestLabel: "利息",
+        disclaimer: "注：計算結果は参考値であり、実際のローンの根拠となるものではありません。実際の返済額については銀行の契約書をご参照ください。",
+        aboutUs: "私たちについて",
+        privacyPolicy: "プライバシーポリシー",
+        termsOfService: "利用規約",
+        footerTitle: "住宅ローン計算機"
     },
     ko: {
         title: "대출 계산기",
@@ -170,6 +217,11 @@ const translations = {
         remainingBalance: "해당 월 잔액:",
         principalLabel: "원금",
         interestLabel: "이자",
+        disclaimer: "참고: 계산 결과는 참고용일 뿐이며 실제 대출의 근거가 되지 않습니다. 실제 상환 금액은 은행 계약서를 참조하십시오.",
+        aboutUs: "회사 소개",
+        privacyPolicy: "개인정보 처리방침",
+        termsOfService: "서비스 약관",
+        footerTitle: "주택 담보 대출 계산기"
     },
     ms: {
         title: "Kalkulator Pinjaman",
@@ -213,6 +265,11 @@ const translations = {
         remainingBalance: "Baki Pinjaman:",
         principalLabel: "Prinsipal",
         interestLabel: "Faedah",
+        disclaimer: "Nota: Keputusan pengiraan adalah untuk rujukan sahaja dan tidak berfungsi sebagai asas untuk pinjaman sebenar. Sila rujuk kontrak bank anda untuk jumlah bayaran balik sebenar.",
+        aboutUs: "Mengenai Kami",
+        privacyPolicy: "Dasar Privasi",
+        termsOfService: "Syarat Perkhidmatan",
+        footerTitle: "Kalkulator Pinjaman Perumahan"
     },
     hi: {
         title: "ऋण कैलकुलेटर",
@@ -242,7 +299,7 @@ const translations = {
         specificMonthNote: "(महीना {n})",
         methodsTitle: "गणना के तरीके",
         repaymentMethodDesc: "पूरे कार्यकाल में मासिक भुगतान स्थिर रहता है। शुरुआत में ब्याज अधिक होता है।",
-        decreasingMethodDesc: "मूलधन को समान रूप से विभाजित किया जाता है। कुल ब्याज भुगतान कम होता है।",
+        decreasingMethodDesc: "मूलधन को समान रूप से विभाजित किया जाता है। कुल ब्याज भुगतान कम होता. है।",
         interestOnlyMethodDesc: "आप केवल ब्याज का भुगतान करते हैं; मूल राशि में कोई कमी नहीं होती है।",
         advancedTitle: "समय से पहले भुगतान के विकल्प",
         lumpSumOption: "एकमुश्त भुगतान",
@@ -256,6 +313,11 @@ const translations = {
         remainingBalance: "शेष ऋण राशि:",
         principalLabel: "मूलधन",
         interestLabel: "ब्याज",
+        disclaimer: "नोट: गणना के परिणाम केवल संदर्भ के लिए हैं और वास्तविक ऋण के आधार के रूप में काम नहीं करते हैं। वास्तविक पुनर्भुगतान राशि के लिए कृपया अपने बैंक अनुबंध को देखें।",
+        aboutUs: "हमारे बारे में",
+        privacyPolicy: "गोपनीयता नीति",
+        termsOfService: "सेवा की शर्तें",
+        footerTitle: "होम लोन कैलकुलेटर"
     }
 };
 
@@ -516,6 +578,15 @@ function updateLanguage(lang, saveToStorage = true) {
     if (amount && isResultVisible) {
         // 模拟提交表单以刷新计算结果显示
         form.dispatchEvent(new Event('submit'));
+    }
+
+    // 2. 【新增】动态更新浏览器标签页标题
+    document.title = config.pageTitle;
+
+    // 3. 【新增】动态更新 Meta Description (对社交媒体分享友好)
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.setAttribute('content', config.pageDesc);
     }
 }
 
