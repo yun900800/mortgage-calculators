@@ -795,73 +795,6 @@ function checkInputs() {
     return [parseFloat(amount), parseInt(term), parseFloat(rate), typeChecked.value];
 }
 
-/**
- * 计算贷款数据
- * @param {number} amount - 贷款总额 (P)
- * @param {number} term - 期限 (年)
- * @param {number} rate - 年利率 (%)
- * @param {string} type - 还款类型
- * @param {number} targetMonth - 目标月份 (t)
- * @returns {Object} - 包含月供详情和总额的对象
- */
-// function calculate(amount, term, rate, type, targetMonth = 1) {
-//     const monthlyInterestRate = rate / 12 / 100; // r
-//     const numberOfPayments = term * 12;          // n
-    
-//     let monthlyPayment = 0; // 当月总还款额
-//     let principal = 0;      // 当月应还本金
-//     let interest = 0;       // 当月应还利息
-//     let totalRepay = 0;     // 整个期限的总还款额
-
-//     // 确保目标月份在有效范围内
-//     targetMonth = Math.max(1, Math.min(targetMonth, numberOfPayments));
-
-//     if (type === 'repayment') {
-//         // --- 1. 等额本息 (Standard EMI) ---
-//         // 公式: M = P * [r(1+r)^n] / [(1+r)^n - 1]
-//         monthlyPayment = (amount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
-//                          (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
-        
-//         // 计算第 t 个月的利息: 当前剩余本金 * 月利率
-//         // 第 t 个月的剩余本金 = P(1+r)^(t-1) - M[(1+r)^(t-1) - 1]/r
-//         const remainingBalanceBefore = amount * Math.pow(1 + monthlyInterestRate, targetMonth - 1) - 
-//                                      (monthlyPayment * (Math.pow(1 + monthlyInterestRate, targetMonth - 1) - 1)) / monthlyInterestRate;
-        
-//         interest = Math.max(0, remainingBalanceBefore * monthlyInterestRate);
-//         principal = monthlyPayment - interest;
-//         totalRepay = monthlyPayment * numberOfPayments;
-
-//     } else if (type === 'decreasing') {
-//         // --- 2. 等额本金 (Equal Principal) ---
-//         // 每月本金固定
-//         principal = amount / numberOfPayments;
-        
-//         // 第 t 个月利息 = [贷款本金 - (t-1) * 每月本金] * 月利率
-//         interest = (amount - (targetMonth - 1) * principal) * monthlyInterestRate;
-//         monthlyPayment = principal + interest;
-        
-//         // 总还款额 = 本金 + 总利息
-//         const totalInterest = ((amount * monthlyInterestRate + (amount / numberOfPayments) * monthlyInterestRate) / 2) * numberOfPayments;
-//         totalRepay = amount + totalInterest;
-
-//     } else if (type === 'interest-only') {
-//         // --- 3. 仅还利息 (Interest Only) ---
-//         interest = amount * monthlyInterestRate;
-//         // 除了最后一个月还本金，其余月份本金为 0
-//         principal = (targetMonth === numberOfPayments) ? amount : 0;
-//         monthlyPayment = interest + principal;
-//         totalRepay = (interest * numberOfPayments) + amount;
-//     }
-
-//     // 返回对象，方便解构使用
-//     return [
-//         monthlyPayment, 
-//         totalRepay,
-//         principal, 
-//         interest
-//     ];
-// }
-
 // 修改后的 calculate 函数，兼容你原来的 [monthly, total, principal, interest] 返回格式
 function calculate(P, years, annualRate, type, targetMonth, extra = { active: false }) {
     const r = annualRate / 100 / 12;
@@ -981,57 +914,6 @@ function getCurrencyCode(lang) {
     return codes[lang] || 'GBP';
 }
 
-// --- 步骤 4: 提交监听 ---
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     const data = checkInputs(); // 原有的校验逻辑 [amount, term, rate, type]
-    
-//     // 获取特定月份输入
-//     const targetMonthInput = document.getElementById('target-month');
-//     let targetMonth = parseInt(targetMonthInput.value);
-
-//     // --- 新增校验逻辑 ---
-//     if (data) {
-//         const [amount, term, rate, type] = data;
-//         const totalMonths = term * 12;
-
-//         // 如果用户选择了“等额本金”模式且输入了月份
-//         if (type === 'decreasing' && targetMonthInput.value !== "") {
-//             // 如果月份小于等于 0 或者不是数字
-//             if (isNaN(targetMonth) || targetMonth <= 0) {
-//                 alert("Please enter a valid month (greater than 0)"); // 这里可以换成你更美观的报错提示
-//                 targetMonthInput.focus();
-//                 return;
-//             }
-//             // 进阶校验：如果月份超过了总还款期限
-//             if (targetMonth > totalMonths) {
-//                 alert(`The month cannot exceed the total term (${totalMonths} months)`);
-//                 targetMonthInput.focus();
-//                 return;
-//             }
-//         } else {
-//             // 非等额本金模式或未输入时，默认按第 1 个月计算
-//             targetMonth = 1;
-//         }
-
-//         // 执行计算和显示
-//         // 执行计算：现在 result 是一个数组 [monthly, total, principal, interest]
-//         const result = calculate(...data, targetMonth);
-        
-//         // 使用数组索引取值，或者使用解构赋值：
-//         const [monthly, total, principal, interest] = result;
-
-//         // 调用显示函数
-//         showResults(
-//             monthly, 
-//             total, 
-//             targetMonth, 
-//             principal, 
-//             interest
-//         );
-//     }
-// });
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = checkInputs();
@@ -1075,6 +957,9 @@ function showDetailedResults(current, normal, isAdvanced) {
     // 更新你原本的 UI 元素
     monthlyPaymentTextContent.innerText = formatCurrency(monthly);
     totalOverTheTermTextContent.innerText = formatCurrency(total);
+    animateNumber(monthlyPaymentTextContent, monthly);
+    animateNumber(totalEl, total);
+
     
     // 更新你原来的本金/利息标签
     if (document.getElementById('monthly-principal')) {
@@ -1135,16 +1020,44 @@ document.getElementById('target-month').addEventListener('input', function() {
 });
 
 
+// function animateNumber(element, finalValue, isCurrency = true) {
+//     let start = 0;
+//     const duration = 1000; // 动画持续1秒
+//     const startTime = performance.now();
+
+//     function update(currentTime) {
+//         const elapsed = currentTime - startTime;
+//         const progress = Math.min(elapsed / duration, 1);
+//         const currentValue = start + (finalValue - start) * progress;
+        
+//         element.innerText = isCurrency ? formatCurrency(currentValue) : Math.floor(currentValue);
+
+//         if (progress < 1) {
+//             requestAnimationFrame(update);
+//         }
+//     }
+//     requestAnimationFrame(update);
+// }
+
 function animateNumber(element, finalValue, isCurrency = true) {
-    let start = 0;
-    const duration = 1000; // 动画持续1秒
+    const start = 0;
+    const duration = 1000;
     const startTime = performance.now();
+
+    // 增加一个减速公式 (Ease Out Quad)
+    function easeOutQuad(t) {
+        return t * (2 - t);
+    }
 
     function update(currentTime) {
         const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const currentValue = start + (finalValue - start) * progress;
+        let progress = Math.min(elapsed / duration, 1);
         
+        // 应用缓动函数
+        const easedProgress = easeOutQuad(progress);
+        const currentValue = start + (finalValue - start) * easedProgress;
+        
+        // 使用 textContent 提升性能
         element.textContent = isCurrency ? formatCurrency(currentValue) : Math.floor(currentValue);
 
         if (progress < 1) {
@@ -1157,7 +1070,4 @@ function animateNumber(element, finalValue, isCurrency = true) {
 // 在 calculate 函数内调用：
 // 找到显示月供和总额的元素，改用动画
 const monthlyEl = document.getElementById('monthly-repayments');
-const totalEl = document.getElementById('total-repayments');
-
-animateNumber(monthlyEl, monthlyPayment);
-animateNumber(totalEl, totalPayment);
+const totalEl = document.getElementById('total-over-the-term');

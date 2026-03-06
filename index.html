@@ -46,304 +46,304 @@
 </head>
 <body>
   <div class="main-container">
-  <div class="main-content">
-    <div class="left-content">
-      <div class="header-container">
-        <h1 data-i18n="title">Mortgage Calculator</h1>
-        <div class="header-controls">
-          <select id="lang-select">
-            <option value="en">English</option>
-            <option value="zh">中文</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
-            <option value="ms">Melayu</option>
-            <option value="hi">हिन्दी</option>
-          </select>
-          <button class="clear-all-btn" data-i18n="clearAll">Clear All</button>
-          <div class="clear-all-btn"><a  data-i18n="viewMethods" target="blank" href="https://www.innovation.pp.ua/posts/20260223_%E6%88%BF%E8%B4%B7%E8%AE%A1%E7%AE%97/"></a></div>  
-        </div>
-        
-      </div>
-      
-      <form id="my-form">
-        <div class="mortgage-amount-container">
-          <label for="mortgage-amount" data-i18n="amount">Mortgage Amount</label>
-          <div class="input-container">
-            <p id="currency-display">£</p>
-            <input type="text" id="mortgage-amount">
-          </div>
-        </div>
-
-        <div class="mortgage-term-container">
-          <label for="mortgage-term" data-i18n="term">Mortgage Term</label>
-          <div class="input-container">
-            <input type="text" id="mortgage-term">
-            <p data-i18n="years">years</p>
-          </div>
-        </div>
-
-        <div class="interest-rate-container">
-          <label for="interest-rate" data-i18n="rate">Interest Rate</label>
-          <div class="input-container">
-            <input type="text" id="interest-rate">
-            <p>%</p>
-          </div>
-        </div>
-
-        <div class="mortgage-type-container">
-          <label data-i18n="type">Mortgage Type</label>
-          <div class="radio-input-container">
-            <input type="radio" name="mortgage-type" value="repayment" checked>
-            <label data-i18n="repayment">Repayment</label>
-          </div>
-          <div class="radio-input-container">
-            <input type="radio" name="mortgage-type" value="interest-only">
-            <label data-i18n="interestOnly">Interest Only</label>
-          </div>
-          <div class="radio-input-container">
-            <input type="radio" name="mortgage-type" value="decreasing">
-            <label data-i18n="decreasing">Decreasing (Equal Principal)</label>
-          </div>
-        </div>
-        <div class="specific-month-container" id="target-month-container" style="display: none;">
-          <label for="target-month" data-i18n="targetMonthLabel">View Specific Month (Optional)</label>
-          <div class="input-container">
-            <input type="number" id="target-month" placeholder="1" min="1">
-            <p data-i18n="monthUnit">Mo.</p>
-          </div>
-        </div>
-        <div class="early-repay-switch-container">
-          <label class="switch-wrapper">
-            <input type="checkbox" id="early-repay-toggle">
-            <span class="slider"></span>
-          </label>
-          <span data-i18n="advancedTitle" class="switch-label">Early Repayment Options</span>
-        </div>
-
-        <div id="advanced-panel" class="advanced-panel collapsed">
-          <div class="tab-header">
-            <div class="tab-item active" data-mode="lump-sum" data-i18n="lumpSumOption">Lump Sum</div>
-            <div class="tab-item" data-mode="monthly-extra" data-i18n="monthlyExtraOption">Monthly Extra</div>
+    <div class="main-content">
+      <div class="left-content">
+        <div class="header-container">
+          <h1 data-i18n="title">Mortgage Calculator</h1>
+          <div class="header-controls">
+            <select id="lang-select">
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+              <option value="ms">Melayu</option>
+              <option value="hi">हिन्दी</option>
+            </select>
+            <button class="clear-all-btn" data-i18n="clearAll">Clear All</button>
+            <div class="clear-all-btn"><a  data-i18n="viewMethods" target="blank" href="https://www.innovation.pp.ua/posts/20260223_%E6%88%BF%E8%B4%B7%E8%AE%A1%E7%AE%97/"></a></div>  
           </div>
           
-          <div class="tab-content">
-            <div id="lump-sum-fields" class="repay-group">
-              <div class="field">
-                <label data-i18n="repayAmount">Repay Amount</label>
-                <div class="input-container"><input type="text" id="lump-sum-amount"></div>
-              </div>
-              <div class="field">
-                <label data-i18n="repayAtMonth">At Month</label>
-                <div class="input-container"><input type="number" id="lump-sum-month" placeholder="12"></div>
-              </div>
+        </div>
+        
+        <form id="my-form">
+          <div class="mortgage-amount-container">
+            <label for="mortgage-amount" data-i18n="amount">Mortgage Amount</label>
+            <div class="input-container">
+              <p id="currency-display">£</p>
+              <input type="text" id="mortgage-amount">
             </div>
+          </div>
 
-            <div id="monthly-extra-fields" class="repay-group hidden">
-              <div class="field">
-                <label data-i18n="extraMonthly">Monthly Extra</label>
-                <div class="input-container"><input type="text" id="monthly-extra-amount"></div>
-              </div>
-              <div class="field">
-                <label data-i18n="startFrom">Start From Month</label>
-                <div class="input-container"><input type="number" id="monthly-extra-start" placeholder="1"></div>
-              </div>
+          <div class="mortgage-term-container">
+            <label for="mortgage-term" data-i18n="term">Mortgage Term</label>
+            <div class="input-container">
+              <input type="text" id="mortgage-term">
+              <p data-i18n="years">years</p>
             </div>
+          </div>
 
+          <div class="interest-rate-container">
+            <label for="interest-rate" data-i18n="rate">Interest Rate</label>
+            <div class="input-container">
+              <input type="text" id="interest-rate">
+              <p>%</p>
+            </div>
+          </div>
+
+          <div class="mortgage-type-container">
+            <label data-i18n="type">Mortgage Type</label>
+            <div class="radio-input-container">
+              <input type="radio" name="mortgage-type" value="repayment" checked>
+              <label data-i18n="repayment">Repayment</label>
+            </div>
+            <div class="radio-input-container">
+              <input type="radio" name="mortgage-type" value="interest-only">
+              <label data-i18n="interestOnly">Interest Only</label>
+            </div>
+            <div class="radio-input-container">
+              <input type="radio" name="mortgage-type" value="decreasing">
+              <label data-i18n="decreasing">Decreasing (Equal Principal)</label>
+            </div>
+          </div>
+          <div class="specific-month-container" id="target-month-container" style="display: none;">
+            <label for="target-month" data-i18n="targetMonthLabel">View Specific Month (Optional)</label>
+            <div class="input-container">
+              <input type="number" id="target-month" placeholder="1" min="1">
+              <p data-i18n="monthUnit">Mo.</p>
+            </div>
+          </div>
+          <div class="early-repay-switch-container">
+            <label class="switch-wrapper">
+              <input type="checkbox" id="early-repay-toggle">
+              <span class="slider"></span>
+            </label>
+            <span data-i18n="advancedTitle" class="switch-label">Early Repayment Options</span>
+          </div>
+
+          <div id="advanced-panel" class="advanced-panel collapsed">
+            <div class="tab-header">
+              <div class="tab-item active" data-mode="lump-sum" data-i18n="lumpSumOption">Lump Sum</div>
+              <div class="tab-item" data-mode="monthly-extra" data-i18n="monthlyExtraOption">Monthly Extra</div>
+            </div>
             
+            <div class="tab-content">
+              <div id="lump-sum-fields" class="repay-group">
+                <div class="field">
+                  <label data-i18n="repayAmount">Repay Amount</label>
+                  <div class="input-container"><input type="text" id="lump-sum-amount"></div>
+                </div>
+                <div class="field">
+                  <label data-i18n="repayAtMonth">At Month</label>
+                  <div class="input-container"><input type="number" id="lump-sum-month" placeholder="12"></div>
+                </div>
+              </div>
+
+              <div id="monthly-extra-fields" class="repay-group hidden">
+                <div class="field">
+                  <label data-i18n="extraMonthly">Monthly Extra</label>
+                  <div class="input-container"><input type="text" id="monthly-extra-amount"></div>
+                </div>
+                <div class="field">
+                  <label data-i18n="startFrom">Start From Month</label>
+                  <div class="input-container"><input type="number" id="monthly-extra-start" placeholder="1"></div>
+                </div>
+              </div>
+
               
-          </div>
-          <div class="balance-hint-container">
-              <p id="remaining-balance-hint" style="font-size: 0.8rem; color: #4E6E7E; font-weight: 600;"></p>
+                
             </div>
-        </div>
-      </form>
+            <div class="balance-hint-container">
+                <p id="remaining-balance-hint" style="font-size: 0.8rem; color: #4E6E7E; font-weight: 600;"></p>
+              </div>
+          </div>
+        </form>
 
-      <button class="calculate-btn" type="submit" form="my-form">
-        <img src="assets/images/icon-calculator.svg" alt="icon">
-        <span data-i18n="calculate">Calculate Repayments</span>
-      </button>
-    </div>
-
-    <div class="right-content">
-      <div class="before-results-container">
-        <img src="assets/images/illustration-empty.svg" alt="empty">
-        <h2 data-i18n="emptyTitle">Results shown here</h2>
-        <p data-i18n="emptyDesc">Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+        <button class="calculate-btn" type="submit" form="my-form">
+          <img src="assets/images/icon-calculator.svg" alt="icon">
+          <span data-i18n="calculate">Calculate Repayments</span>
+        </button>
       </div>
 
-      <div class="after-results-container hidden">
-        <div class="results-header">
-          <h2 data-i18n="resultsTitle">Your results</h2>
-          <p data-i18n="resultsDesc">Your results are shown below based on the information you provided.</p>
+      <div class="right-content">
+        <div class="before-results-container">
+          <img src="assets/images/illustration-empty.svg" alt="empty">
+          <h2 data-i18n="emptyTitle">Results shown here</h2>
+          <p data-i18n="emptyDesc">Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
         </div>
-        <div class="results-description">
-          <div class="results-monthly-repayments">
-            <span id="monthly-label" data-i18n="monthlyRepay">Your monthly repayments</span>
-            <p id="monthly-repayments">£0.00</p>
-            <div class="monthly-breakdown" style="display: flex; gap: 15px; margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">
-              <div>
-                <span data-i18n="principalLabel" style="font-size: 0.8rem; color: #9ABED5;">Principal:</span>
-                <span id="monthly-principal" style="color: white; margin-left: 4px;">£0.00</span>
-              </div>
-              <div>
-                <span data-i18n="interestLabel" style="font-size: 0.8rem; color: #9ABED5;">Interest:</span>
-                <span id="monthly-interest" style="color: white; margin-left: 4px;">£0.00</span>
+
+        <div class="after-results-container hidden">
+          <div class="results-header">
+            <h2 data-i18n="resultsTitle">Your results</h2>
+            <p data-i18n="resultsDesc">Your results are shown below based on the information you provided.</p>
+          </div>
+          <div class="results-description">
+            <div class="results-monthly-repayments">
+              <span id="monthly-label" data-i18n="monthlyRepay">Your monthly repayments</span>
+              <p id="monthly-repayments" class="animate-number">£0.00</p>
+              <div class="monthly-breakdown" style="display: flex; gap: 15px; margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">
+                <div>
+                  <span data-i18n="principalLabel" style="font-size: 0.8rem; color: #9ABED5;">Principal:</span>
+                  <span id="monthly-principal" style="color: white; margin-left: 4px;">£0.00</span>
+                </div>
+                <div>
+                  <span data-i18n="interestLabel" style="font-size: 0.8rem; color: #9ABED5;">Interest:</span>
+                  <span id="monthly-interest" style="color: white; margin-left: 4px;">£0.00</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="line"></div>
-          <div class="results-total-over-term">
-            <span data-i18n="totalRepay">Total you'll repay over the term</span>
-            <p id="total-over-the-term">£0.00</p>
-          </div>
-          <div id="savings-box" class="hidden">
-            <div class="line" style="border-top: 1px dashed rgba(154, 190, 213, 0.3); margin: 20px 0;"></div>
+            <div class="line"></div>
             <div class="results-total-over-term">
-              <span data-i18n="totalSaved" style="color: #22c55e;">Interest Saved</span>
-              <p id="total-saved" style="color: #22c55e; font-size: 1.5rem;">£0.00</p>
+              <span data-i18n="totalRepay">Total you'll repay over the term</span>
+              <p id="total-over-the-term" class="animate-number">£0.00</p>
             </div>
-            <div class="results-total-over-term" style="margin-top: 10px;">
-              <span data-i18n="termShortened">Term Shortened</span>
-              <p id="term-shortened" style="color: white; font-size: 1.1rem;">0 months</p>
+            <div id="savings-box" class="hidden">
+              <div class="line" style="border-top: 1px dashed rgba(154, 190, 213, 0.3); margin: 20px 0;"></div>
+              <div class="results-total-over-term">
+                <span data-i18n="totalSaved" style="color: #22c55e;">Interest Saved</span>
+                <p id="total-saved" style="color: #22c55e; font-size: 1.5rem;">£0.00</p>
+              </div>
+              <div class="results-total-over-term" style="margin-top: 10px;">
+                <span data-i18n="termShortened">Term Shortened</span>
+                <p id="term-shortened" style="color: white; font-size: 1.1rem;">0 months</p>
+              </div>
             </div>
           </div>
+          
         </div>
+        <div class="disclaimer-container">
+          <p data-i18n="disclaimer" class="disclaimer-text"></p>
+      </div>
+      </div>
+      
+    </div>
+
+    <section class="calculation-methods-section">
+      <div class="methods-container">
+        <h2 data-i18n="methodsTitle">Loan Calculation Methods</h2>
+        <div class="methods-grid">
+          
+          <div class="method-card">
+            <h3 data-i18n="repayment">Repayment (EMI)</h3>
+            <p data-i18n="repaymentMethodDesc">The monthly payment remains constant throughout the term.</p>
+            <div class="formula">
+              $$M = P \times \frac{r(1+r)^n}{(1+r)^n-1}$$
+            </div>
+          </div>
+
+          <div class="method-card">
+            <h3 data-i18n="decreasing">Decreasing (Equal Principal)</h3>
+            <p data-i18n="decreasingMethodDesc">The principal is divided equally, and interest decreases over time.</p>
+            <div class="formula">
+              $$M_t = \frac{P}{n} + (P - \frac{P}{n} \times (t-1)) \times r$$
+            </div>
+          </div>
+
+          <div class="method-card">
+            <h3 data-i18n="interestOnly">Interest Only</h3>
+            <p data-i18n="interestOnlyMethodDesc">You only pay the interest charges each month; the principal remains the same.</p>
+            <div class="formula">
+              $$M = P \times r$$
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="user-guide-section">
+    <div class="guide-container">
+      <h2 data-i18n="guideTitle">如何使用此计算器</h2>
+      
+      <div class="guide-steps">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 data-i18n="step1Title">输入基础贷款信息</h3>
+            <p data-i18n="step1Desc">在左侧表单中输入您的贷款总额、还款期限（年）以及年利率。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 data-i18n="step2Title">选择还款方式</h3>
+            <p data-i18n="step2Desc">选择“等额本息”（每月还款固定）或“等额本金”（每月本金固定，总利息更省）。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 data-i18n="step3Title">探索提前还款 (可选)</h3>
+            <p data-i18n="step3Desc">开启“高级选项”，输入单次或每月额外的还款额，查看能为您节省多少利息和时间。</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 data-i18n="step4Title">查看详细对比结果</h3>
+            <p data-i18n="step4Desc">点击“计算”后，右侧将即时显示月供、总额及省钱详情。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="faq-section">
+      <div class="faq-container">
+        <h2 data-i18n="faqTitle">常见问题解答 (FAQ)</h2>
         
-      </div>
-      <div class="disclaimer-container">
-        <p data-i18n="disclaimer" class="disclaimer-text"></p>
-    </div>
-    </div>
-    
-  </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary data-i18n="faqQ1">什么时候提前还贷最划算？</summary>
+            <div class="faq-answer">
+              <p data-i18n="faqA1">
+                核心原则是“省下的利息 > 投资收益”。从时间点看，还款周期的前 1/3 是黄金期。
+                此时本金占比高，利息产生快，提前还款能极大削减总利息。
+                此外，当房贷利率处于高位（如 > 4.5%）且您没有更好的投资渠道时，提前还款相当于获得了一份稳健的高收益。
+              </p>
+            </div>
+          </details>
 
-  <section class="calculation-methods-section">
-    <div class="methods-container">
-      <h2 data-i18n="methodsTitle">Loan Calculation Methods</h2>
-      <div class="methods-grid">
+          <details class="faq-item">
+            <summary data-i18n="faqQ2">缩短年限和减少月供哪个更好？</summary>
+            <div class="faq-answer">
+              <p data-i18n="faqA2">
+                这取决于您的目标：
+                1. 追求省钱：选“缩短年限”。因为借钱时间缩短，利息节省效果最强，通常比减少月供多省下数倍利息。
+                2. 追求生活质量：选“减少月供”。这能直接增加您每月的可支配现金流，缓解经济压力，适合近期有大额支出或职业变动的人群。
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+    <section class="expert-guide-section">
+      <div class="guide-container">
+        <h2 class="section-title" data-i18n="knowledgeTitle">房贷知识库 & 决策建议</h2>
         
-        <div class="method-card">
-          <h3 data-i18n="repayment">Repayment (EMI)</h3>
-          <p data-i18n="repaymentMethodDesc">The monthly payment remains constant throughout the term.</p>
-          <div class="formula">
-            $$M = P \times \frac{r(1+r)^n}{(1+r)^n-1}$$
-          </div>
-        </div>
+        <div class="guide-grid">
+          <article class="guide-card">
+            <div class="card-icon">📈</div>
+            <h3 data-i18n="newsTitle">2026年全球利率走势简析</h3>
+            <p data-i18n="newsDesc">进入2026年，全球主要经济体通胀趋于平稳，利率市场进入“高位横盘”期。对于购房者而言，LPR（贷款市场报价利率）的微调将直接影响月供压力。建议关注宏观政策调控，利用本工具的“提前还贷对比”功能，实时测算利率变动对总利息的影响。</p>
+          </article>
 
-        <div class="method-card">
-          <h3 data-i18n="decreasing">Decreasing (Equal Principal)</h3>
-          <p data-i18n="decreasingMethodDesc">The principal is divided equally, and interest decreases over time.</p>
-          <div class="formula">
-            $$M_t = \frac{P}{n} + (P - \frac{P}{n} \times (t-1)) \times r$$
-          </div>
-        </div>
+          <article class="guide-card">
+            <div class="card-icon">🧮</div>
+            <h3 data-i18n="mathTitle">等额本金与本息的数学差异</h3>
+            <p data-i18n="mathDesc">等额本息（EMI）的数学本质是“复利现值公式”，前期利息比例极高；而等额本金则是“线性递减”，本金固定，利息随本金减少而缩减。长期看，等额本金能节省 15%-25% 的利息支出，但前期还款压力大。本工具可以帮您直观量化这种利息差。</p>
+          </article>
 
-        <div class="method-card">
-          <h3 data-i18n="interestOnly">Interest Only</h3>
-          <p data-i18n="interestOnlyMethodDesc">You only pay the interest charges each month; the principal remains the same.</p>
-          <div class="formula">
-            $$M = P \times r$$
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <section class="user-guide-section">
-  <div class="guide-container">
-    <h2 data-i18n="guideTitle">如何使用此计算器</h2>
-    
-    <div class="guide-steps">
-      <div class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3 data-i18n="step1Title">输入基础贷款信息</h3>
-          <p data-i18n="step1Desc">在左侧表单中输入您的贷款总额、还款期限（年）以及年利率。</p>
+          <article class="guide-card">
+            <div class="card-icon">💸</div>
+            <h3 data-i18n="inflationTitle">为什么通胀时期不建议过快提前还贷？</h3>
+            <p data-i18n="inflationDesc">通胀是债务人的“朋友”。在通胀环境下，货币购买力下降，而您的房贷债务是名义固定的。这意味着您在用未来“贬值”的钱偿还当前的债务。如果您的理财收益率或收入增长率高于贷款利率，保留现金流往往比急于还清贷款更具财务优势。</p>
+          </article>
         </div>
       </div>
-
-      <div class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3 data-i18n="step2Title">选择还款方式</h3>
-          <p data-i18n="step2Desc">选择“等额本息”（每月还款固定）或“等额本金”（每月本金固定，总利息更省）。</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3 data-i18n="step3Title">探索提前还款 (可选)</h3>
-          <p data-i18n="step3Desc">开启“高级选项”，输入单次或每月额外的还款额，查看能为您节省多少利息和时间。</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h3 data-i18n="step4Title">查看详细对比结果</h3>
-          <p data-i18n="step4Desc">点击“计算”后，右侧将即时显示月供、总额及省钱详情。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="faq-section">
-  <div class="faq-container">
-    <h2 data-i18n="faqTitle">常见问题解答 (FAQ)</h2>
-    
-    <div class="faq-list">
-      <details class="faq-item" open>
-        <summary data-i18n="faqQ1">什么时候提前还贷最划算？</summary>
-        <div class="faq-answer">
-          <p data-i18n="faqA1">
-            核心原则是“省下的利息 > 投资收益”。从时间点看，还款周期的前 1/3 是黄金期。
-            此时本金占比高，利息产生快，提前还款能极大削减总利息。
-            此外，当房贷利率处于高位（如 > 4.5%）且您没有更好的投资渠道时，提前还款相当于获得了一份稳健的高收益。
-          </p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary data-i18n="faqQ2">缩短年限和减少月供哪个更好？</summary>
-        <div class="faq-answer">
-          <p data-i18n="faqA2">
-            这取决于您的目标：
-            1. 追求省钱：选“缩短年限”。因为借钱时间缩短，利息节省效果最强，通常比减少月供多省下数倍利息。
-            2. 追求生活质量：选“减少月供”。这能直接增加您每月的可支配现金流，缓解经济压力，适合近期有大额支出或职业变动的人群。
-          </p>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-<section class="expert-guide-section">
-  <div class="guide-container">
-    <h2 class="section-title" data-i18n="knowledgeTitle">房贷知识库 & 决策建议</h2>
-    
-    <div class="guide-grid">
-      <article class="guide-card">
-        <div class="card-icon">📈</div>
-        <h3 data-i18n="newsTitle">2026年全球利率走势简析</h3>
-        <p data-i18n="newsDesc">进入2026年，全球主要经济体通胀趋于平稳，利率市场进入“高位横盘”期。对于购房者而言，LPR（贷款市场报价利率）的微调将直接影响月供压力。建议关注宏观政策调控，利用本工具的“提前还贷对比”功能，实时测算利率变动对总利息的影响。</p>
-      </article>
-
-      <article class="guide-card">
-        <div class="card-icon">🧮</div>
-        <h3 data-i18n="mathTitle">等额本金与本息的数学差异</h3>
-        <p data-i18n="mathDesc">等额本息（EMI）的数学本质是“复利现值公式”，前期利息比例极高；而等额本金则是“线性递减”，本金固定，利息随本金减少而缩减。长期看，等额本金能节省 15%-25% 的利息支出，但前期还款压力大。本工具可以帮您直观量化这种利息差。</p>
-      </article>
-
-      <article class="guide-card">
-        <div class="card-icon">💸</div>
-        <h3 data-i18n="inflationTitle">为什么通胀时期不建议过快提前还贷？</h3>
-        <p data-i18n="inflationDesc">通胀是债务人的“朋友”。在通胀环境下，货币购买力下降，而您的房贷债务是名义固定的。这意味着您在用未来“贬值”的钱偿还当前的债务。如果您的理财收益率或收入增长率高于贷款利率，保留现金流往往比急于还清贷款更具财务优势。</p>
-      </article>
-    </div>
-  </div>
-</section>
+    </section>
   </div>
   <footer class="site-footer">
     <div class="footer-links">
