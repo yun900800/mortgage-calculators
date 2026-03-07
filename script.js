@@ -438,6 +438,7 @@ const interestRateInput = document.querySelector('#interest-rate');
 const radioInputs = document.querySelectorAll('input[name="mortgage-type"]');
 // 计算按钮
 const clearAllBtn = document.querySelector('.clear-all-btn');
+const viewMethodsBtn = document.querySelector('.view-btn');
 // 结果显示容器
 const rightContent = document.querySelector('.right-content');
 
@@ -1011,6 +1012,10 @@ clearAllBtn.addEventListener('click', () => {
     document.querySelector('.before-results-container').classList.remove('hidden');
     document.querySelector('.after-results-container').classList.add('hidden');
     rightContent.classList.remove('after-reset');
+});
+
+viewMethodsBtn.addEventListener('click', () => {
+    window.open("https://www.innovation.pp.ua/posts/20260223_%E6%88%BF%E8%B4%B7%E8%AE%A1%E7%AE%97/", "_blank");
 });
 
 document.getElementById('target-month').addEventListener('input', function() {
