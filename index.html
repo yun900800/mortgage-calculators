@@ -135,6 +135,13 @@
                   <label data-i18n="repayAtMonth">At Month</label>
                   <div class="input-container"><input type="number" id="lump-sum-month" placeholder="12"></div>
                 </div>
+                <div class="field full-width" style="margin-top: 10px;">
+                  <label data-i18n="repayStrategy">Repayment Strategy</label>
+                  <select id="lump-sum-strategy" class="strategy-select">
+                    <option value="reduce-term" data-i18n="reduceTerm">Reduce Term (Monthly payment stays same)</option>
+                    <option value="reduce-monthly" data-i18n="reduceMonthly">Reduce Monthly Payment (Term stays same)</option>
+                  </select>
+                </div>
               </div>
 
               <div id="monthly-extra-fields" class="repay-group hidden">

@@ -1217,3 +1217,43 @@ summary::after {
     filter: brightness(1.1);
     cursor: help;
 }
+
+
+/* 提前还款策略选择器样式 */
+.strategy-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #9ABED5; /* 沿用你原本的边框色 */
+    border-radius: 4px;
+    background-color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #122f3f; /* 深色文字 */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none; /* 移除原生箭头 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234E6E7E' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 12px) center;
+}
+
+.strategy-select:focus {
+    outline: none;
+    border-color: #d7da2f; /* 沿用你原本的黄色高亮色 */
+    box-shadow: 0 0 0 3px rgba(215, 218, 47, 0.2);
+}
+
+.field.full-width {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 适配移动端 */
+@media (max-width: 768px) {
+    .strategy-select {
+        font-size: 1rem; /* 移动端文字稍微大一点方便点击 */
+        padding: 14px;
+    }
+}
