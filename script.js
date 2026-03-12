@@ -862,6 +862,10 @@ function calculate(P, years, annualRate, type, targetMonth, extra = { active: fa
         var actualEndMonth = month;
     }
 
+    // 在 calculate 函数的最后调用它：
+    const nYear = years * 12;
+    updateChart(targetMonth, P, nYear, annualRate, type);
+
     // 返回格式：[月供, 总还款额, 选中月本金, 选中月利息, 实际还款月数, 总利息]
     // 这样不会破坏你原来的 showResults 调用
     return [
@@ -1025,24 +1029,7 @@ document.getElementById('target-month').addEventListener('input', function() {
 });
 
 
-// function animateNumber(element, finalValue, isCurrency = true) {
-//     let start = 0;
-//     const duration = 1000; // 动画持续1秒
-//     const startTime = performance.now();
 
-//     function update(currentTime) {
-//         const elapsed = currentTime - startTime;
-//         const progress = Math.min(elapsed / duration, 1);
-//         const currentValue = start + (finalValue - start) * progress;
-        
-//         element.innerText = isCurrency ? formatCurrency(currentValue) : Math.floor(currentValue);
-
-//         if (progress < 1) {
-//             requestAnimationFrame(update);
-//         }
-//     }
-//     requestAnimationFrame(update);
-// }
 
 function animateNumber(element, finalValue, isCurrency = true) {
     const start = 0;
@@ -1076,3 +1063,68 @@ function animateNumber(element, finalValue, isCurrency = true) {
 // 找到显示月供和总额的元素，改用动画
 const monthlyEl = document.getElementById('monthly-repayments');
 const totalEl = document.getElementById('total-over-the-term');
+
+
+// script.js 内部 calculate 函数中
+function updateChart(startMonth, totalAmount, totalMonths, annualRate, type) {
+    const chartContainer = document.getElementById('mortgage-chart');
+    const chartTitle = document.getElementById('chart-title');
+    chartContainer.innerHTML = ''; // 清空旧图表
+
+    const monthlyRate = annualRate / 100 / 12;
+    const lang = document.getElementById('lang-select').value;
+    chartTitle.innerText = lang === 'zh' ? `从第 ${startMonth} 个月起的本息结构` : `Principal & Interest from Month ${startMonth}`;
+
+    let remainingBalance = totalAmount;
+    
+    // 先计算到起始月份之前的余额
+    const monthlyPayment = (totalAmount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+    
+    // 循环计算接下来的 5 个月数据
+    for (let i = 1; i <= Math.min(startMonth + 4, totalMonths); i++) {
+        let interestM, principalM;
+
+        if (type === 'repayment') {
+            // 等额本息逻辑
+            // 为了准确，我们需要先循环到当前月
+            interestM = remainingBalance * monthlyRate;
+            principalM = monthlyPayment - interestM;
+            remainingBalance -= principalM;
+        } else {
+            // 等额本金逻辑
+            principalM = totalAmount / totalMonths;
+            interestM = remainingBalance * monthlyRate;
+            remainingBalance -= principalM;
+        }
+
+        // 只渲染从 startMonth 开始的 5 个月
+        if (i >= startMonth) {
+            
+            // 在循环生成 column 的地方更新：
+            const totalM = principalM + interestM;
+            const pHeight = (principalM / totalM) * 100;
+            const iHeight = (interestM / totalM) * 100;
+
+            // 获取格式化后的简短金额（例如 1,234.56）
+            const formattedP = formatCurrency(principalM);
+            const formattedI = formatCurrency(interestM);
+            const formattedTotal = formatCurrency(totalM);
+
+            const column = document.createElement('div');
+            column.className = 'chart-column';
+            column.innerHTML = `
+                <div class="top-label">${formattedTotal}</div>
+                <div class="bar-stack" style="height: 120px" title="Total: ${formattedTotal}">
+                    <div class="bar-part principal" style="height: ${pHeight}%" title="Principal: ${formattedP}">
+                        ${pHeight > 15 ? `<span class="inner-label">${Math.round(principalM)}</span>` : ''}
+                    </div>
+                    <div class="bar-part interest" style="height: ${iHeight}%" title="Interest: ${formattedI}">
+                        ${iHeight > 15 ? `<span class="inner-label">${Math.round(interestM)}</span>` : ''}
+                    </div>
+                </div>
+                <div class="month-label">M${i}</div>
+            `;
+            chartContainer.appendChild(column);
+        }
+    }
+}
