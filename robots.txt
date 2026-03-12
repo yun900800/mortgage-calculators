@@ -1,1 +1,4 @@
-User-agent: * Allow: / Sitemap: https://lifebook.ggff.net/sitemap.xml
+User-agent: *
+Allow: /
+
+Sitemap: https://lifebook.ggff.net/sitemap.xml
