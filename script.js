@@ -731,16 +731,16 @@ interestRateInput.addEventListener('input', () => removeError(interestRateInput)
 
 // 定义切换显示状态的函数
 function updateTargetMonthVisibility() {
-    // 获取当前被选中的还款方式
-    const selectedType = document.querySelector('input[name="mortgage-type"]:checked');
+    // // 获取当前被选中的还款方式
+    // const selectedType = document.querySelector('input[name="mortgage-type"]:checked');
     
-    if (selectedType && selectedType.value === 'decreasing') {
-        targetMonthContainer.style.display = 'block'; // 或者 'flex'，取决于你的布局
-    } else {
-        targetMonthContainer.style.display = 'none';
-        // 隐藏时清空输入值，防止影响计算结果
-        document.getElementById('target-month').value = ''; 
-    }
+    // if (selectedType && selectedType.value === 'decreasing') {
+    //     targetMonthContainer.style.display = 'block'; // 或者 'flex'，取决于你的布局
+    // } else {
+    //     targetMonthContainer.style.display = 'none';
+    //     // 隐藏时清空输入值，防止影响计算结果
+    //     document.getElementById('target-month').value = ''; 
+    // }
 }
 
 // 修改你原有的 radioInputs 监听器

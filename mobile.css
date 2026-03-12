@@ -59,6 +59,10 @@
         gap: 20px;
     }
 
+    .bar-chart {
+        gap: 2px;
+    }
+
 }
 
 @media (max-width: 400px) {
@@ -134,6 +138,10 @@
      .footer-links a {
         width: 100%;
         text-align: left;
+    }
+
+    .bar-chart {
+        gap: 2px;
     }
 
 

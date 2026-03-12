@@ -201,6 +201,7 @@ body {
 
 .left-content>form>div>label {
     color: #4E6E7E;
+    text-wrap: nowrap;
 }
 
 .left-content>form>div>div {
