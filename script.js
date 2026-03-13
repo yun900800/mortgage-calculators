@@ -70,8 +70,8 @@ const translations = {
         inflationTitle: "Why Not Rush Payments During Inflation?",
         inflationDesc: "Inflation is a debtor's friend. As currency value drops, your fixed mortgage debt becomes 'cheaper' to repay over time. Keep your cash for higher-yield investments.",
         repayStrategy: "Repayment Strategy",
-        reduceTerm: "Reduce Term (Pay off faster)",
-        reduceMonthly: "Reduce Monthly (Lower stress)",
+        reduceTerm: "Reduce Term",
+        reduceMonthly: "Reduce Monthly",
         // 建议增加的结果提示
         newMonthlyHint: "New monthly payment",
         remainingBalance: "Balance at that time:",
@@ -147,8 +147,8 @@ const translations = {
         inflationTitle: "通胀时期为什么不急于提前还贷？",
         inflationDesc: "通胀会稀释债务价值。如果您手头资金的投资收益高于房贷利率，或者处于高通胀阶段，利用“贬值”的未来货币还债其实更划算。",
         repayStrategy: "还款策略",
-        reduceTerm: "缩短期限 (月供不变，尽早还完)",
-        reduceMonthly: "减少月供 (期限不变，缓解压力)",
+        reduceTerm: "缩短期限",
+        reduceMonthly: "减少月供",
         // 建议增加的结果提示
         newMonthlyHint: "调整后的月供",
         remainingBalance: "届时剩余本金:",
@@ -533,20 +533,24 @@ function updateBalanceHint() {
     hintElement.innerText = `${label} ${formatCurrency(balance)}`;
 }
 
-// 1. 监听基础表单变化（如果改了总金额，余额提示也要变）
-['mortgage-amount', 'mortgage-term', 'interest-rate'].forEach(id => {
-    document.getElementById(id).addEventListener('input', updateBalanceHint);
+// 定义所有会影响“余额提示”的触发源
+const hintTriggerIds = [
+    'mortgage-amount', 
+    'mortgage-term', 
+    'interest-rate', 
+    'lump-sum-month', 
+    'monthly-extra-start'
+];
+
+form.addEventListener('input', (e) => {
+    // 只有当变化的元素是我们需要关注的那些时，才触发计算
+    const targetId = e.target.id;
+    const targetName = e.target.name;
+
+    if (hintTriggerIds.includes(targetId) || targetName === 'mortgage-type') {
+        updateBalanceHint();
+    }
 });
-
-// 2. 监听还款方式单选框
-document.querySelectorAll('input[name="mortgage-type"]').forEach(radio => {
-    radio.addEventListener('change', updateBalanceHint);
-});
-
-// 3. 监听两个模式的月份输入
-document.getElementById('lump-sum-month').addEventListener('input', updateBalanceHint);
-document.getElementById('monthly-extra-start').addEventListener('input', updateBalanceHint);
-
 // --- 开关控制 ---
 repayToggle.addEventListener('change', () => {
     advancedPanel.classList.toggle('collapsed', !repayToggle.checked);
@@ -834,20 +838,6 @@ function computeMonthlyDetail(balance, r, n, P, type, baseMonthly, month) {
         monthly: interest + principal 
     };
 }
-
-// /**
-//  * 子逻辑 B: 提前还款处理
-//  */
-// function applyExtraPayments(balance, month, extra) {
-//     let newBalance = balance;
-//     if (extra.mode === 'lump-sum' && month === extra.lumpMonth) {
-//         newBalance -= extra.lumpAmount;
-//     }
-//     if (extra.mode === 'monthly-extra' && month >= extra.startMonth) {
-//         newBalance -= extra.monthlyExtra;
-//     }
-//     return Math.max(0, newBalance);
-// }
 
 /**
  * 修改后的子逻辑 B: 提前还款处理
