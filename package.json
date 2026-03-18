@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "terser": "^5.46.1",
-    "vite": "^5.0.0"
   },
   "dependencies": {
+    "terser": "^5.46.1",
+    "vite": "^5.0.0",
     "chart.js": "^4.0.0"
   }
 }
