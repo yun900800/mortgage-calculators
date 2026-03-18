@@ -2,7 +2,7 @@
 [build]
   # 这里的命令会自动安装依赖并执行打包
   # 使用 npx 可以更好地解决你遇到的 Permission Denied 权限问题
-  command = "npx vite build"
+  command = "npm install && npm run build"
   
   # Vite 默认打包后的文件夹是 dist
   publish = "dist"
