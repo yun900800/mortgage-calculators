@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三种还贷方式深度解析 - Lifebook 房贷指南</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #22c55e;
+      --bg-blue: #f0f7ff;
+      --text-dark: #1e2a32;
+      --text-gray: #4E6E7E;
+      --accent-yellow: #D2D033;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.8;
+      color: var(--text-dark);
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: #fff;
+    }
+    /* 返回首页链接样式 */
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-gray);
+      font-weight: 600;
+      margin-bottom: 40px;
+      padding: 8px 16px;
+      background: var(--bg-blue);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    .back-home:hover {
+      color: var(--primary-green);
+      transform: translateX(-5px);
+      background: #e2f0fd;
+    }
+    .back-home span { margin-right: 8px; }
+
+    h1 { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 1rem; line-height: 1.2; }
+    .meta-info { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+    
+    .theory-box { 
+      background: var(--bg-blue); 
+      padding: 25px; 
+      border-radius: 16px; 
+      margin: 30px 0; 
+      border-left: 6px solid var(--primary-green); 
+    }
+
+    h3 { font-size: 1.5rem; margin-top: 40px; color: var(--text-dark); display: flex; align-items: center; }
+    h3::before { content: ""; width: 8px; height: 24px; background: var(--accent-yellow); margin-right: 12px; border-radius: 4px; }
+
+    /* 图片展示位 */
+    .screenshot-container {
+      width: 100%;
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      margin: 25px 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .screenshot-placeholder {
+      width: 100%;
+      min-height: 350px;
+      background: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .screenshot-placeholder .label { font-weight: 800; color: var(--primary-green); font-size: 1.2rem; margin-bottom: 8px; }
+    .screenshot-placeholder .desc { color: var(--text-gray); font-size: 0.9rem; }
+
+    .cta-section {
+      text-align: center;
+      margin-top: 60px;
+      padding: 40px;
+      background: var(--text-dark);
+      border-radius: 20px;
+      color: white;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--primary-green);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      transition: transform 0.3s ease;
+    }
+    .cta-button:hover { transform: scale(1.05); }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <a href="/" class="back-home"><span>←</span> 返回 Lifebook 计算器首页</a>
+
+  <article>
+    <h1>房贷还款的三种“姿势”：哪一种适合你的第一性原理？</h1>
+    <div class="meta-info">Lifebook 知识库 · 深度决策系列 · 2026年3月</div>
+
+    <p>在上篇文章中，我们拆解了房贷的底层逻辑：<strong>利息即租金</strong>。只要你还没还清本金，你就在持续为这笔钱支付租金。但如何支付这笔租金，不同的还款方案决定了完全不同的财务结局。</p>
+
+    <div class="theory-box">
+        <strong>第一性原理公式：</strong><br>
+        $$月利息 = 剩余本金 (P) \times 月利率 (r)$$
+    </div>
+
+    <h3>1. 等额本息（EMI）：现金流的“稳定器”</h3>
+    <p>这是最常见的还款方式。通过数学计算，让每月的还款额完全固定。它适合追求生活质量稳定的刚需族，但代价是前期本金削减极慢，利息总额最高。</p>
+    
+    <div class="screenshot-container">
+        <div class="screenshot-placeholder">
+            <img src="../assets/images/debx1.png" alt="等额本息还款结构图" style="max-width: 100%; border-radius: 8px;">
+            <div class="desc">等额本息还款总金额</div>
+        </div>
+    </div>
+
+    <h3>2. 等额本金：本金 P 的“粉碎机”</h3>
+    <p>如果你追求极致的省钱，等额本金是最佳选择。它每月固定偿还相同金额的本金，让产生利息的“培养基”迅速萎缩。虽然前期还款压力巨大，但总利息通常能省下 20% 以上。</p>
+
+    <div class="screenshot-container">
+        <div class="screenshot-placeholder">
+            <img src="../assets/images/debj1.png" alt="等额本金还款结构图" style="max-width: 100%; border-radius: 8px;">
+            <div class="desc">等额本金还款总金额</div>
+        </div>
+    </div>
+
+    <h3>3. 只还利息（Interest Only）：高级玩家的杠杆术</h3>
+    <p>这是一种完全不同的逻辑：主动放弃归还本金 $P$，每月只交“租金”。这对于高级投资者来说是神技——它能最大化资金杠杆，让你保留现金流去追求更高的投资回报（如生意或股市）。</p>
+
+    <div class="theory-box" style="background: #fffbe6; border-color: var(--accent-yellow);">
+        <strong>投资博弈逻辑：</strong><br>
+        只要你的投资年化收益率 > 房贷利率，选择“只还利息”就是理性的财务套利。
+    </div>
+
+    <div class="screenshot-container">
+        <div class="screenshot-placeholder">
+            <img src="../assets/images/jhlx1.png" alt="只还利息还款结构图" style="max-width: 100%; border-radius: 8px;">
+            <div class="desc">只还利息还款总金额</div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>不再纠结，用数据说话</h2>
+      <p>每个人的财务情况都是独特的。是省钱，还是留住现金流？</p>
+      <a href="/" class="cta-button">立即测算我的最佳还款姿势</a>
+    </div>
+  </article>
+</body>
+</html>

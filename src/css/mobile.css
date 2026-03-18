@@ -1,0 +1,154 @@
+@media (max-width: 800px) {
+
+
+    body {
+        padding: 0;
+    }
+
+    .main-container {
+        padding: 40px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }   
+
+    .main-content {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-content .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .left-content {
+        width: 100%;
+    }
+
+    .right-content {
+        width: 100%;
+        border-bottom-left-radius: 24px;
+        min-width: 100%;
+    }
+
+    .right-content {
+        border-radius: 0px;
+        min-width: 100%;
+        padding: 8px;
+    }
+
+    .right-content .after-results-container {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .right-content .after-results-container .results-description :first-child>p {
+        font-size: 2.5rem;
+    }
+    .faq-section {
+        width: 100%;
+    }
+
+    .user-guide-section {
+        width: 100%;
+    }
+
+    .expert-guide-section  {
+        width: 100%;
+    }
+
+    .methods-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        gap: 20px;
+    }
+
+    .bar-chart {
+        gap: 2px;
+    }
+
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 0;
+    }
+
+    .main-container {
+        padding: 6px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }  
+
+    .main-content {
+        border-radius: 0px;
+    }
+
+    .right-content {
+        border-radius: 0px;
+        min-width: 100%;
+        padding: 8px;
+    }
+
+    .right-content .after-results-container {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .right-content .after-results-container .results-description :first-child>p {
+        font-size: 2.5rem;
+    }
+
+    .left-content form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-content .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .calculation-methods-section{
+        width: 100%;
+    }
+
+    .faq-section {
+        width: 100%;
+    }
+
+    .user-guide-section {
+        width: 100%;
+    }
+
+    .expert-guide-section  {
+        width: 100%;
+    }
+
+    .methods-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        gap: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+     .footer-links a {
+        width: 100%;
+        text-align: left;
+    }
+
+    .bar-chart {
+        gap: 2px;
+    }
+
+
+}

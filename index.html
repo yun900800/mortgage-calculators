@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="mobile.css">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <!-- <link rel="stylesheet" href="mobile.css"> -->
   <title>2026 房贷计算器 - 提前还贷省钱分析 & 等额本金/本息对比</title>
   <script type="application/ld+json">
   {
@@ -47,8 +47,45 @@
 <body>
   <div class="main-container">
     <div class="main-content">
+      <div class="header-container">
+        <h1 data-i18n="title">Mortgage Calculator</h1>
+        <div class="header-controls">
+          <select id="lang-select">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="ms">Melayu</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <button class="clear-all-btn" data-i18n="clearAll">Clear All</button>
+          <button class="view-btn" data-i18n="viewMethods"></button> 
+        </div>
+        <aside class="guide-sidebar" id="guide-sidebar">
+          <div class="sidebar-header">
+            <h3 data-i18n="navBlog">房贷指南</h3>
+            <button class="close-sidebar" id="close-sidebar">×</button>
+          </div>
+          <ul class="guide-list">
+            <li>
+              <a href="/blog/first-principal-mortgage.html">
+                <span class="icon">📖</span>
+                房贷的第一性原理：如何省下30万利息？
+              </a>
+              <a href="/blog/repayment-methods-comparison.html">
+                <span class="icon">📖</span>
+                房贷还款的“三种姿势”
+              </a>
+            </li>
+            </ul>
+        </aside>
+
+        <button class="mobile-guide-btn" id="mobile-guide-btn">
+          <span data-i18n="blogTitle">📚 知识库</span>
+        </button>
+      </div>
       <div class="left-content">
-        <div class="header-container">
+        <!-- <div class="header-container">
           <h1 data-i18n="title">Mortgage Calculator</h1>
           <div class="header-controls">
             <select id="lang-select">
@@ -62,7 +99,7 @@
             <button class="clear-all-btn" data-i18n="clearAll">Clear All</button>
             <button class="view-btn" data-i18n="viewMethods"></button> 
           </div>
-        </div>
+        </div> -->
         
         <form id="my-form">
           <div class="mortgage-amount-container">
@@ -133,7 +170,7 @@
                 </div>
                 <div class="field">
                   <label data-i18n="repayAtMonth">At Month</label>
-                  <div class="input-container"><input type="number" id="lump-sum-month" placeholder="12"></div>
+                  <div class="input-container"><input type="number" id="lump-sum-month" placeholder="12" min="1"></div>
                 </div>
                 <div class="field full-width" style="margin-top: 10px;">
                   <label data-i18n="repayStrategy">Repayment Strategy</label>
@@ -151,7 +188,7 @@
                 </div>
                 <div class="field">
                   <label data-i18n="startFrom">Start From Month</label>
-                  <div class="input-container"><input type="number" id="monthly-extra-start" placeholder="1"></div>
+                  <div class="input-container"><input type="number" id="monthly-extra-start" placeholder="12" min="1"></div>
                 </div>
               </div>
 
@@ -162,12 +199,13 @@
                 <p id="remaining-balance-hint" style="font-size: 0.8rem; color: #4E6E7E; font-weight: 600;"></p>
               </div>
           </div>
+          <button class="calculate-btn" type="submit" form="my-form">
+            <img src="assets/images/icon-calculator.svg" alt="icon">
+            <span data-i18n="calculate">Calculate Repayments</span>
+          </button>
         </form>
-
-        <button class="calculate-btn" type="submit" form="my-form">
-          <img src="assets/images/icon-calculator.svg" alt="icon">
-          <span data-i18n="calculate">Calculate Repayments</span>
-        </button>
+        
+        
       </div>
 
       <div class="right-content">
@@ -179,7 +217,7 @@
 
         <div class="after-results-container hidden">
           <div class="chart-wrapper">
-            <h4 id="chart-title" style="color: #9ABED5; font-size: 0.9rem; margin-bottom: 15px;">未来5个月本息结构预览</h4>
+            <h4 id="chart-title" >未来5个月本息结构预览</h4>
             <div class="bar-chart" id="mortgage-chart">
               </div>
             <div class="chart-legend">
@@ -208,9 +246,16 @@
             </div>
             <div class="line"></div>
             <div class="results-total-over-term">
-              <span data-i18n="totalRepay">Total you'll repay over the term</span>
-              <p id="total-over-the-term" class="animate-number">£0.00</p>
-            </div>
+              <div id="original-total-container" class="hidden">
+                  <span data-i18n="originalTotal">Original Total:</span>
+                  <span id="original-total-amount">£0.00</span>
+              </div>
+
+              <div class="actual-total-wrapper">
+                  <span data-i18n="totalRepay">Total you'll repay over the term</span>
+                  <p id="total-over-the-term" class="animate-number">£0.00</p>
+              </div> 
+          </div>
             <div id="savings-box" class="hidden">
               <div class="line" style="border-top: 1px dashed rgba(154, 190, 213, 0.3); margin: 20px 0;"></div>
               <div class="results-total-over-term">
@@ -372,6 +417,7 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
+   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
