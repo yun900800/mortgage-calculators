@@ -79,40 +79,18 @@ export default class MortgageCalculator {
         
         let balance = P;
         let totalInterest = 0;
+        let totalPayments = 0; // 累计总还款
         let actualEndMonth = 0;
         let targetData = { monthly: 0, principal: 0, interest: 0 };
         let balanceAtTarget = 0;
         
-        // 累计已还月供（不包括一次性提前还款）
-        let totalPayments = 0;
-        
-        // 大额提前还款后是否采用减少月供策略
-        let useReducedMonthly = false;
-        let newMonthlyPayment = 0;
+        // 提前还款相关参数
         let lumpSumApplied = false;
-        let lumpSumAmount = 0;
-        let lumpSumMonth = 0;
-
-        // 判断是否需要使用减少月供策略
-        if (extra.active && extra.mode === 'lump-sum' && extra.lumpAmount > 0) {
-            lumpSumAmount = extra.lumpAmount;
-            lumpSumMonth = extra.lumpMonth || 1;
-            useReducedMonthly = (extra.lumpStrategy === 'reduce-monthly');
-            
-            // 预计算减少月供后的新还款额
-            if (useReducedMonthly) {
-                const balanceAfterLump = Math.max(0, balance - lumpSumAmount);
-                const remainingMonths = Math.max(1, n - lumpSumMonth);
-                if (type === 'repayment') {
-                    newMonthlyPayment = this._getEMI(balanceAfterLump, r, remainingMonths);
-                } else if (type === 'decreasing') {
-                    newMonthlyPayment = (balanceAfterLump / remainingMonths) + balanceAfterLump * r;
-                } else {
-                    newMonthlyPayment = balanceAfterLump * r; // 先息后本
-                }
-            }
-        }
-
+        let lumpSumAmount = extra.lumpAmount || 0;
+        let lumpSumMonth = extra.lumpMonth || 1;
+        let useReducedMonthly = extra.lumpStrategy === 'reduce-monthly';
+        let newMonthlyPayment = emi;
+        
         for (let i = 1; i <= MortgageCalculator.MAX_MONTHS; i++) {
             if (balance < MortgageCalculator.EPSILON) break;
 
@@ -120,26 +98,37 @@ export default class MortgageCalculator {
             
             // 计算当前月供
             let monthlyPayment;
-            if (useReducedMonthly && i >= lumpSumMonth) {
-                monthlyPayment = newMonthlyPayment;
-            } else if (type === 'decreasing') {
+            if (type === 'decreasing') {
                 monthlyPayment = Math.min(monthlyPrincipal, balance) + interestM;
             } else if (type === 'interest-only') {
                 monthlyPayment = interestM + (i === n ? balance : 0);
             } else {
                 monthlyPayment = emi;
             }
+            
+            // 如果已提前还款且采用减少月供策略
+            if (lumpSumApplied && useReducedMonthly) {
+                monthlyPayment = newMonthlyPayment;
+            }
 
             // 计算本金部分
-            let principalM = Math.min(balance, monthlyPayment - interestM);
-            principalM = Math.max(0, principalM);
+            let principalM = Math.max(0, monthlyPayment - interestM);
+            principalM = Math.min(principalM, balance);
 
             // 处理大额一次性提前还款
             if (extra.active && extra.mode === 'lump-sum' && 
                 lumpSumAmount > 0 && i === lumpSumMonth && !lumpSumApplied) {
-                // 先扣减一次性还款
-                balance = Math.max(0, balance - lumpSumAmount);
-                totalPayments += lumpSumAmount;
+                
+                // 先扣减当月月供（包含利息+部分本金）
+                balance = Math.max(0, balance - principalM);
+                totalInterest += interestM;
+                totalPayments += monthlyPayment;
+                
+                // 然后一次性还款直接减少本金
+                const actualLumpSum = Math.min(lumpSumAmount, balance);
+                balance = Math.max(0, balance - actualLumpSum);
+                totalPayments += actualLumpSum; // 一次性还款计入总还款
+                
                 lumpSumApplied = true;
                 
                 // 如果是减少月供策略，重新计算新月供
@@ -153,6 +142,19 @@ export default class MortgageCalculator {
                         newMonthlyPayment = balance * r;
                     }
                 }
+                
+                // 记录目标月份数据
+                if (i === targetMonth) {
+                    targetData = {
+                        monthly: monthlyPayment,
+                        principal: principalM + actualLumpSum,
+                        interest: interestM
+                    };
+                    balanceAtTarget = balance;
+                }
+                
+                actualEndMonth = i;
+                continue;
             }
 
             // 处理每月额外还款
@@ -179,12 +181,9 @@ export default class MortgageCalculator {
             actualEndMonth = i;
         }
 
-        // 计算总还款额 = 累计月供 + 一次性提前还款
-        const finalTotalRepayment = totalPayments;
-
         return {
             monthlyPayment: targetData.monthly || (type === 'decreasing' ? monthlyPrincipal + P * r : emi),
-            totalRepayment: finalTotalRepayment,
+            totalRepayment: totalPayments,
             totalInterest: totalInterest,
             actualTermMonths: actualEndMonth,
             breakdown: targetData,
