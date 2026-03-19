@@ -1,0 +1,206 @@
+/**
+ * 布局样式
+ * 包含主容器、页头、内容区域等布局相关的样式
+ */
+
+/* 主容器 */
+.main-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 主内容区域 */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-xl);
+    width: var(--container-width);
+    overflow: hidden;
+}
+
+/* 头部容器 */
+.main-content .header-container {
+    flex: 1;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    margin: var(--spacing-lg) auto;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.main-content .header-container > h1 {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+    white-space: nowrap;
+}
+
+/* 头部控制区 */
+.header-controls,
+.main-content .header-container > div.header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+/* 语言选择器 */
+#lang-select,
+.main-content .header-container > div.header-controls > select#lang-select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--transition-normal);
+}
+
+#lang-select:hover,
+.main-content .header-container > div.header-controls > select#lang-select:hover {
+    border-color: #76c7f0;
+}
+
+#lang-select:focus,
+.main-content .header-container > div.header-controls > select#lang-select:focus {
+    border-color: var(--accent-color);
+}
+
+/* 头部按钮通用样式 */
+.main-content .header-container > button {
+    border: none;
+    background: none;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--text-secondary);
+    cursor: pointer;
+}
+
+/* 页脚 */
+.site-footer {
+    width: 100%;
+    background-color: var(--bg-dark);
+    padding: var(--spacing-lg);
+    text-align: center;
+    color: var(--text-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    margin: 0 var(--spacing-sm);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    text-wrap: nowrap;
+}
+
+.footer-links a:hover {
+    color: var(--text-inverse);
+}
+
+/* 免责声明 */
+.disclaimer-container {
+    margin-top: 1rem;
+    padding-top: var(--spacing-sm);
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.disclaimer-text {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: left;
+}
+
+.left-content .disclaimer-text {
+    color: #7e734e;
+}
+
+/* 内容区块 */
+.calculation-methods-section,
+.user-guide-section,
+.faq-section,
+.expert-guide-section {
+    width: var(--container-width);
+    overflow: hidden;
+    margin: var(--spacing-xxl) auto;
+}
+
+.user-guide-section,
+.expert-guide-section {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background-color: var(--bg-card);
+}
+
+.faq-section {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background-color: var(--bg-secondary);
+}
+
+.expert-guide-section {
+    padding: 80px var(--spacing-md);
+    border-top: 1px solid var(--bg-primary);
+}
+
+/* 引导容器 */
+.guide-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.guide-container h2 {
+    color: var(--text-primary);
+    font-size: var(--font-size-xxl);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* 引导步骤网格 */
+.guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+/* FAQ 容器 */
+.faq-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.faq-container h2 {
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: var(--font-size-xxl);
+}
+
+/* 知识库网格 */
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* 方法卡片网格 */
+.methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+    gap: 20px;
+}

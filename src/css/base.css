@@ -1,0 +1,48 @@
+/**
+ * 基础样式重置
+ */
+
+/* CSS 重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 隐藏元素 */
+.hidden {
+    display: none !important;
+}
+
+/* 辅助类 */
+[data-i18n] {
+    transition: all var(--transition-fast) ease;
+}
+
+/* 错误样式 */
+.error-msg {
+    color: var(--error-color);
+    font-size: var(--font-size-sm);
+}
+
+.input-container.error-div {
+    border-color: var(--error-color);
+}
+
+.input-container.error-div > p {
+    background-color: var(--error-color);
+    color: var(--text-inverse);
+}
+
+/* 动画关键帧 */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,97 @@
+/**
+ * 响应式样式
+ * 包含各种断点下的样式适配
+ */
+
+/* ========== 移动端适配 (屏幕 < 768px) ========== */
+@media (max-width: 768px) {
+    /* 侧边栏 */
+    .guide-sidebar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        width: 80%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        transition: right var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+    }
+
+    .guide-sidebar.active {
+        right: 0;
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-sidebar {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--success-color);
+        cursor: pointer;
+    }
+
+    /* 悬浮球按钮 */
+    .mobile-guide-btn {
+        display: flex;
+        position: fixed;
+        bottom: 30px;
+        right: 20px;
+        background-color: var(--success-color);
+        color: var(--text-inverse);
+        padding: 12px 20px;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+    /* 策略选择器 */
+    .strategy-select {
+        font-size: 1rem;
+        padding: 14px;
+    }
+
+    /* 总额数字 */
+    #total-over-the-term {
+        font-size: 1.6rem;
+    }
+}
+
+/* ========== 响应式适配：当主容器放不下侧边栏时 (屏幕 < 1600px) ========== */
+@media (max-width: 1600px) {
+    .guide-sidebar {
+        right: 20px;
+        position: fixed;
+    }
+}
+
+/* ========== 通用响应式调整 ========== */
+@media screen and (max-width: 800px) {
+    .left-content input {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    #total-over-the-term {
+        font-size: 1.6rem;
+    }
+}
+
+/* ========== 桌面端隐藏按钮 (初始状态) ========== */
+@media (min-width: 769px) {
+    .mobile-guide-btn,
+    .close-sidebar {
+        display: none;
+    }
+}
