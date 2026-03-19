@@ -83,9 +83,7 @@ export default class MortgageCalculator {
         let targetData = { monthly: 0, principal: 0, interest: 0 };
         let balanceAtTarget = 0;
         
-        // 累计已还本金（不包括提前还款金额）
-        let totalPrincipalPaid = 0;
-        // 累计已还月供
+        // 累计已还月供（不包括一次性提前还款）
         let totalPayments = 0;
         
         // 大额提前还款后是否采用减少月供策略
@@ -93,15 +91,18 @@ export default class MortgageCalculator {
         let newMonthlyPayment = 0;
         let lumpSumApplied = false;
         let lumpSumAmount = 0;
+        let lumpSumMonth = 0;
 
         // 判断是否需要使用减少月供策略
         if (extra.active && extra.mode === 'lump-sum' && extra.lumpAmount > 0) {
             lumpSumAmount = extra.lumpAmount;
+            lumpSumMonth = extra.lumpMonth || 1;
             useReducedMonthly = (extra.lumpStrategy === 'reduce-monthly');
+            
             // 预计算减少月供后的新还款额
-            if (useReducedMonthly && extra.lumpMonth > 0) {
-                const balanceAfterLump = Math.max(0, balance - extra.lumpAmount);
-                const remainingMonths = Math.max(1, n - extra.lumpMonth);
+            if (useReducedMonthly) {
+                const balanceAfterLump = Math.max(0, balance - lumpSumAmount);
+                const remainingMonths = Math.max(1, n - lumpSumMonth);
                 if (type === 'repayment') {
                     newMonthlyPayment = this._getEMI(balanceAfterLump, r, remainingMonths);
                 } else if (type === 'decreasing') {
@@ -117,29 +118,29 @@ export default class MortgageCalculator {
 
             const interestM = balance * r;
             
-            let principalM;
+            // 计算当前月供
             let monthlyPayment;
-
-            // 确定当前月供金额
-            if (useReducedMonthly && i >= (extra.lumpMonth || 0)) {
+            if (useReducedMonthly && i >= lumpSumMonth) {
                 monthlyPayment = newMonthlyPayment;
             } else if (type === 'decreasing') {
-                principalM = Math.min(monthlyPrincipal, balance);
-                monthlyPayment = principalM + interestM;
+                monthlyPayment = Math.min(monthlyPrincipal, balance) + interestM;
             } else if (type === 'interest-only') {
-                principalM = (i === n) ? balance : 0;
-                monthlyPayment = interestM + principalM;
+                monthlyPayment = interestM + (i === n ? balance : 0);
             } else {
-                principalM = Math.min(balance, emi - interestM);
                 monthlyPayment = emi;
             }
 
+            // 计算本金部分
+            let principalM = Math.min(balance, monthlyPayment - interestM);
+            principalM = Math.max(0, principalM);
+
             // 处理大额一次性提前还款
             if (extra.active && extra.mode === 'lump-sum' && 
-                extra.lumpAmount > 0 && i === extra.lumpMonth && !lumpSumApplied) {
-                balance = Math.max(0, balance - extra.lumpAmount);
+                lumpSumAmount > 0 && i === lumpSumMonth && !lumpSumApplied) {
+                // 先扣减一次性还款
+                balance = Math.max(0, balance - lumpSumAmount);
+                totalPayments += lumpSumAmount;
                 lumpSumApplied = true;
-                totalPayments += extra.lumpAmount;
                 
                 // 如果是减少月供策略，重新计算新月供
                 if (useReducedMonthly && balance > MortgageCalculator.EPSILON) {
@@ -159,7 +160,6 @@ export default class MortgageCalculator {
                 const extraPrincipal = Math.min(extra.monthlyExtra || 0, balance);
                 principalM += extraPrincipal;
                 balance = Math.max(0, balance - extraPrincipal);
-                monthlyPayment = principalM + interestM;
             }
 
             // 记录目标月份数据
@@ -173,10 +173,8 @@ export default class MortgageCalculator {
             }
 
             // 还款扣减
-            const actualPrincipal = Math.min(principalM, balance);
-            balance = Math.max(0, balance - actualPrincipal);
+            balance = Math.max(0, balance - principalM);
             totalInterest += interestM;
-            totalPrincipalPaid += actualPrincipal;
             totalPayments += monthlyPayment;
             actualEndMonth = i;
         }

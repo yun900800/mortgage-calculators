@@ -41,7 +41,8 @@ export default class MortgageUI extends CalculatorUI {
             originalTotalContainer: document.getElementById('original-total-container'),
             originalTotalAmount: document.getElementById('original-total-amount'),
             totalSaved: document.getElementById('total-saved'),
-            termShortened: document.getElementById('term-shortened')
+            termShortened: document.getElementById('term-shortened'),
+            earlyRepayToggle: document.getElementById('early-repay-toggle')
         };
         
         // 表单元素
@@ -50,7 +51,6 @@ export default class MortgageUI extends CalculatorUI {
             mortgageTerm: document.getElementById('mortgage-term'),
             interestRate: document.getElementById('interest-rate'),
             targetMonth: document.getElementById('target-month'),
-            earlyRepayToggle: document.getElementById('early-repay-toggle'),
             lumpSumAmount: document.getElementById('lump-sum-amount'),
             lumpSumMonth: document.getElementById('lump-sum-month'),
             lumpSumStrategy: document.getElementById('lump-sum-strategy'),
