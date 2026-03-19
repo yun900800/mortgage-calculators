@@ -77,7 +77,7 @@ export default class MortgageUI extends CalculatorUI {
                 this.callbacks.onQuickUpdate(inputs);
             }
 
-            // 完整重算：防抖处理
+            // 完整重算：防抖处理（所有字段都触发，包括提前还款金额）
             if (this.debounceTimer) clearTimeout(this.debounceTimer);
             this.debounceTimer = setTimeout(() => {
                 if (inputs.amount && inputs.term && inputs.rate) {
@@ -257,14 +257,22 @@ export default class MortgageUI extends CalculatorUI {
      * @private
      */
     _initMortgageInteractions() {
-        const repayToggle = this.elements.earlyRepayToggle;
+        // 直接从 DOM 获取开关元素，确保能找到
+        const repayToggle = document.getElementById('early-repay-toggle');
         const advancedPanel = document.querySelector('.advanced-panel');
 
-        repayToggle?.addEventListener('change', () => {
-            if (advancedPanel) {
-                advancedPanel.classList.toggle('collapsed', !repayToggle.checked);
+        if (repayToggle && advancedPanel) {
+            // 设置初始状态：如果开关是打开的，移除 collapsed 类
+            if (repayToggle.checked) {
+                advancedPanel.classList.remove('collapsed');
+            } else {
+                advancedPanel.classList.add('collapsed');
             }
-        });
+
+            repayToggle.addEventListener('change', () => {
+                advancedPanel.classList.toggle('collapsed', !repayToggle.checked);
+            });
+        }
 
         // Tab 切换
         document.querySelectorAll('.tab-item').forEach(tab => {
