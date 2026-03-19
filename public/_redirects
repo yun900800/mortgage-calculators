@@ -1,0 +1,14 @@
+# --- Blog Posts: Clean URLs (200 Rewrite) ---
+# 这些规则能让用户通过不带 .html 的路径访问，但实际加载 .html 内容
+
+/blog/early-repayment-magic          /blog/early-repayment-magic.html          200
+/blog/repayment-methods-comparison   /blog/repayment-methods-comparison.html   200
+/blog/first-principles-repayment     /blog/first-principles-repayment.html     200
+/blog/combination-loan-strategy-2026 /blog/combination-loan-strategy-2026.html 200
+/blog/inflation-and-mortgage-logic   /blog/inflation-and-mortgage-logic.html   200
+/blog/lpr-adjustment-2026            /blog/lpr-adjustment-2026.html            200
+
+# --- Optional: SPA Support ---
+# 如果你的主站是一个 Vite/React/Vue 单页应用，请保留下面这一行
+# 它能确保刷新页面时不会出现 404
+/*    /index.html    200
