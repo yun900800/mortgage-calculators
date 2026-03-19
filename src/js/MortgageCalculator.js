@@ -83,13 +83,20 @@ export default class MortgageCalculator {
         let targetData = { monthly: 0, principal: 0, interest: 0 };
         let balanceAtTarget = 0;
         
+        // 累计已还本金（不包括提前还款金额）
+        let totalPrincipalPaid = 0;
+        // 累计已还月供
+        let totalPayments = 0;
+        
         // 大额提前还款后是否采用减少月供策略
         let useReducedMonthly = false;
         let newMonthlyPayment = 0;
         let lumpSumApplied = false;
+        let lumpSumAmount = 0;
 
         // 判断是否需要使用减少月供策略
         if (extra.active && extra.mode === 'lump-sum' && extra.lumpAmount > 0) {
+            lumpSumAmount = extra.lumpAmount;
             useReducedMonthly = (extra.lumpStrategy === 'reduce-monthly');
             // 预计算减少月供后的新还款额
             if (useReducedMonthly && extra.lumpMonth > 0) {
@@ -132,6 +139,7 @@ export default class MortgageCalculator {
                 extra.lumpAmount > 0 && i === extra.lumpMonth && !lumpSumApplied) {
                 balance = Math.max(0, balance - extra.lumpAmount);
                 lumpSumApplied = true;
+                totalPayments += extra.lumpAmount;
                 
                 // 如果是减少月供策略，重新计算新月供
                 if (useReducedMonthly && balance > MortgageCalculator.EPSILON) {
@@ -168,10 +176,13 @@ export default class MortgageCalculator {
             const actualPrincipal = Math.min(principalM, balance);
             balance = Math.max(0, balance - actualPrincipal);
             totalInterest += interestM;
+            totalPrincipalPaid += actualPrincipal;
+            totalPayments += monthlyPayment;
             actualEndMonth = i;
         }
 
-        const finalTotalRepayment = P + totalInterest;
+        // 计算总还款额 = 累计月供 + 一次性提前还款
+        const finalTotalRepayment = totalPayments;
 
         return {
             monthlyPayment: targetData.monthly || (type === 'decreasing' ? monthlyPrincipal + P * r : emi),
