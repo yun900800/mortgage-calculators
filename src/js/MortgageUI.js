@@ -7,13 +7,13 @@ import CalculatorUI from './CalculatorUI.js';
 export default class MortgageUI extends CalculatorUI {
     constructor(callbacks) {
         super(callbacks);
-        
+
         // 缓存 DOM 元素引用，避免重复查询
         this._cacheElements();
-        
+
         // 防抖定时器
         this.debounceTimer = null;
-        
+
         // 初始化交互逻辑
         this._initMortgageInteractions();
     }
@@ -31,7 +31,7 @@ export default class MortgageUI extends CalculatorUI {
         this.chartContainer = document.getElementById('mortgage-chart');
         this.chartTitle = document.getElementById('chart-title');
         this.savingsBox = document.getElementById('savings-box');
-        
+
         // 结果显示元素
         this.elements = {
             monthlyRepayments: document.getElementById('monthly-repayments'),
@@ -44,7 +44,7 @@ export default class MortgageUI extends CalculatorUI {
             termShortened: document.getElementById('term-shortened'),
             earlyRepayToggle: document.getElementById('early-repay-toggle')
         };
-        
+
         // 表单元素
         this.formElements = {
             mortgageAmount: document.getElementById('mortgage-amount'),
@@ -64,15 +64,21 @@ export default class MortgageUI extends CalculatorUI {
      */
     initEvents() {
         super.initEvents();
-        
+
         // 实时联动：监听整个表单的 input 事件
         this.form.addEventListener('input', (e) => {
             const inputs = this.getInputs();
-            
+
             // 定义会触发余额提示更新的字段
-            const triggerIds = ['mortgage-amount', 'mortgage-term', 'interest-rate', 'lump-sum-month', 'monthly-extra-start'];
+            const triggerIds = [
+                'mortgage-amount',
+                'mortgage-term',
+                'interest-rate',
+                'lump-sum-month',
+                'monthly-extra-start'
+            ];
             const targetId = e.target.id;
-            
+
             if (triggerIds.includes(targetId) || e.target.name === 'mortgage-type') {
                 this.callbacks.onQuickUpdate(inputs);
             }
@@ -97,23 +103,24 @@ export default class MortgageUI extends CalculatorUI {
         const viewMonth = parseInt(this.formElements.targetMonth?.value) || 1;
         const lumpMonth = parseInt(this.formElements.lumpSumMonth?.value) || 1;
         const monthlyExtraStart = parseInt(this.formElements.monthlyExtraStart?.value) || 1;
-        const actionMonth = (mode === 'lump-sum') ? lumpMonth : monthlyExtraStart;
+        const actionMonth = mode === 'lump-sum' ? lumpMonth : monthlyExtraStart;
 
         return {
             amount: this._getSafeFloat('mortgage-amount'),
             term: parseFloat(this.formElements.mortgageTerm?.value) || 0,
             rate: parseFloat(this.formElements.interestRate?.value) || 0,
-            type: document.querySelector('input[name="mortgage-type"]:checked')?.value || 'repayment',
-            
-            viewMonth: viewMonth,
-            actionMonth: actionMonth,
-            
-            isAdvanced: isAdvanced,
+            type:
+                document.querySelector('input[name="mortgage-type"]:checked')?.value || 'repayment',
+
+            viewMonth,
+            actionMonth,
+
+            isAdvanced,
             extraData: {
                 active: isAdvanced,
-                mode: mode,
+                mode,
                 lumpAmount: this._getSafeFloat('lump-sum-amount'),
-                lumpMonth: lumpMonth,
+                lumpMonth,
                 lumpStrategy: this.formElements.lumpSumStrategy?.value || 'reduce-term',
                 monthlyExtra: this._getSafeFloat('monthly-extra-amount'),
                 startMonth: monthlyExtraStart
@@ -137,11 +144,10 @@ export default class MortgageUI extends CalculatorUI {
 
         this.chartContainer.innerHTML = '';
         const startMonth = dataList[0].month;
-        this.chartTitle.innerText = lang === 'zh' 
-            ? `第 ${startMonth} 个月起的本息结构` 
-            : `P&I from Month ${startMonth}`;
+        this.chartTitle.innerText =
+            lang === 'zh' ? `第 ${startMonth} 个月起的本息结构` : `P&I from Month ${startMonth}`;
 
-        dataList.forEach(item => {
+        dataList.forEach((item) => {
             const total = item.principal + item.interest;
             const pHeight = total > 0 ? (item.principal / total) * 100 : 0;
             const iHeight = total > 0 ? (item.interest / total) * 100 : 100;
@@ -201,7 +207,7 @@ export default class MortgageUI extends CalculatorUI {
     _renderOriginalTotal(current, normal, isAdvanced, formatter) {
         const container = this.elements.originalTotalContainer;
         const totalEl = this.elements.totalOverTerm;
-        
+
         if (isAdvanced && normal.totalRepayment > current.totalRepayment) {
             container?.classList.remove('hidden');
             if (this.elements.originalTotalAmount) {
@@ -275,9 +281,9 @@ export default class MortgageUI extends CalculatorUI {
         }
 
         // Tab 切换
-        document.querySelectorAll('.tab-item').forEach(tab => {
+        document.querySelectorAll('.tab-item').forEach((tab) => {
             tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-item').forEach((t) => t.classList.remove('active'));
                 tab.classList.add('active');
                 this._toggleExtraFields(tab.dataset.mode);
             });
@@ -322,7 +328,7 @@ export default class MortgageUI extends CalculatorUI {
     _animateValue(id, endValue, formatter) {
         const obj = document.getElementById(id);
         if (!obj) return;
-        
+
         let startTimestamp = null;
         const duration = 800;
         const startValue = 0;
@@ -346,10 +352,10 @@ export default class MortgageUI extends CalculatorUI {
         this.beforeContainer?.classList.remove('hidden');
         this.resultsContainer?.classList.add('hidden');
         this.rightContent?.classList.remove('after-reset');
-        
+
         // 清除错误样式
         this.clearErrors();
-        
+
         if (this.hintElement) this.hintElement.innerText = '';
     }
 
@@ -437,7 +443,7 @@ export default class MortgageUI extends CalculatorUI {
      * 清除错误样式
      */
     clearErrors() {
-        document.querySelectorAll('.error-div').forEach(el => el.classList.remove('error-div'));
-        document.querySelectorAll('.error-msg').forEach(el => el.remove());
+        document.querySelectorAll('.error-div').forEach((el) => el.classList.remove('error-div'));
+        document.querySelectorAll('.error-msg').forEach((el) => el.remove());
     }
 }

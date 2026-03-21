@@ -26,10 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const openBtn = document.getElementById('mobile-guide-btn');
     const closeBtn = document.getElementById('close-sidebar');
 
+    // 创建遮罩层
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
+
     // 打开逻辑
     const openMenu = (e) => {
-        e.stopPropagation();
+        if (e) e.stopPropagation();
         sidebar?.classList.add('active');
+        overlay?.classList.add('active');
         document.body.style.overflow = 'hidden';
     };
 
@@ -37,16 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeMenu = (e) => {
         if (e) e.stopPropagation();
         sidebar?.classList.remove('active');
+        overlay?.classList.remove('active');
         document.body.style.overflow = '';
     };
 
     // 绑定事件
     openBtn?.addEventListener('click', openMenu);
     closeBtn?.addEventListener('click', closeMenu);
+    overlay?.addEventListener('click', closeMenu);
 
-    // 点击侧边栏外部区域自动关闭
+    // ESC 键关闭侧边栏
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar?.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // 点击侧边栏外部区域自动关闭 (仅在移动端)
+    const isMobile = () => window.innerWidth <= 1600;
     document.addEventListener('click', (e) => {
-        if (sidebar?.classList.contains('active') && !sidebar.contains(e.target)) {
+        if (isMobile() && sidebar?.classList.contains('active') && !sidebar.contains(e.target) && e.target !== openBtn) {
+            closeMenu();
+        }
+    });
+
+    // 窗口大小改变时确保侧边栏关闭
+    window.addEventListener('resize', () => {
+        if (!isMobile()) {
             closeMenu();
         }
     });

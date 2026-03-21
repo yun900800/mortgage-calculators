@@ -85,7 +85,9 @@ describe('MortgageCalculator', () => {
             });
 
             // 有提前还款的情况下，总利息应该更少或相等
-            expect(result.normal.totalInterest).toBeGreaterThanOrEqual(result.current.totalInterest);
+            expect(result.normal.totalInterest).toBeGreaterThanOrEqual(
+                result.current.totalInterest
+            );
         });
 
         it('应该计算每月额外还款后的节省利息', () => {
@@ -103,7 +105,9 @@ describe('MortgageCalculator', () => {
                 }
             });
 
-            expect(result.normal.totalInterest).toBeGreaterThanOrEqual(result.current.totalInterest);
+            expect(result.normal.totalInterest).toBeGreaterThanOrEqual(
+                result.current.totalInterest
+            );
         });
 
         it('当 isAdvanced 为 false 时，应该返回普通计算结果', () => {
@@ -145,7 +149,7 @@ describe('MortgageCalculator', () => {
         it('切片数据总和应该正确', () => {
             const slice = calculator.getAmortizationSlice(100000, 20, 5, 'repayment', 1, 5);
 
-            slice.forEach(item => {
+            slice.forEach((item) => {
                 const total = item.principal + item.interest;
                 expect(Math.abs(total - item.total)).toBeLessThan(0.01);
             });
@@ -153,8 +157,12 @@ describe('MortgageCalculator', () => {
 
         it('应该正确处理边界情况', () => {
             // 无效年份应该返回空数组
-            expect(calculator.getAmortizationSlice(100000, 0, 5, 'repayment', 1, 5)).toHaveLength(0);
-            expect(calculator.getAmortizationSlice(100000, -1, 5, 'repayment', 1, 5)).toHaveLength(0);
+            expect(calculator.getAmortizationSlice(100000, 0, 5, 'repayment', 1, 5)).toHaveLength(
+                0
+            );
+            expect(calculator.getAmortizationSlice(100000, -1, 5, 'repayment', 1, 5)).toHaveLength(
+                0
+            );
         });
     });
 
@@ -330,7 +338,7 @@ describe('MortgageCalculator', () => {
         it('先息后本总利息应该大于等额本息', () => {
             const emi = calculator.calculate({
                 amount: 100000,
-                term: 5,  // 缩短期限，避免 600 月上限
+                term: 5, // 缩短期限，避免 600 月上限
                 rate: 5,
                 type: 'repayment',
                 isAdvanced: false

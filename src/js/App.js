@@ -12,11 +12,11 @@ export default class App {
         // 初始化核心组件
         this.calculator = new MortgageCalculator();
         this.langEngine = new LanguageEngine(translations);
-        
+
         // 实例化 UI 层，并传入操作回调
         this.ui = new MortgageUI({
             onCalculate: (inputs) => this.performCalculation(inputs),
-            
+
             onQuickUpdate: (inputs) => {
                 const balanceAtAction = this.calculator.getRemainingBalance(
                     inputs.amount,
@@ -28,11 +28,11 @@ export default class App {
 
                 const formatter = (val) => this.langEngine.formatCurrency(val);
                 const trans = this.langEngine.translations[this.langEngine.lang];
-                
+
                 const monthLabel = trans.monthLabel || 'Month';
                 const balanceLabel = trans.balanceLabel || 'Balance';
                 const label = `${monthLabel} ${inputs.actionMonth} ${balanceLabel}:`;
-                
+
                 this.ui.renderBalanceHint(balanceAtAction, formatter, label);
             },
 
@@ -50,7 +50,7 @@ export default class App {
      */
     init() {
         const langSelect = document.getElementById('lang-select');
-    
+
         if (langSelect) {
             langSelect.value = this.langEngine.lang;
 
@@ -99,7 +99,13 @@ export default class App {
         const trans = this.langEngine.translations[this.langEngine.lang];
 
         // 渲染主结果面板
-        this.ui.renderMortgageResults(result.current, result.normal, inputs.isAdvanced, formatter, trans);
+        this.ui.renderMortgageResults(
+            result.current,
+            result.normal,
+            inputs.isAdvanced,
+            formatter,
+            trans
+        );
 
         // 渲染图表
         const chartData = this.calculator.getAmortizationSlice(
@@ -136,7 +142,7 @@ export default class App {
      */
     handleLanguageChange(newLang) {
         this.langEngine.setLanguage(newLang);
-        
+
         if (this.lastInputs) {
             this.performCalculation(this.lastInputs);
         }
@@ -147,7 +153,7 @@ export default class App {
      */
     handleClear() {
         this.lastInputs = null;
-        
+
         const beforeContainer = document.querySelector('.before-results-container');
         const resultsContainer = document.querySelector('.after-results-container');
         const rightContent = document.querySelector('.right-content');
@@ -155,7 +161,7 @@ export default class App {
         beforeContainer?.classList.remove('hidden');
         resultsContainer?.classList.add('hidden');
         rightContent?.classList.remove('after-reset');
-    
+
         this.ui.resetDisplay();
     }
 }

@@ -39,7 +39,7 @@ export default class CalculatorUI {
         console.log('Rendering results:', data);
         const emptyState = document.querySelector('.empty-state');
         const resultsState = document.querySelector('.results-state');
-        
+
         emptyState.classList.add('hidden');
         resultsState.classList.remove('hidden');
 
@@ -48,6 +48,10 @@ export default class CalculatorUI {
         document.getElementById('total-interest-result').innerText = formatter(data.totalInterest);
     }
 
-    validate() { /* Add validation logic similar to your script.js */ return true; }
-    clearErrors() { /* Remove error highlights */ }
+    validate() {
+        /* Add validation logic similar to your script.js */ return true;
+    }
+    clearErrors() {
+        /* Remove error highlights */
+    }
 }

@@ -13,12 +13,12 @@ export default class MortgageCalculator {
      */
     calculate(data) {
         const { amount, term, rate, type, isAdvanced, extraData, viewMonth = 1 } = data;
-        
+
         // normal: 不做任何提前还款的基准计算
         const normal = this._simulate(amount, term, rate, type, { active: false }, viewMonth);
-        
+
         // current: 应用了提前还款策略的计算
-        const current = isAdvanced 
+        const current = isAdvanced
             ? this._simulate(amount, term, rate, type, extraData, viewMonth)
             : normal;
 
@@ -31,9 +31,9 @@ export default class MortgageCalculator {
     getAmortizationSlice(P, years, annualRate, type, startMonth, count = 5) {
         const n = years * 12;
         const r = annualRate / 100 / 12;
-        
+
         if (n <= 0 || !isFinite(n)) return [];
-        
+
         const monthlyPrincipal = P / n;
         const emi = this._getEMI(P, r, n);
         const results = [];
@@ -41,7 +41,7 @@ export default class MortgageCalculator {
 
         for (let i = 1; i <= n; i++) {
             const interestM = balance * r;
-            
+
             let principalM;
             if (type === 'interest-only') {
                 principalM = i === n ? balance : 0;
@@ -76,26 +76,26 @@ export default class MortgageCalculator {
         const r = annualRate / 100 / 12;
         const monthlyPrincipal = P / n;
         const emi = this._getEMI(P, r, n);
-        
+
         let balance = P;
         let totalInterest = 0;
         let totalPayments = 0; // 累计总还款
         let actualEndMonth = 0;
         let targetData = { monthly: 0, principal: 0, interest: 0 };
         let balanceAtTarget = 0;
-        
+
         // 提前还款相关参数
         let lumpSumApplied = false;
-        let lumpSumAmount = extra.lumpAmount || 0;
-        let lumpSumMonth = extra.lumpMonth || 1;
-        let useReducedMonthly = extra.lumpStrategy === 'reduce-monthly';
+        const lumpSumAmount = extra.lumpAmount || 0;
+        const lumpSumMonth = extra.lumpMonth || 1;
+        const useReducedMonthly = extra.lumpStrategy === 'reduce-monthly';
         let newMonthlyPayment = emi;
-        
+
         for (let i = 1; i <= MortgageCalculator.MAX_MONTHS; i++) {
             if (balance < MortgageCalculator.EPSILON) break;
 
             const interestM = balance * r;
-            
+
             // 计算当前月供
             let monthlyPayment;
             if (type === 'decreasing') {
@@ -105,7 +105,7 @@ export default class MortgageCalculator {
             } else {
                 monthlyPayment = emi;
             }
-            
+
             // 如果已提前还款且采用减少月供策略
             if (lumpSumApplied && useReducedMonthly) {
                 monthlyPayment = newMonthlyPayment;
@@ -116,33 +116,37 @@ export default class MortgageCalculator {
             principalM = Math.min(principalM, balance);
 
             // 处理大额一次性提前还款
-            if (extra.active && extra.mode === 'lump-sum' && 
-                lumpSumAmount > 0 && i === lumpSumMonth && !lumpSumApplied) {
-                
+            if (
+                extra.active &&
+                extra.mode === 'lump-sum' &&
+                lumpSumAmount > 0 &&
+                i === lumpSumMonth &&
+                !lumpSumApplied
+            ) {
                 // 先扣减当月月供（包含利息+部分本金）
                 balance = Math.max(0, balance - principalM);
                 totalInterest += interestM;
                 totalPayments += monthlyPayment;
-                
+
                 // 然后一次性还款直接减少本金
                 const actualLumpSum = Math.min(lumpSumAmount, balance);
                 balance = Math.max(0, balance - actualLumpSum);
                 totalPayments += actualLumpSum; // 一次性还款计入总还款
-                
+
                 lumpSumApplied = true;
-                
+
                 // 如果是减少月供策略，重新计算新月供
                 if (useReducedMonthly && balance > MortgageCalculator.EPSILON) {
                     const remainingMonths = Math.max(1, n - i);
                     if (type === 'repayment') {
                         newMonthlyPayment = this._getEMI(balance, r, remainingMonths);
                     } else if (type === 'decreasing') {
-                        newMonthlyPayment = (balance / remainingMonths) + balance * r;
+                        newMonthlyPayment = balance / remainingMonths + balance * r;
                     } else {
                         newMonthlyPayment = balance * r;
                     }
                 }
-                
+
                 // 记录目标月份数据
                 if (i === targetMonth) {
                     targetData = {
@@ -152,7 +156,7 @@ export default class MortgageCalculator {
                     };
                     balanceAtTarget = balance;
                 }
-                
+
                 actualEndMonth = i;
                 continue;
             }
@@ -182,9 +186,10 @@ export default class MortgageCalculator {
         }
 
         return {
-            monthlyPayment: targetData.monthly || (type === 'decreasing' ? monthlyPrincipal + P * r : emi),
+            monthlyPayment:
+                targetData.monthly || (type === 'decreasing' ? monthlyPrincipal + P * r : emi),
             totalRepayment: totalPayments,
-            totalInterest: totalInterest,
+            totalInterest,
             actualTermMonths: actualEndMonth,
             breakdown: targetData,
             remainingBalance: balanceAtTarget
@@ -208,10 +213,10 @@ export default class MortgageCalculator {
     getRemainingBalance(P, years, annualRate, type, targetMonth) {
         const n = years * 12;
         const r = annualRate / 100 / 12;
-        
+
         if (targetMonth <= 0) return P;
         if (targetMonth >= n) return 0;
-        
+
         if (type === 'interest-only') return P;
 
         if (type === 'decreasing') {
@@ -220,15 +225,15 @@ export default class MortgageCalculator {
         }
 
         if (r === 0) return Math.max(0, P - (P / n) * targetMonth);
-        
+
         const emi = this._getEMI(P, r, n);
         if (emi <= 0) return P;
-        
+
         const factor = Math.pow(1 + r, targetMonth);
         if (!isFinite(factor)) return 0;
-        
+
         const balance = P * factor - (emi * (factor - 1)) / r;
-        
+
         return isFinite(balance) ? Math.max(0, balance) : 0;
     }
 }

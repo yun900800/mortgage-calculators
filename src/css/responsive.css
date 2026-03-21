@@ -5,18 +5,40 @@
 
 /* ========== 移动端适配 (屏幕 < 768px) ========== */
 @media (max-width: 768px) {
+    /* 侧边栏遮罩层 */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
     /* 侧边栏 */
     .guide-sidebar {
         position: fixed;
         top: 0;
         right: -100%;
         bottom: 0;
-        width: 80%;
+        width: 85%;
+        max-width: 320px;
         height: 100vh;
         margin: 0;
         border-radius: 0;
         transition: right var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
         display: block;
+        z-index: 9999;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
     }
 
     .guide-sidebar.active {
@@ -27,15 +49,28 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: var(--spacing-md);
+        border-bottom: 1px solid var(--border-light);
     }
 
     .close-sidebar {
-        display: block;
-        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-secondary);
         border: none;
-        font-size: 2rem;
-        color: var(--success-color);
+        font-size: 1.5rem;
+        color: var(--text-secondary);
         cursor: pointer;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        transition: all var(--transition-fast);
+    }
+
+    .close-sidebar:hover {
+        background: var(--error-color);
+        color: white;
     }
 
     /* 悬浮球按钮 */
@@ -65,13 +100,56 @@
     #total-over-the-term {
         font-size: 1.6rem;
     }
+
+    /* 表单移动端优化 */
+    .mortgage-amount-container,
+    .mortgage-term-container,
+    .interest-rate-container,
+    .mortgage-type-container,
+    .specific-month-container {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .input-container {
+        height: 48px;
+    }
+
+    .input-container input {
+        font-size: 16px !important;
+        padding: 0 var(--spacing-sm);
+    }
+
+    .input-container p {
+        padding: 10px var(--spacing-sm);
+        min-width: 40px;
+    }
+
+    .calculate-btn {
+        height: 54px;
+        padding: 0 24px;
+    }
+
+    .repay-group {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-header {
+        flex-direction: column;
+    }
 }
 
 /* ========== 响应式适配：当主容器放不下侧边栏时 (屏幕 < 1600px) ========== */
 @media (max-width: 1600px) {
     .guide-sidebar {
-        right: 20px;
+        right: -100%;
         position: fixed;
+        z-index: 9999;
+    }
+
+    .guide-sidebar.active {
+        right: 0;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
     }
 }
 
