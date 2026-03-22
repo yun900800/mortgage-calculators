@@ -13,12 +13,27 @@
     .main-content {
         flex-direction: column;
         width: 100%;
+        align-items: stretch;
+    }
+
+    .calculation-methods-section,
+    .user-guide-section,
+    .faq-section,
+    .expert-guide-section {
+        display: block;
+        width: 100%;
+        flex-basis: auto;
     }
 
     .main-content .header-container {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         gap: 8px;
+    }
+
+    .main-content .header-container > h1 {
+        text-align: center;
+        margin-bottom: var(--spacing-sm);
     }
 
     .left-content {
@@ -27,11 +42,6 @@
 
     .right-content {
         width: 100%;
-        border-bottom-left-radius: 24px;
-        min-width: 100%;
-    }
-
-    .right-content {
         border-radius: 0px;
         min-width: 100%;
         padding: 8px;
@@ -44,18 +54,6 @@
 
     .right-content .after-results-container .results-description :first-child > p {
         font-size: 2.5rem;
-    }
-
-    .faq-section {
-        width: 100%;
-    }
-
-    .user-guide-section {
-        width: 100%;
-    }
-
-    .expert-guide-section {
-        width: 100%;
     }
 
     .methods-grid {
@@ -136,26 +134,13 @@
         flex-direction: column;
     }
 
-    .main-content .header-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .calculation-methods-section {
-        width: 100%;
-    }
-
-    .faq-section {
-        width: 100%;
-    }
-
-    .user-guide-section {
-        width: 100%;
-    }
-
+    .calculation-methods-section,
+    .user-guide-section,
+    .faq-section,
     .expert-guide-section {
+        display: block;
         width: 100%;
+        flex-basis: auto;
     }
 
     .methods-grid {
