@@ -723,3 +723,702 @@ input:checked + .slider:before {
     color: rgb(241, 233, 217);
     background-color: #27ae60;
 }
+
+/* ========== 贷款类型切换 ========== */
+
+.loan-type-container {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal) ease;
+}
+
+.loan-type-container > label {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.loan-type-container > label::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+#loan-type-toggle {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-card);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal) ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234E6E7E' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 14px) center;
+    font-weight: 500;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+#loan-type-toggle:hover {
+    border-color: var(--text-muted);
+}
+
+#loan-type-toggle:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 0 0 3px rgba(19, 48, 65, 0.1);
+}
+
+/* ========== 组合贷款表单 ========== */
+
+#combined-loan-form {
+    margin-bottom: var(--spacing-md);
+}
+
+.combined-loan-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.combined-section {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal) ease;
+}
+
+.combined-section:hover {
+    border-color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.combined-section-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.combined-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.commercial-section .combined-section-title {
+    color: #2563eb;
+}
+
+.commercial-section .combined-section-title::before {
+    background: #2563eb;
+}
+
+.housing-fund-section .combined-section-title {
+    color: #059669;
+}
+
+.housing-fund-section .combined-section-title::before {
+    background: #059669;
+}
+
+.combined-section .form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+.combined-section .form-group label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.combined-section .form-group label::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background: var(--accent-color);
+    border-radius: 1px;
+}
+
+.combined-section .input-container {
+    display: flex;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: all var(--transition-normal) ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.combined-section .input-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 0 0 3px rgba(19, 48, 65, 0.1);
+}
+
+.combined-section .input-container input {
+    border: none;
+    width: 100%;
+    padding: 12px var(--spacing-sm);
+    min-width: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.combined-section .input-container input:focus {
+    outline: none;
+}
+
+.combined-section .input-container p {
+    padding: 12px var(--spacing-sm);
+    background: linear-gradient(135deg, #f0f7fc 0%, #e8f1f6 100%);
+    color: var(--text-secondary);
+    min-width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    border-left: 1px solid var(--border-light);
+}
+
+.combined-section .input-container:focus-within p {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: var(--text-inverse);
+}
+
+/* ========== 组合贷款结果 ========== */
+
+#combined-results {
+    width: 100%;
+}
+
+.combined-results-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.combined-results-header h2 {
+    font-size: var(--font-size-xl);
+    color: var(--text-inverse);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+}
+
+.combined-results-header p {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+.combined-results-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.combined-result-card {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    border-top: 4px solid var(--accent-color);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal) ease;
+}
+
+.combined-result-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.combined-result-card.total-result {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-top: 4px solid var(--success-color);
+}
+
+.combined-result-card h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(154, 190, 213, 0.25);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.commercial-result h4 {
+    color: #ffffff;
+}
+
+.commercial-result h4::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #2563eb;
+    border-radius: 50%;
+}
+
+.housing-fund-result h4 {
+    color: #ffffff;
+}
+
+.housing-fund-result h4::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #059669;
+    border-radius: 50%;
+}
+
+.total-result h4 {
+    color: #ffffff;
+}
+
+.total-result h4::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+}
+
+.combined-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.combined-result-item span {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.combined-result-item p {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-inverse);
+}
+
+.total-result .combined-result-item p {
+    font-size: var(--font-size-xl);
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.total-result .combined-result-item:first-child p {
+    font-size: 2rem;
+    color: var(--accent-color);
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.loan-type-container > label {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.loan-type-container > label::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+#loan-type-toggle {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-card);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-normal) ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234E6E7E' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 14px) center;
+    font-weight: 500;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+#loan-type-toggle:hover {
+    border-color: var(--text-muted);
+}
+
+#loan-type-toggle:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 0 0 3px rgba(19, 48, 65, 0.1);
+}
+
+/* ========== 组合贷款表单 ========== */
+
+.combined-loan-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.combined-section {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-normal) ease;
+}
+
+.combined-section:hover {
+    border-color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.combined-section-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.commercial-section .combined-section-title {
+    color: #2563eb;
+}
+
+.housing-fund-section .combined-section-title {
+    color: #059669;
+}
+
+.combined-section .form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+.combined-section .form-group label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    display: block;
+}
+
+.combined-section .input-container {
+    display: flex;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: all var(--transition-normal) ease;
+}
+
+.combined-section .input-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 0 0 3px rgba(19, 48, 65, 0.1);
+}
+
+.combined-section .input-container input {
+    border: none;
+    width: 100%;
+    padding: 10px var(--spacing-sm);
+    min-width: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.combined-section .input-container input:focus {
+    outline: none;
+}
+
+.combined-section .input-container p {
+    padding: 10px var(--spacing-sm);
+    background: linear-gradient(135deg, #f0f7fc 0%, #e8f1f6 100%);
+    color: var(--text-secondary);
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    border-left: 1px solid var(--border-light);
+}
+
+/* ========== 组合贷款结果 ========== */
+
+.combined-results-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.combined-result-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-light);
+}
+
+.combined-result-card.total-result {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(19, 48, 65, 0.1) 0%, rgba(19, 48, 65, 0.05) 100%);
+    border-color: var(--primary-color);
+}
+
+.combined-result-card h4 {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.commercial-result h4 {
+    color: #2563eb;
+}
+
+.housing-fund-result h4 {
+    color: #059669;
+}
+
+.combined-section .form-group {
+    margin-bottom: var(--spacing-sm);
+}
+
+.combined-section .form-group label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    display: block;
+}
+
+.combined-section .input-container {
+    display: flex;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+    transition: all var(--transition-normal) ease;
+}
+
+.combined-section .input-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 0 0 3px rgba(19, 48, 65, 0.1);
+}
+
+.combined-section .input-container input {
+    border: none;
+    width: 100%;
+    padding: 10px var(--spacing-sm);
+    min-width: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.combined-section .input-container input:focus {
+    outline: none;
+}
+
+.combined-section .input-container p {
+    padding: 10px var(--spacing-sm);
+    background: linear-gradient(135deg, #f0f7fc 0%, #e8f1f6 100%);
+    color: var(--text-secondary);
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    border-left: 1px solid var(--border-light);
+}
+
+/* ========== 组合贷款结果 ========== */
+
+.combined-results-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.combined-result-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-light);
+}
+
+.combined-result-card.total-result {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(19, 48, 65, 0.1) 0%, rgba(19, 48, 65, 0.05) 100%);
+    border-color: var(--primary-color);
+}
+
+.combined-result-card h4 {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.commercial-result h4 {
+    color: #2563eb;
+}
+
+.公积金-result h4 {
+    color: #059669;
+}
+
+.total-result h4 {
+    /* color: var(--primary-color); */
+}
+
+.combined-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.combined-result-item span {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.combined-result-item p {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.total-result .combined-result-item p {
+    font-size: var(--font-size-lg);
+}
+
+/* ========== 组合贷款提前还款表单 ========== */
+
+.combined-repay-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.combined-repay-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.combined-lump-month {
+    grid-column: 1 / -1;
+}
+
+.combined-repay-section {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+}
+
+.combined-repay-section h5 {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid rgba(154, 190, 213, 0.25);
+}
+
+.commercial-repay h5 {
+    color: #2563eb;
+}
+
+.housing-fund-repay h5 {
+    color: #059669;
+}
+
+.combined-repay-section .field {
+    margin-bottom: var(--spacing-xs);
+}
+
+.combined-repay-section .field:last-child {
+    margin-bottom: 0;
+}
+
+/* ========== 组合贷节省利息显示 ========== */
+
+.combined-savings-box {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px dashed rgba(154, 190, 213, 0.25);
+}
+
+.combined-result-item.original-total span {
+    color: var(--warning-color);
+}
+
+.combined-result-item.original-total p {
+    text-decoration: line-through;
+    color: var(--warning-color);
+}
+
+.combined-result-item.interest-saved span {
+    color: var(--success-color);
+}
+
+.combined-result-item.interest-saved p {
+    color: var(--success-color);
+    font-size: var(--font-size-xl);
+}

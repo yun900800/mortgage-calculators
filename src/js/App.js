@@ -3,6 +3,7 @@
  * 职责：协调 MortgageCalculator 和 MortgageUI 的工作流程
  */
 import MortgageCalculator from './MortgageCalculator.js';
+import CombinedCalculator from './CombinedCalculator.js';
 import MortgageUI from './MortgageUI.js';
 import LanguageEngine from './LanguageEngine.js';
 import { translations } from '../translations.js';
@@ -11,6 +12,7 @@ export default class App {
     constructor() {
         // 初始化核心组件
         this.calculator = new MortgageCalculator();
+        this.combinedCalculator = new CombinedCalculator();
         this.langEngine = new LanguageEngine(translations);
 
         // 实例化 UI 层，并传入操作回调
@@ -18,22 +20,30 @@ export default class App {
             onCalculate: (inputs) => this.performCalculation(inputs),
 
             onQuickUpdate: (inputs) => {
-                const balanceAtAction = this.calculator.getRemainingBalance(
-                    inputs.amount,
-                    inputs.term,
-                    inputs.rate,
-                    inputs.type,
-                    inputs.actionMonth
-                );
-
                 const formatter = (val) => this.langEngine.formatCurrency(val);
                 const trans = this.langEngine.translations[this.langEngine.lang];
-
                 const monthLabel = trans.monthLabel || 'Month';
                 const balanceLabel = trans.balanceLabel || 'Balance';
                 const label = `${monthLabel} ${inputs.actionMonth} ${balanceLabel}:`;
 
-                this.ui.renderBalanceHint(balanceAtAction, formatter, label);
+                if (inputs.loanType === 'combined') {
+                    const balanceAtAction = this.combinedCalculator.getRemainingBalance(
+                        inputs.commercial,
+                        inputs.housingFund,
+                        inputs.type,
+                        inputs.actionMonth
+                    );
+                    this.ui.renderCombinedBalanceHint(balanceAtAction, formatter, label);
+                } else {
+                    const balanceAtAction = this.calculator.getRemainingBalance(
+                        inputs.amount,
+                        inputs.term,
+                        inputs.rate,
+                        inputs.type,
+                        inputs.actionMonth
+                    );
+                    this.ui.renderBalanceHint(balanceAtAction, formatter, label);
+                }
             },
 
             onClear: () => this.handleClear()
@@ -68,14 +78,19 @@ export default class App {
      * 执行计算
      */
     performCalculation(inputs) {
+        // 检查是否为组合贷款
+        if (inputs.loanType === 'combined') {
+            this._performCombinedCalculation(inputs);
+            return;
+        }
+
+        // 单贷计算
         if (!inputs.amount || !inputs.term || !inputs.rate) return;
 
         this.lastInputs = inputs;
 
-        // 检查是否开启了高级模式
         let effectiveIsAdvanced = inputs.isAdvanced;
 
-        // 如果开启了，进一步检查金额是否大于 0
         if (effectiveIsAdvanced) {
             const extra = inputs.extraData;
             if (extra.mode === 'lump-sum') {
@@ -89,7 +104,6 @@ export default class App {
             }
         }
 
-        // 执行计算
         const result = this.calculator.calculate({
             ...inputs,
             isAdvanced: effectiveIsAdvanced
@@ -98,7 +112,6 @@ export default class App {
         const formatter = (val) => this.langEngine.formatCurrency(val);
         const trans = this.langEngine.translations[this.langEngine.lang];
 
-        // 渲染主结果面板
         this.ui.renderMortgageResults(
             result.current,
             result.normal,
@@ -107,7 +120,6 @@ export default class App {
             trans
         );
 
-        // 渲染图表
         const chartData = this.calculator.getAmortizationSlice(
             inputs.amount,
             inputs.term,
@@ -116,14 +128,12 @@ export default class App {
             inputs.viewMonth
         );
 
-        // 更新单月明细
         if (chartData && chartData.length > 0) {
             const d = chartData[0];
             this.ui.updateMonthlyDetail(d.principal, d.interest, formatter);
         }
         this.ui.renderChart(chartData, formatter, this.langEngine.lang);
 
-        // 更新余额提示
         const balanceAtAction = this.calculator.getRemainingBalance(
             inputs.amount,
             inputs.term,
@@ -135,6 +145,65 @@ export default class App {
         const balanceLabel = trans.balanceLabel || 'Balance';
         const label = `${monthLabel} ${inputs.actionMonth} ${balanceLabel}:`;
         this.ui.renderBalanceHint(balanceAtAction, formatter, label);
+    }
+
+    /**
+     * 执行组合贷款计算
+     */
+    _performCombinedCalculation(inputs) {
+        if (!inputs.commercial?.amount || !inputs.housingFund?.amount) return;
+        if (!inputs.commercial.term || !inputs.housingFund.term) return;
+
+        this.lastInputs = inputs;
+
+        let effectiveIsAdvanced = inputs.isAdvanced;
+
+        if (effectiveIsAdvanced) {
+            const extra = inputs.extraData;
+            if (extra.mode === 'lump-sum') {
+                const hasCommercialLump = extra.commercialLumpAmount > 0;
+                const hasHousingFundLump = extra.housingFundLumpAmount > 0;
+                if (!hasCommercialLump && !hasHousingFundLump) {
+                    effectiveIsAdvanced = false;
+                }
+            } else if (extra.mode === 'monthly-extra') {
+                const hasCommercialExtra = extra.commercialMonthlyExtra > 0;
+                const hasHousingFundExtra = extra.housingFundMonthlyExtra > 0;
+                if (!hasCommercialExtra && !hasHousingFundExtra) {
+                    effectiveIsAdvanced = false;
+                }
+            }
+        }
+
+        const result = this.combinedCalculator.calculate({
+            ...inputs,
+            isAdvanced: effectiveIsAdvanced
+        });
+
+        const formatter = (val) => this.langEngine.formatCurrency(val);
+        const trans = this.langEngine.translations[this.langEngine.lang];
+
+        this.ui.renderCombinedResults(result, formatter, trans);
+
+        const chartData = this.combinedCalculator.getAmortizationSlice(
+            inputs.commercial,
+            inputs.housingFund,
+            inputs.type,
+            inputs.viewMonth
+        );
+
+        this.ui.renderChart(chartData, formatter, this.langEngine.lang);
+
+        const balanceAtAction = this.combinedCalculator.getRemainingBalance(
+            inputs.commercial,
+            inputs.housingFund,
+            inputs.type,
+            inputs.actionMonth
+        );
+        const monthLabel = trans.monthLabel || 'Month';
+        const balanceLabel = trans.balanceLabel || 'Balance';
+        const label = `${monthLabel} ${inputs.actionMonth} ${balanceLabel}:`;
+        this.ui.renderCombinedBalanceHint(balanceAtAction, formatter, label);
     }
 
     /**

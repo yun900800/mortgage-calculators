@@ -73,6 +73,7 @@ export const translations = {
         interestLabel: 'Interest',
         monthLabel: 'Month',
         balanceLabel: 'Balance',
+        totalInterest: 'Total Interest',
 
         // 底部信息
         disclaimer:
@@ -120,7 +121,15 @@ export const translations = {
 
         // 博客导航
         navBlog: 'Mortgage Guide',
-        blogTitle: 'Mortgage Knowledge Base'
+        blogTitle: 'Mortgage Knowledge Base',
+
+        // 组合贷款
+        loanType: 'Loan Type',
+        singleLoan: 'Single Loan',
+        combinedLoan: 'Combined Loan',
+        commercialLoan: 'Commercial Loan',
+        公积金Loan: 'Housing Fund Loan',
+        combinedTotal: 'Combined Total'
     },
 
     zh: {
@@ -190,6 +199,7 @@ export const translations = {
         interestLabel: '利息',
         monthLabel: '月份',
         balanceLabel: '余额',
+        totalInterest: '总利息',
 
         // 底部信息
         disclaimer: '注：计算结果仅供参考，不作为贷款依据。实际还款额请以银行合同为准。',
@@ -235,7 +245,19 @@ export const translations = {
 
         // 博客导航
         navBlog: '房贷指南',
-        blogTitle: '房贷知识库'
+        blogTitle: '房贷知识库',
+
+        // 组合贷款
+        loanType: '贷款类型',
+        singleLoan: '单贷',
+        combinedLoan: '组合贷',
+        commercialLoan: '商业贷款',
+        housingFundLoan: '公积金贷款',
+        combinedTotal: '合计',
+        combinedResultsTitle: '组合贷款结果',
+        combinedResultsDesc: '下方显示您的组合贷款计算结果。',
+        commercialRepayAmount: '商贷还款金额',
+        housingFundRepayAmount: '公积金还款金额'
     },
 
     // 其他语言可按需添加
@@ -251,7 +273,14 @@ export const translations = {
         years: '年',
         currencySymbol: '¥',
         locale: 'ja-JP',
-        currencyCode: 'JPY'
+        currencyCode: 'JPY',
+        loanType: 'ローンタイプ',
+        singleLoan: '单一ローン',
+        combinedLoan: 'コンビネーション',
+        commercialLoan: '商業ローン',
+        housingFundLoan: '公积金融資',
+        combinedTotal: '合計',
+        totalInterest: '総利息'
     },
 
     ko: {
@@ -266,7 +295,14 @@ export const translations = {
         years: '년',
         currencySymbol: '₩',
         locale: 'ko-KR',
-        currencyCode: 'KRW'
+        currencyCode: 'KRW',
+        loanType: '대출 유형',
+        singleLoan: '단일 대출',
+        combinedLoan: '조합 대출',
+        commercialLoan: '상업 대출',
+        housingFundLoan: '주택공적기금',
+        combinedTotal: '총액',
+        totalInterest: '총 이자'
     },
 
     ms: {
@@ -281,7 +317,14 @@ export const translations = {
         years: 'tahun',
         currencySymbol: 'RM',
         locale: 'ms-MY',
-        currencyCode: 'MYR'
+        currencyCode: 'MYR',
+        loanType: 'Jenis Pinjaman',
+        singleLoan: 'Pinjaman Tunggal',
+        combinedLoan: 'Pinjaman Gabungan',
+        commercialLoan: 'Pinjaman Komersial',
+        housingFundLoan: 'Dana rumah',
+        combinedTotal: 'Jumlah',
+        totalInterest: 'Faedah Jumlah'
     },
 
     hi: {
@@ -296,6 +339,13 @@ export const translations = {
         years: 'वर्ष',
         currencySymbol: '₹',
         locale: 'hi-IN',
-        currencyCode: 'INR'
+        currencyCode: 'INR',
+        loanType: 'ऋण प्रकार',
+        singleLoan: 'एकल ऋण',
+        combinedLoan: 'संयुक्त ऋण',
+        commercialLoan: 'व्यावसायिक ऋण',
+        housingFundLoan: 'आवास निधि',
+        combinedTotal: 'कुल',
+        totalInterest: 'कुल ब्याज'
     }
 };

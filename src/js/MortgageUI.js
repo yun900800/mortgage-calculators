@@ -57,6 +57,25 @@ export default class MortgageUI extends CalculatorUI {
             monthlyExtraAmount: document.getElementById('monthly-extra-amount'),
             monthlyExtraStart: document.getElementById('monthly-extra-start')
         };
+
+        // 组合贷款相关元素
+        this.combinedElements = {
+            loanTypeToggle: document.getElementById('loan-type-toggle'),
+            singleForm: document.getElementById('single-loan-form'),
+            combinedForm: document.getElementById('combined-loan-form'),
+            commercialAmount: document.getElementById('commercial-amount'),
+            commercialTerm: document.getElementById('commercial-term'),
+            commercialRate: document.getElementById('commercial-rate'),
+            housingFundAmount: document.getElementById('housing-fund-amount'),
+            housingFundTerm: document.getElementById('housing-fund-term'),
+            housingFundRate: document.getElementById('housing-fund-rate'),
+            combinedResults: document.getElementById('combined-results'),
+            commercialMonthly: document.getElementById('commercial-monthly'),
+            housingFundMonthly: document.getElementById('housing-fund-monthly'),
+            commercialTotal: document.getElementById('commercial-total'),
+            housingFundTotal: document.getElementById('housing-fund-total'),
+            combinedBalanceHint: document.getElementById('combined-balance-hint')
+        };
     }
 
     /**
@@ -97,6 +116,29 @@ export default class MortgageUI extends CalculatorUI {
      * 获取表单输入数据
      */
     getInputs() {
+        const isCombined = this._isCombinedLoanMode();
+
+        if (isCombined) {
+            return this._getCombinedInputs();
+        }
+
+        return this._getSingleInputs();
+    }
+
+    /**
+     * 判断是否为组合贷款模式
+     * @private
+     */
+    _isCombinedLoanMode() {
+        const toggle = this.combinedElements.loanTypeToggle;
+        return toggle?.value === 'combined';
+    }
+
+    /**
+     * 获取单贷输入数据
+     * @private
+     */
+    _getSingleInputs() {
         const isAdvanced = this.elements.earlyRepayToggle?.checked || false;
         const mode = this._getActiveMode();
 
@@ -106,6 +148,7 @@ export default class MortgageUI extends CalculatorUI {
         const actionMonth = mode === 'lump-sum' ? lumpMonth : monthlyExtraStart;
 
         return {
+            loanType: 'single',
             amount: this._getSafeFloat('mortgage-amount'),
             term: parseFloat(this.formElements.mortgageTerm?.value) || 0,
             rate: parseFloat(this.formElements.interestRate?.value) || 0,
@@ -123,6 +166,52 @@ export default class MortgageUI extends CalculatorUI {
                 lumpMonth,
                 lumpStrategy: this.formElements.lumpSumStrategy?.value || 'reduce-term',
                 monthlyExtra: this._getSafeFloat('monthly-extra-amount'),
+                startMonth: monthlyExtraStart
+            }
+        };
+    }
+
+    /**
+     * 获取组合贷输入数据
+     * @private
+     */
+    _getCombinedInputs() {
+        const isAdvanced = this.elements.earlyRepayToggle?.checked || false;
+        const mode = this._getActiveMode();
+
+        const viewMonth = parseInt(this.formElements.targetMonth?.value) || 1;
+        const lumpMonth = parseInt(document.getElementById('combined-lump-month')?.value) || 1;
+        const monthlyExtraStart =
+            parseInt(document.getElementById('combined-monthly-extra-start')?.value) || 1;
+        const actionMonth = mode === 'lump-sum' ? lumpMonth : monthlyExtraStart;
+
+        return {
+            loanType: 'combined',
+            commercial: {
+                amount: this._getSafeFloat('commercial-amount'),
+                term: parseFloat(this.combinedElements.commercialTerm?.value) || 0,
+                rate: parseFloat(this.combinedElements.commercialRate?.value) || 0
+            },
+            housingFund: {
+                amount: this._getSafeFloat('housing-fund-amount'),
+                term: parseFloat(this.combinedElements.housingFundTerm?.value) || 0,
+                rate: parseFloat(this.combinedElements.housingFundRate?.value) || 0
+            },
+            type:
+                document.querySelector('input[name="mortgage-type"]:checked')?.value || 'repayment',
+            viewMonth,
+            actionMonth,
+            isAdvanced,
+            extraData: {
+                active: isAdvanced,
+                mode,
+                commercialLumpAmount: this._getSafeFloat('commercial-lump-amount') || 0,
+                housingFundLumpAmount: this._getSafeFloat('housing-fund-lump-amount') || 0,
+                lumpMonth,
+                lumpStrategy:
+                    document.getElementById('combined-lump-strategy')?.value || 'reduce-term',
+                commercialMonthlyExtra: this._getSafeFloat('commercial-monthly-extra') || 0,
+                housingFundMonthlyExtra: this._getSafeFloat('housing-fund-monthly-extra') || 0,
                 startMonth: monthlyExtraStart
             }
         };
@@ -171,11 +260,23 @@ export default class MortgageUI extends CalculatorUI {
     }
 
     /**
-     * 渲染主结果面板
+     * 渲染单贷结果
      */
     renderMortgageResults(current, normal, isAdvanced, formatter, trans) {
-        // 切换容器显示状态
-        this._showResults();
+        // 隐藏空状态和组合贷结果，显示单贷结果
+        const beforeContainer = document.querySelector('.before-results-container');
+        const resultsHeader = document.querySelector('.after-results-container > .results-header');
+        const singleResults = document.querySelector('.single-results');
+        const combinedResults = document.getElementById('combined-results');
+        const combinedResultsHeader = document.querySelector('.combined-results-header');
+
+        beforeContainer?.classList.add('hidden');
+        resultsHeader?.classList.remove('hidden');
+        singleResults?.classList.remove('hidden');
+        combinedResults?.classList.add('hidden');
+        combinedResultsHeader?.classList.add('hidden');
+        this.resultsContainer?.classList.remove('hidden');
+        this.rightContent?.classList.add('after-reset');
 
         // 处理原始总额对比显示
         this._renderOriginalTotal(current, normal, isAdvanced, formatter);
@@ -288,6 +389,208 @@ export default class MortgageUI extends CalculatorUI {
                 this._toggleExtraFields(tab.dataset.mode);
             });
         });
+
+        // 组合贷款切换
+        const loanTypeToggle = document.getElementById('loan-type-toggle');
+        const combinedForm = document.getElementById('combined-loan-form');
+
+        if (loanTypeToggle) {
+            loanTypeToggle.addEventListener('change', () => {
+                this._toggleLoanForm(loanTypeToggle.value);
+            });
+        }
+
+        // 监听组合贷表单变化，实时计算
+        if (combinedForm) {
+            combinedForm.addEventListener('input', (e) => {
+                const triggerIds = [
+                    'commercial-amount',
+                    'commercial-term',
+                    'commercial-rate',
+                    'housing-fund-amount',
+                    'housing-fund-term',
+                    'housing-fund-rate'
+                ];
+                if (triggerIds.includes(e.target.id)) {
+                    this.callbacks.onQuickUpdate(this.getInputs());
+                }
+
+                if (this.debounceTimer) clearTimeout(this.debounceTimer);
+                this.debounceTimer = setTimeout(() => {
+                    const inputs = this.getInputs();
+                    if (
+                        inputs.commercial?.amount &&
+                        inputs.housingFund?.amount &&
+                        inputs.commercial.term &&
+                        inputs.housingFund.term
+                    ) {
+                        this.callbacks.onCalculate(inputs);
+                    }
+                }, 50);
+            });
+        }
+    }
+
+    /**
+     * 切换单贷/组合贷表单
+     * @private
+     */
+    _toggleLoanForm(type) {
+        const beforeContainer = document.querySelector('.before-results-container');
+        const resultsHeader = document.querySelector('.after-results-container > .results-header');
+        const singleForm = document.getElementById('single-loan-form');
+        const combinedForm = document.getElementById('combined-loan-form');
+        const singleResults = document.querySelector('.single-results');
+        const combinedResults = document.getElementById('combined-results');
+        const combinedResultsHeader = document.querySelector('.combined-results-header');
+
+        // 提前还款表单
+        const lumpSumSingle = document.getElementById('lump-sum-fields-single');
+        const lumpSumCombined = document.getElementById('lump-sum-fields-combined');
+        const monthlyExtraSingle = document.getElementById('monthly-extra-fields-single');
+        const monthlyExtraCombined = document.getElementById('monthly-extra-fields-combined');
+        const activeMode = this._getActiveMode();
+
+        if (type === 'combined') {
+            singleForm?.classList.add('hidden');
+            combinedForm?.classList.remove('hidden');
+            beforeContainer?.classList.remove('hidden');
+            resultsHeader?.classList.remove('hidden');
+            singleResults?.classList.add('hidden');
+            combinedResults?.classList.add('hidden');
+            combinedResultsHeader?.classList.add('hidden');
+            this.resultsContainer?.classList.add('hidden');
+
+            // 切换提前还款表单
+            if (activeMode === 'lump-sum') {
+                lumpSumSingle?.classList.add('hidden');
+                lumpSumCombined?.classList.remove('hidden');
+                monthlyExtraSingle?.classList.add('hidden');
+                monthlyExtraCombined?.classList.add('hidden');
+            } else {
+                lumpSumSingle?.classList.add('hidden');
+                lumpSumCombined?.classList.add('hidden');
+                monthlyExtraSingle?.classList.add('hidden');
+                monthlyExtraCombined?.classList.remove('hidden');
+            }
+        } else {
+            singleForm?.classList.remove('hidden');
+            combinedForm?.classList.add('hidden');
+            beforeContainer?.classList.remove('hidden');
+            resultsHeader?.classList.remove('hidden');
+            singleResults?.classList.remove('hidden');
+            combinedResults?.classList.add('hidden');
+            combinedResultsHeader?.classList.add('hidden');
+            this.resultsContainer?.classList.add('hidden');
+
+            // 切换提前还款表单
+            if (activeMode === 'lump-sum') {
+                lumpSumSingle?.classList.remove('hidden');
+                lumpSumCombined?.classList.add('hidden');
+                monthlyExtraSingle?.classList.add('hidden');
+                monthlyExtraCombined?.classList.add('hidden');
+            } else {
+                lumpSumSingle?.classList.add('hidden');
+                lumpSumCombined?.classList.add('hidden');
+                monthlyExtraSingle?.classList.remove('hidden');
+                monthlyExtraCombined?.classList.add('hidden');
+            }
+        }
+    }
+
+    /**
+     * 渲染组合贷款结果
+     */
+    renderCombinedResults(result, formatter, _trans) {
+        // 隐藏空状态，显示结果容器
+        const beforeContainer = document.querySelector('.before-results-container');
+        const resultsHeader = document.querySelector('.after-results-container > .results-header');
+        const singleResults = document.querySelector('.single-results');
+        const combinedResults = document.getElementById('combined-results');
+        const combinedResultsHeader = document.querySelector('.combined-results-header');
+
+        beforeContainer?.classList.add('hidden');
+        resultsHeader?.classList.add('hidden');
+        singleResults?.classList.add('hidden');
+        combinedResults?.classList.remove('hidden');
+        combinedResultsHeader?.classList.remove('hidden');
+        this.resultsContainer?.classList.remove('hidden');
+        this.rightContent?.classList.add('after-reset');
+
+        // 使用动画更新商贷结果
+        this._animateValue(
+            'commercial-monthly',
+            result.commercial.current.monthlyPayment,
+            formatter
+        );
+        this._animateValue('commercial-total', result.commercial.current.totalRepayment, formatter);
+        this._animateValue(
+            'commercial-interest',
+            result.commercial.current.totalInterest,
+            formatter
+        );
+
+        // 使用动画更新公积金结果
+        this._animateValue(
+            'housing-fund-monthly',
+            result.housingFund.current.monthlyPayment,
+            formatter
+        );
+        this._animateValue(
+            'housing-fund-total',
+            result.housingFund.current.totalRepayment,
+            formatter
+        );
+        this._animateValue(
+            'housing-fund-interest',
+            result.housingFund.current.totalInterest,
+            formatter
+        );
+
+        // 使用动画更新汇总结果
+        this._animateValue('combined-monthly', result.total.current.monthlyPayment, formatter);
+        this._animateValue('combined-total', result.total.current.totalRepayment, formatter);
+        this._animateValue('combined-interest', result.total.current.totalInterest, formatter);
+
+        // 处理节省利息显示
+        const combinedSavingsBox = document.getElementById('combined-savings-box');
+        const interestSaved =
+            result.total.normal.totalInterest - result.total.current.totalInterest;
+        const hasSavings = interestSaved > 0;
+
+        if (hasSavings) {
+            combinedSavingsBox?.classList.remove('hidden');
+            this._animateValue(
+                'combined-original-total',
+                result.total.normal.totalRepayment,
+                formatter
+            );
+            this._animateValue('combined-interest-saved', interestSaved, formatter);
+        } else {
+            combinedSavingsBox?.classList.add('hidden');
+        }
+
+        // 更新单月明细（使用商贷+公积金的汇总）
+        if (this.elements.monthlyPrincipal) {
+            this.elements.monthlyPrincipal.innerText = formatter(
+                result.total.current.breakdown.principal
+            );
+        }
+        if (this.elements.monthlyInterest) {
+            this.elements.monthlyInterest.innerText = formatter(
+                result.total.current.breakdown.interest
+            );
+        }
+    }
+
+    /**
+     * 渲染组合贷款余额提示
+     */
+    renderCombinedBalanceHint(balance, formatter, label) {
+        if (this.combinedElements.combinedBalanceHint) {
+            this.combinedElements.combinedBalanceHint.innerText =
+                balance > 0 ? `${label} ${formatter(balance)}` : '';
+        }
     }
 
     /**
@@ -295,11 +598,28 @@ export default class MortgageUI extends CalculatorUI {
      * @private
      */
     _toggleExtraFields(mode) {
-        const lumpFields = document.getElementById('lump-sum-fields');
-        const monthlyFields = document.getElementById('monthly-extra-fields');
+        const isCombined = this._isCombinedLoanMode();
 
-        if (lumpFields) lumpFields.classList.toggle('hidden', mode !== 'lump-sum');
-        if (monthlyFields) monthlyFields.classList.toggle('hidden', mode !== 'monthly-extra');
+        const lumpSumSingle = document.getElementById('lump-sum-fields-single');
+        const lumpSumCombined = document.getElementById('lump-sum-fields-combined');
+        const monthlyExtraSingle = document.getElementById('monthly-extra-fields-single');
+        const monthlyExtraCombined = document.getElementById('monthly-extra-fields-combined');
+
+        if (isCombined) {
+            // 组合贷模式
+            if (lumpSumSingle) lumpSumSingle.classList.add('hidden');
+            if (lumpSumCombined) lumpSumCombined.classList.toggle('hidden', mode !== 'lump-sum');
+            if (monthlyExtraSingle) monthlyExtraSingle.classList.add('hidden');
+            if (monthlyExtraCombined)
+                monthlyExtraCombined.classList.toggle('hidden', mode !== 'monthly-extra');
+        } else {
+            // 单贷模式
+            if (lumpSumSingle) lumpSumSingle.classList.toggle('hidden', mode !== 'lump-sum');
+            if (lumpSumCombined) lumpSumCombined.classList.add('hidden');
+            if (monthlyExtraSingle)
+                monthlyExtraSingle.classList.toggle('hidden', mode !== 'monthly-extra');
+            if (monthlyExtraCombined) monthlyExtraCombined.classList.add('hidden');
+        }
     }
 
     /**
@@ -349,7 +669,17 @@ export default class MortgageUI extends CalculatorUI {
      * 还原到初始状态
      */
     resetDisplay() {
-        this.beforeContainer?.classList.remove('hidden');
+        const beforeContainer = document.querySelector('.before-results-container');
+        const resultsHeader = document.querySelector('.after-results-container > .results-header');
+        const singleResults = document.querySelector('.single-results');
+        const combinedResults = document.getElementById('combined-results');
+        const combinedResultsHeader = document.querySelector('.combined-results-header');
+
+        beforeContainer?.classList.remove('hidden');
+        resultsHeader?.classList.remove('hidden');
+        singleResults?.classList.remove('hidden');
+        combinedResults?.classList.add('hidden');
+        combinedResultsHeader?.classList.add('hidden');
         this.resultsContainer?.classList.add('hidden');
         this.rightContent?.classList.remove('after-reset');
 
@@ -363,40 +693,50 @@ export default class MortgageUI extends CalculatorUI {
      * 校验表单输入
      */
     validate() {
-        let isValid = true;
         this.clearErrors();
+
+        const isCombined = this._isCombinedLoanMode();
+
+        if (isCombined) {
+            return this._validateCombined();
+        }
+
+        return this._validateSingle();
+    }
+
+    /**
+     * 校验单贷表单
+     * @private
+     */
+    _validateSingle() {
+        let isValid = true;
 
         const amount = this.formElements.mortgageAmount;
         const term = this.formElements.mortgageTerm;
         const rate = this.formElements.interestRate;
 
-        // 检查贷款总额
         const amountVal = amount?.value.replace(/,/g, '') || '';
         if (!amountVal || isNaN(amountVal) || parseFloat(amountVal) <= 0) {
             this._setErrorFor(amount);
             isValid = false;
         }
 
-        // 检查贷款期限
         if (!term?.value || isNaN(term.value) || parseInt(term.value) <= 0) {
             this._setErrorFor(term);
             isValid = false;
         }
 
-        // 检查利率
         if (!rate?.value || isNaN(rate.value) || parseFloat(rate.value) <= 0) {
             this._setErrorFor(rate);
             isValid = false;
         }
 
-        // 检查还款类型
         if (!document.querySelector('input[name="mortgage-type"]:checked')) {
             const radioContainer = document.querySelector('.radio-group') || amount;
             this._setErrorFor(radioContainer);
             isValid = false;
         }
 
-        // 校验提前还款字段（如果开启了高级模式）
         const isAdvanced = this.elements.earlyRepayToggle?.checked;
         if (isAdvanced) {
             const mode = this._getActiveMode();
@@ -418,6 +758,76 @@ export default class MortgageUI extends CalculatorUI {
                     isValid = false;
                 }
             }
+        }
+
+        return isValid;
+    }
+
+    /**
+     * 校验组合贷表单
+     * @private
+     */
+    _validateCombined() {
+        let isValid = true;
+
+        const commercialAmount = this.combinedElements.commercialAmount;
+        const commercialTerm = this.combinedElements.commercialTerm;
+        const commercialRate = this.combinedElements.commercialRate;
+        const housingFundAmount = this.combinedElements.housingFundAmount;
+        const housingFundTerm = this.combinedElements.housingFundTerm;
+        const housingFundRate = this.combinedElements.housingFundRate;
+
+        // 校验商贷
+        const cAmountVal = commercialAmount?.value.replace(/,/g, '') || '';
+        if (!cAmountVal || isNaN(cAmountVal) || parseFloat(cAmountVal) <= 0) {
+            this._setErrorFor(commercialAmount);
+            isValid = false;
+        }
+        if (
+            !commercialTerm?.value ||
+            isNaN(commercialTerm.value) ||
+            parseInt(commercialTerm.value) <= 0
+        ) {
+            this._setErrorFor(commercialTerm);
+            isValid = false;
+        }
+        if (
+            !commercialRate?.value ||
+            isNaN(commercialRate.value) ||
+            parseFloat(commercialRate.value) <= 0
+        ) {
+            this._setErrorFor(commercialRate);
+            isValid = false;
+        }
+
+        // 校验公积金
+        const gAmountVal = housingFundAmount?.value.replace(/,/g, '') || '';
+        if (!gAmountVal || isNaN(gAmountVal) || parseFloat(gAmountVal) <= 0) {
+            this._setErrorFor(housingFundAmount);
+            isValid = false;
+        }
+        if (
+            !housingFundTerm?.value ||
+            isNaN(housingFundTerm.value) ||
+            parseInt(housingFundTerm.value) <= 0
+        ) {
+            this._setErrorFor(housingFundTerm);
+            isValid = false;
+        }
+        if (
+            !housingFundRate?.value ||
+            isNaN(housingFundRate.value) ||
+            parseFloat(housingFundRate.value) <= 0
+        ) {
+            this._setErrorFor(housingFundRate);
+            isValid = false;
+        }
+
+        // 检查还款类型
+        if (!document.querySelector('input[name="mortgage-type"]:checked')) {
+            const radioContainer = document.querySelector('.radio-group') || commercialAmount;
+            this._setErrorFor(radioContainer);
+            isValid = false;
         }
 
         return isValid;
