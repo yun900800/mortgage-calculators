@@ -1,4 +1,28 @@
-User-agent: *
+# 1. 针对 Google 爬虫：全线放行，确保索引正常
+User-agent: Googlebot
 Allow: /
 
+# 2. 针对其他主流正规搜索引擎：全线放行
+User-agent: AdsBot-Google
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+Allow: /
+
+# 3. 针对“不怀好意”的采集器和 SEO 审计工具：直接拒绝
+# 这些通常是刷你 GA4 流量、导致 100% 跳出率的元凶
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+User-agent: MJ12bot
+User-agent: Rogerbot
+User-agent: Exotic Bots
+Disallow: /
+
+# 4. 针对所有其他未声明身份的机器人：限制抓取频率或禁止抓取敏感目录
+User-agent: *
+Allow: /
+Crawl-delay: 10
+
+# 5. 告知站点地图位置（保持你现在的正确路径）
 Sitemap: https://lifebook.ggff.net/sitemap.xml
