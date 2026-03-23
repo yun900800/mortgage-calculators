@@ -121,6 +121,7 @@ export const translations = {
 
         // 博客导航
         navBlog: 'Mortgage Guide',
+        navStories: 'Mortgage Stories',
         blogTitle: 'Mortgage Knowledge Base',
 
         // 组合贷款
@@ -245,6 +246,7 @@ export const translations = {
 
         // 博客导航
         navBlog: '房贷指南',
+        navStories: '房贷故事',
         blogTitle: '房贷知识库',
 
         // 组合贷款

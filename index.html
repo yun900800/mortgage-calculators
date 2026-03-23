@@ -69,37 +69,54 @@
                     </div>
                     <aside class="guide-sidebar" id="guide-sidebar">
                         <div class="sidebar-header">
-                            <h3 data-i18n="navBlog">房贷指南</h3>
+                            <div class="sidebar-tabs">
+                                <button class="sidebar-tab active" data-tab="guide">
+                                    <span data-i18n="navBlog">房贷指南</span>
+                                </button>
+                                <button class="sidebar-tab" data-tab="stories">
+                                    <span data-i18n="navStories">房贷故事</span>
+                                </button>
+                            </div>
                             <button class="close-sidebar" id="close-sidebar">×</button>
                         </div>
-                        <ul class="guide-list">
-                            <li>
-                                <a href="/blog/first-principles-repayment">
-                                    <span class="icon">📖</span>
-                                    房贷的第一性原理：如何省下30万利息？
-                                </a>
-                                <a href="/blog/repayment-methods-comparison">
-                                    <span class="icon">📖</span>
-                                    房贷还款的“三种姿势”
-                                </a>
-                                <a href="/blog/early-repayment-magic">
-                                    <span class="icon">📖</span>
-                                    提前还款的时间魔术
-                                </a>
-                                <a href="/blog/lpr-adjustment-2026">
-                                    <span class="icon">📖</span>
-                                    2026 LPR 调整全攻略：房贷利率下调后，我的月供什么时候生效？
-                                </a>
-                                <a href="/blog/combination-loan-strategy-2026">
-                                    <span class="icon">📖</span>
-                                    组合贷款省钱方案：手里的 10 万块，该还商贷还是公积金？
-                                </a>
-                                <a href="/blog/inflation-and-mortgage-logic">
-                                    <span class="icon">📖</span>
-                                    通胀时代，房贷是资产还是负债？为什么“欠钱”有时更划算？
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="sidebar-content">
+                            <ul class="guide-list tab-content active" data-content="guide">
+                                <li>
+                                    <a href="/blog/first-principles-repayment.html">
+                                        <span class="icon">📖</span>
+                                        房贷的第一性原理：如何省下30万利息？
+                                    </a>
+                                    <a href="/blog/repayment-methods-comparison.html">
+                                        <span class="icon">📖</span>
+                                        房贷还款的"三种姿势"
+                                    </a>
+                                    <a href="/blog/early-repayment-magic.html">
+                                        <span class="icon">📖</span>
+                                        提前还款的时间魔术
+                                    </a>
+                                    <a href="/blog/lpr-adjustment-2026.html">
+                                        <span class="icon">📖</span>
+                                        2026 LPR 调整全攻略：房贷利率下调后，我的月供什么时候生效？
+                                    </a>
+                                    <a href="/blog/combination-loan-strategy-2026.html">
+                                        <span class="icon">📖</span>
+                                        组合贷款省钱方案：手里的 10 万块，该还商贷还是公积金？
+                                    </a>
+                                    <a href="/blog/inflation-and-mortgage-logic.html">
+                                        <span class="icon">📖</span>
+                                        通胀时代，房贷是资产还是负债？为什么"欠钱"有时更划算？
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="guide-list tab-content" data-content="stories">
+                                <li>
+                                    <a href="/blog/mortgage-stories-2026.html">
+                                        <span class="icon">📖</span>
+                                        三个普通人的真实选择：有人省30万利息，有人反而赚更多
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </aside>
 
                     <button class="mobile-guide-btn" id="mobile-guide-btn">

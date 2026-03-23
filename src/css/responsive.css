@@ -53,6 +53,43 @@
         border-bottom: 1px solid var(--border-light);
     }
 
+    /* 移动端侧边栏内的 Tab 样式 */
+    .sidebar-tabs {
+        display: flex;
+        gap: var(--spacing-xs);
+        flex: 1;
+        margin-right: var(--spacing-sm);
+    }
+
+    .sidebar-tab {
+        flex: 1;
+        background: transparent;
+        border: 1px solid var(--border-primary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-sm);
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+        transition: all var(--transition-fast);
+        text-align: center;
+    }
+
+    .sidebar-tab.active {
+        background: var(--accent-color);
+        border-color: var(--accent-color);
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    .sidebar-content .tab-content {
+        display: none;
+    }
+
+    .sidebar-content .tab-content.active {
+        display: block;
+    }
+
     .close-sidebar {
         display: flex;
         align-items: center;
@@ -169,7 +206,58 @@
 /* ========== 桌面端隐藏按钮 (初始状态) ========== */
 @media (min-width: 769px) {
     .mobile-guide-btn,
-    .close-sidebar {
+    .close-sidebar,
+    .mobile-tab-switcher {
         display: none;
+    }
+}
+
+/* ========== 桌面端侧边栏 Tab 样式 ========== */
+@media (min-width: 769px) {
+    .sidebar-tabs {
+        display: flex;
+        gap: var(--spacing-xs);
+    }
+
+    .sidebar-tab {
+        background: transparent;
+        border: none;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-sm);
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        transition: all var(--transition-fast);
+    }
+
+    .sidebar-tab:hover {
+        color: var(--text-primary);
+        background: var(--bg-secondary);
+    }
+
+    .sidebar-tab.active {
+        color: var(--accent-color);
+        background: rgba(0, 122, 255, 0.1);
+        font-weight: 600;
+    }
+
+    .sidebar-content .tab-content {
+        display: none;
+    }
+
+    .sidebar-content .tab-content.active {
+        display: block;
+    }
+}
+
+/* ========== 移动端 Tab 切换器 - 默认隐藏 ========== */
+.mobile-tab-switcher {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .mobile-tab-switcher {
+        display: none !important;
     }
 }

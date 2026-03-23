@@ -103,6 +103,13 @@
     .total-result .combined-result-item:first-child p {
         font-size: 1.25rem;
     }
+
+    /* 移动端 Tab 切换器 */
+    .mobile-tab-switcher {
+        display: flex;
+        margin: 0 var(--spacing-lg);
+        margin-bottom: var(--spacing-sm);
+    }
 }
 
 @media (max-width: 400px) {

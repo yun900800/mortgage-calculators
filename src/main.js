@@ -65,7 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 点击侧边栏外部区域自动关闭 (仅在移动端)
     const isMobile = () => window.innerWidth <= 1600;
     document.addEventListener('click', (e) => {
-        if (isMobile() && sidebar?.classList.contains('active') && !sidebar.contains(e.target) && e.target !== openBtn) {
+        if (
+            isMobile() &&
+            sidebar?.classList.contains('active') &&
+            !sidebar.contains(e.target) &&
+            e.target !== openBtn
+        ) {
             closeMenu();
         }
     });
@@ -75,5 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isMobile()) {
             closeMenu();
         }
+    });
+
+    // Tab 切换逻辑
+    const tabContents = document.querySelectorAll('.tab-content');
+    const sidebarTabs = document.querySelectorAll('.sidebar-tab');
+
+    const switchTab = (tabName) => {
+        tabContents.forEach((content) => {
+            content.classList.toggle('active', content.dataset.content === tabName);
+        });
+        sidebarTabs.forEach((tab) => {
+            tab.classList.toggle('active', tab.dataset.tab === tabName);
+        });
+    };
+
+    sidebarTabs.forEach((tab) => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
     });
 });
