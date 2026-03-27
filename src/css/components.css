@@ -189,9 +189,35 @@
 .faq-item {
     background: var(--bg-card);
     border-radius: var(--radius-md);
-    border: 1px solid var(--bg-primary);
+    border: 1px solid var(--border-light);
     overflow: hidden;
     transition: all var(--transition-normal) ease;
+}
+
+.faq-item summary {
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-primary);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    transition: transform var(--transition-normal);
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
 }
 
 .faq-item[open] {

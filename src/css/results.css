@@ -142,11 +142,11 @@
 .right-content .before-results-container > h2 {
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: var(--text-inverse);
+    color: var(--text-primary);
 }
 
 .right-content .before-results-container > p {
-    color: var(--text-muted);
+    color: var(--text-secondary);
 }
 
 /* 结果后容器 */

@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
     // 基准路径，如果你部署在子目录（如 /calc/），请修改这里
-    base: '/',
+    base: './',
     server: {
         port: 3000,
         open: true, // 自动打开浏览器
