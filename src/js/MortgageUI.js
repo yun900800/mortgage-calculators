@@ -226,6 +226,23 @@ export default class MortgageUI extends CalculatorUI {
     }
 
     /**
+     * 触发结果面板动画
+     * @private
+     */
+    _triggerResultsAnimation() {
+        if (!this.resultsContainer) return;
+
+        // 移除可能存在的动画类
+        this.resultsContainer.classList.remove('results-animate');
+
+        // 强制重绘
+        void this.resultsContainer.offsetWidth;
+
+        // 添加动画类
+        this.resultsContainer.classList.add('results-animate');
+    }
+
+    /**
      * 渲染柱状图
      */
     renderChart(dataList, formatter, lang) {
@@ -278,14 +295,29 @@ export default class MortgageUI extends CalculatorUI {
         this.resultsContainer?.classList.remove('hidden');
         this.rightContent?.classList.add('after-reset');
 
+        // 触发毛玻璃+纸片落下动画
+        this._triggerResultsAnimation();
+
         // 处理原始总额对比显示
         this._renderOriginalTotal(current, normal, isAdvanced, formatter);
 
-        // 渲染基础数值
-        this._animateValue('monthly-repayments', current.monthlyPayment, formatter);
-        this._animateValue('total-over-the-term', current.totalRepayment, formatter);
-        this._animateValue('monthly-principal', current.breakdown.principal, formatter);
-        this._animateValue('monthly-interest', current.breakdown.interest, formatter);
+        // 渲染基础数值（带交错动画，产生计算仪式感）
+        setTimeout(
+            () => this._animateValue('monthly-repayments', current.monthlyPayment, formatter),
+            0
+        );
+        setTimeout(
+            () => this._animateValue('total-over-the-term', current.totalRepayment, formatter),
+            80
+        );
+        setTimeout(
+            () => this._animateValue('monthly-principal', current.breakdown.principal, formatter),
+            160
+        );
+        setTimeout(
+            () => this._animateValue('monthly-interest', current.breakdown.interest, formatter),
+            240
+        );
 
         // 渲染节省信息
         this._renderSavings(current, normal, isAdvanced, formatter, trans);
@@ -335,12 +367,14 @@ export default class MortgageUI extends CalculatorUI {
             this.savingsBox.classList.remove('hidden');
 
             if (this.elements.totalSaved) {
-                this._animateValue('total-saved', interestSaved, formatter);
+                setTimeout(() => this._animateValue('total-saved', interestSaved, formatter), 320);
             }
 
             if (this.elements.termShortened) {
-                const monthUnit = trans.monthUnit || 'months';
-                this.elements.termShortened.innerText = `${monthsShortened} ${monthUnit}`;
+                setTimeout(() => {
+                    const monthUnit = trans.monthUnit || 'months';
+                    this.elements.termShortened.innerText = `${monthsShortened} ${monthUnit}`;
+                }, 360);
             }
         } else {
             this.savingsBox.classList.add('hidden');
@@ -380,6 +414,36 @@ export default class MortgageUI extends CalculatorUI {
                 advancedPanel.classList.toggle('collapsed', !repayToggle.checked);
             });
         }
+
+        // 点击整个 radio-input-container 选中 radio
+        document.querySelectorAll('.radio-input-container').forEach((container) => {
+            container.addEventListener('click', (e) => {
+                const radio = container.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.checked = true;
+                    radio.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+        });
+
+        // 输入框3D按压效果
+        document.querySelectorAll('.input-container').forEach((container) => {
+            container.addEventListener('mousedown', () => {
+                container.classList.add('active');
+            });
+            container.addEventListener('mouseup', () => {
+                container.classList.remove('active');
+            });
+            container.addEventListener('mouseleave', () => {
+                container.classList.remove('active');
+            });
+            container.addEventListener('touchstart', () => {
+                container.classList.add('active');
+            });
+            container.addEventListener('touchend', () => {
+                container.classList.remove('active');
+            });
+        });
 
         // Tab 切换
         document.querySelectorAll('.tab-item').forEach((tab) => {
@@ -517,40 +581,95 @@ export default class MortgageUI extends CalculatorUI {
         this.resultsContainer?.classList.remove('hidden');
         this.rightContent?.classList.add('after-reset');
 
-        // 使用动画更新商贷结果
-        this._animateValue(
-            'commercial-monthly',
-            result.commercial.current.monthlyPayment,
-            formatter
+        // 触发毛玻璃+纸片落下动画
+        this._triggerResultsAnimation();
+
+        // 使用交错动画更新商贷结果
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'commercial-monthly',
+                    result.commercial.current.monthlyPayment,
+                    formatter
+                ),
+            0
         );
-        this._animateValue('commercial-total', result.commercial.current.totalRepayment, formatter);
-        this._animateValue(
-            'commercial-interest',
-            result.commercial.current.totalInterest,
-            formatter
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'commercial-total',
+                    result.commercial.current.totalRepayment,
+                    formatter
+                ),
+            80
+        );
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'commercial-interest',
+                    result.commercial.current.totalInterest,
+                    formatter
+                ),
+            160
         );
 
-        // 使用动画更新公积金结果
-        this._animateValue(
-            'housing-fund-monthly',
-            result.housingFund.current.monthlyPayment,
-            formatter
+        // 使用交错动画更新公积金结果
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'housing-fund-monthly',
+                    result.housingFund.current.monthlyPayment,
+                    formatter
+                ),
+            80
         );
-        this._animateValue(
-            'housing-fund-total',
-            result.housingFund.current.totalRepayment,
-            formatter
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'housing-fund-total',
+                    result.housingFund.current.totalRepayment,
+                    formatter
+                ),
+            160
         );
-        this._animateValue(
-            'housing-fund-interest',
-            result.housingFund.current.totalInterest,
-            formatter
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'housing-fund-interest',
+                    result.housingFund.current.totalInterest,
+                    formatter
+                ),
+            240
         );
 
-        // 使用动画更新汇总结果
-        this._animateValue('combined-monthly', result.total.current.monthlyPayment, formatter);
-        this._animateValue('combined-total', result.total.current.totalRepayment, formatter);
-        this._animateValue('combined-interest', result.total.current.totalInterest, formatter);
+        // 使用交错动画更新汇总结果
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'combined-monthly',
+                    result.total.current.monthlyPayment,
+                    formatter
+                ),
+            0
+        );
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'combined-total',
+                    result.total.current.totalRepayment,
+                    formatter
+                ),
+            80
+        );
+        setTimeout(
+            () =>
+                this._animateValue(
+                    'combined-interest',
+                    result.total.current.totalInterest,
+                    formatter
+                ),
+            160
+        );
 
         // 处理节省利息显示
         const combinedSavingsBox = document.getElementById('combined-savings-box');
@@ -650,13 +769,14 @@ export default class MortgageUI extends CalculatorUI {
         if (!obj) return;
 
         let startTimestamp = null;
-        const duration = 800;
+        const duration = 300;
         const startValue = 0;
 
         const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const currentVal = progress * (endValue - startValue) + startValue;
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const currentVal = easeOut * (endValue - startValue) + startValue;
             obj.innerText = formatter(currentVal);
             if (progress < 1) {
                 window.requestAnimationFrame(step);

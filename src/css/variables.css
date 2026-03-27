@@ -4,43 +4,43 @@
  */
 
 :root {
-    /* 主色调 */
-    --primary-color: #133041;
-    --primary-light: #1c455d;
-    --primary-dark: #0d1f2d;
+    /* 主色调 - 莫兰迪灰蓝 */
+    --primary-color: #5d6d7e;
+    --primary-light: #7d8d9e;
+    --primary-dark: #3d4d5e;
 
-    /* 强调色 */
-    --accent-color: #d8db2f;
-    --accent-hover: #c4c628;
-    --accent-muted: rgba(216, 219, 47, 0.15);
+    /* 强调色 - 柔和米黄 */
+    --accent-color: #c9b896;
+    --accent-hover: #b5a582;
+    --accent-muted: rgba(201, 184, 150, 0.15);
 
-    /* 背景色 */
-    --bg-primary: #e4f4fd;
-    --bg-secondary: #f9fbfc;
-    --bg-card: #fff;
-    --bg-dark: #133041;
+    /* 背景色 - 米白系 */
+    --bg-primary: #f5f3f0;
+    --bg-secondary: #faf8f5;
+    --bg-card: #fdfcfa;
+    --bg-dark: #4a5568;
 
-    /* 文字颜色 */
-    --text-primary: #133041;
-    --text-secondary: #4e6e7e;
-    --text-muted: #9abed5;
-    --text-inverse: #fff;
+    /* 文字颜色 - 低饱和灰蓝 */
+    --text-primary: #4a5568;
+    --text-secondary: #718096;
+    --text-muted: #a0aec0;
+    --text-inverse: #faf8f5;
 
-    /* 边框颜色 */
-    --border-primary: #6b94a8;
-    --border-light: #d1e5f0;
-    --border-focus: #d8db2f;
+    /* 边框颜色 - 莫兰迪灰 */
+    --border-primary: #c4ccd6;
+    --border-light: #e2e6ea;
+    --border-focus: #c9b896;
 
-    /* 功能色 */
-    --success-color: #22c55e;
-    --error-color: #d73328;
-    --warning-color: #ef4444;
+    /* 功能色 - 低饱和度 */
+    --success-color: #68b88e;
+    --error-color: #c97c7c;
+    --warning-color: #d4a574;
 
-    /* 图表颜色 */
-    --chart-principal: #22c55e;
-    --chart-interest: #f779a3;
-    --chart-principal-alt: #4caf50;
-    --chart-interest-alt: #f779a3;
+    /* 图表颜色 - 柔和色 */
+    --chart-principal: #7eb89e;
+    --chart-interest: #b89ea3;
+    --chart-principal-alt: #68b88e;
+    --chart-interest-alt: #c4a5a8;
 
     /* 间距 */
     --spacing-xs: 4px;
@@ -84,4 +84,47 @@
 
     /* 容器宽度 */
     --container-width: 1008px;
+
+    /* 输入框3D效果 - 亮色 */
+    --input-shadow-color: #c5cdd4;
+}
+
+/* 夜间模式 */
+[data-theme='dark'] {
+    --primary-color: #8fa6b5;
+    --primary-light: #a5b8c7;
+    --primary-dark: #6d8696;
+
+    --accent-color: #b8a07a;
+    --accent-hover: #a68d66;
+    --accent-muted: rgba(184, 160, 122, 0.2);
+
+    --bg-primary: #1a1d23;
+    --bg-secondary: #22262e;
+    --bg-card: #2a2f38;
+    --bg-dark: #0d1015;
+
+    --text-primary: #e2e4e8;
+    --text-secondary: #9aa3b0;
+    --text-muted: #6b7280;
+    --text-inverse: #1a1d23;
+
+    --border-primary: #3d4450;
+    --border-light: #353b44;
+    --border-focus: #b8a07a;
+
+    --success-color: #5a9a72;
+    --error-color: #b56b6b;
+    --warning-color: #c49365;
+
+    --chart-principal: #5a9a72;
+    --chart-interest: #9a8489;
+    --chart-principal-alt: #5a9a72;
+    --chart-interest-alt: #9a8588;
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4);
+
+    --input-shadow-color: #1d2025;
 }

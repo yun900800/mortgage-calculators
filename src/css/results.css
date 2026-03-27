@@ -56,6 +56,13 @@
     height: 48px;
     align-items: center;
     font-size: var(--font-size-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast) ease;
+    border-radius: var(--radius-sm);
+}
+
+.left-content > form .mortgage-type-container > .radio-input-container:hover {
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 .left-content > form .mortgage-type-container > .radio-input-container label {
@@ -88,9 +95,40 @@
     border-radius: 48px 48px 0 48px;
 }
 
+/* 玻璃拟态动画效果 */
+@keyframes paperDrop {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(-30px) rotate(-3deg);
+        filter: blur(4px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.02) translateY(5px) rotate(1deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotate(0);
+        filter: blur(0);
+    }
+}
+
+/* 结果容器毛玻璃效果 */
 .right-content.after-reset {
     text-align: start;
     justify-content: flex-start;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(74, 85, 104, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 结果出现时的动画类 */
+.after-results-container.results-animate {
+    animation: paperDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* 结果前容器 */
@@ -239,7 +277,7 @@
 /* ========== 节省勋章 ========== */
 
 .save-badge {
-    background: linear-gradient(135deg, #d8db2f 0%, #b8ba26 100%);
+    background: linear-gradient(135deg, var(--accent-color) 0%, #b5a582 100%);
     color: var(--text-primary);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
@@ -264,7 +302,7 @@
 }
 
 .save-badge-premium {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #1c455d 100%);
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #5d6d7e 100%);
     border: 1px solid var(--accent-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);

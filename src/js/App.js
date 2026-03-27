@@ -70,8 +70,56 @@ export default class App {
             });
         }
 
+        // 初始化主题切换
+        this._initThemeToggle();
+
         // 初次渲染静态文本
         this.langEngine.updateStaticTexts();
+    }
+
+    /**
+     * 初始化主题切换功能
+     * @private
+     */
+    _initThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            this._updateThemeIcon(savedTheme);
+        } else {
+            // 默认检查系统偏好
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                this._updateThemeIcon('dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            this._updateThemeIcon(newTheme);
+        });
+    }
+
+    /**
+     * 更新主题图标
+     * @private
+     */
+    _updateThemeIcon(theme) {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+
+        const icon = themeToggle.querySelector('.theme-icon');
+        if (icon) {
+            icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
     }
 
     /**

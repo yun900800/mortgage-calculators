@@ -53,6 +53,31 @@
     gap: var(--spacing-xs);
 }
 
+/* 主题切换按钮 */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    background: var(--bg-card);
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
 /* 语言选择器 */
 #lang-select,
 .main-content .header-container > div.header-controls > select#lang-select {
