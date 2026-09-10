@@ -417,7 +417,7 @@ export default class MortgageUI extends CalculatorUI {
 
         // 点击整个 radio-input-container 选中 radio
         document.querySelectorAll('.radio-input-container').forEach((container) => {
-            container.addEventListener('click', (e) => {
+            container.addEventListener('click', () => {
                 const radio = container.querySelector('input[type="radio"]');
                 if (radio) {
                     radio.checked = true;
