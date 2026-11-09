@@ -12,12 +12,8 @@
   NODE_VERSION = "20"
   NODE_ENV = "production"
 
-# 处理单页应用 (SPA) 刷新 404 的重定向规则
-# 这相当于把 _redirects 文件的内容写在了这里
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# 重定向规则统一放在 public/_redirects（Cloudflare Pages 和 Netlify 共用）。
+# 不要使用 "/* -> /index.html 200" 的 SPA 回退：它会制造 soft 404。
 
 # (可选) 针对特定资源的缓存优化
 [[headers]]

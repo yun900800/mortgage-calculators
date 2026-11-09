@@ -1,0 +1,29 @@
+# Cloudflare Pages / Netlify redirects
+# Canonical URLs are extension-less (Cloudflare Pages also redirects .html -> clean URLs).
+# Do NOT add a catch-all "/* /index.html 200": it creates soft 404s and hides real 404s.
+
+# Legacy blog URLs (renamed articles)
+/blog/first-principal-mortgage.html   /blog/first-principles-repayment   301
+/blog/first-principal-mortgage        /blog/first-principles-repayment   301
+/blog/first-principle-repayment.html  /blog/first-principles-repayment   301
+/blog/first-principle-repayment       /blog/first-principles-repayment   301
+
+# .html -> clean canonical URLs
+/about.html                                /about                                301
+/privacy.html                              /privacy                              301
+/terms.html                                /terms                                301
+/blog/early-repayment-magic.html           /blog/early-repayment-magic           301
+/blog/repayment-methods-comparison.html    /blog/repayment-methods-comparison    301
+/blog/first-principles-repayment.html      /blog/first-principles-repayment      301
+/blog/combination-loan-strategy-2026.html  /blog/combination-loan-strategy-2026  301
+/blog/inflation-and-mortgage-logic.html    /blog/inflation-and-mortgage-logic    301
+/blog/lpr-adjustment-2026.html             /blog/lpr-adjustment-2026             301
+/blog/mortgage-stories-2026.html           /blog/mortgage-stories-2026           301
+
+# Directory/index duplicates
+/index.html        /        301
+/blog              /blog/   301
+/blog/index.html   /blog/   301
+
+# Favicon
+/favicon.ico  /favicon.png  301

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="2026 房贷知识库：提前还贷、LPR 利率、等额本息与等额本金对比、组合贷款策略和真实房贷故事。用数据帮你做出更省钱的房贷决策。"
+        />
+        <link rel="canonical" href="https://lifebook.ggff.net/blog/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://lifebook.ggff.net/blog/" />
+        <meta property="og:title" content="房贷知识库 - 2026 房贷计算器指南" />
+        <meta
+            property="og:description"
+            content="提前还贷、LPR 利率、还款方式对比、组合贷款策略和真实房贷故事。"
+        />
+        <meta property="og:site_name" content="Lifebook 房贷计算器" />
+        <title>房贷知识库 - 2026 房贷计算器指南</title>
+        <style>
+            :root {
+                --primary: #133041;
+                --accent: #d8db2f;
+                --bg: #e4f4fd;
+                --text: #4e6e7e;
+                --card: #ffffff;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                padding: 40px 20px 64px;
+                font-family:
+                    'Plus Jakarta Sans',
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    'Segoe UI',
+                    sans-serif;
+                line-height: 1.7;
+                color: var(--text);
+                background: var(--bg);
+            }
+            .container {
+                max-width: 960px;
+                margin: 0 auto;
+            }
+            .back-home {
+                display: inline-flex;
+                align-items: center;
+                margin-bottom: 32px;
+                padding: 8px 16px;
+                color: var(--text);
+                font-weight: 600;
+                text-decoration: none;
+                background: #fff;
+                border-radius: 50px;
+            }
+            h1 {
+                margin: 0 0 12px;
+                font-size: 2.2rem;
+                color: var(--primary);
+            }
+            .intro {
+                margin: 0 0 36px;
+                max-width: 720px;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 20px;
+            }
+            .card {
+                display: flex;
+                flex-direction: column;
+                padding: 24px;
+                background: var(--card);
+                border-radius: 16px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+                text-decoration: none;
+                color: inherit;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+            }
+            .tag {
+                align-self: flex-start;
+                margin-bottom: 12px;
+                padding: 4px 10px;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: var(--primary);
+                background: var(--accent);
+                border-radius: 999px;
+            }
+            .card h2 {
+                margin: 0 0 10px;
+                font-size: 1.15rem;
+                line-height: 1.45;
+                color: var(--primary);
+            }
+            .card p {
+                margin: 0;
+                font-size: 0.95rem;
+            }
+            footer {
+                margin-top: 48px;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+            footer a {
+                color: var(--primary);
+                font-weight: 700;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <a class="back-home" href="/">← 返回房贷计算器</a>
+            <h1>房贷知识库</h1>
+            <p class="intro">
+                从第一性原理到真实案例，帮你理解房贷利息、还款方式和提前还贷策略，做出更省钱的决策。
+            </p>
+
+            <div class="grid">
+                <a class="card" href="/blog/first-principles-repayment">
+                    <span class="tag">基础原理</span>
+                    <h2>房贷的第一性原理：如何省下 30 万利息？</h2>
+                    <p>从利息的产生机制出发，理解为什么时间和本金是省钱的关键。</p>
+                </a>
+                <a class="card" href="/blog/repayment-methods-comparison">
+                    <span class="tag">还款方式</span>
+                    <h2>等额本金 vs 等额本息 vs 仅还利息</h2>
+                    <p>三种主流还款方式的数学差异、利息总额与适合人群。</p>
+                </a>
+                <a class="card" href="/blog/early-repayment-magic">
+                    <span class="tag">提前还贷</span>
+                    <h2>提前还房贷的“时间魔术”</h2>
+                    <p>同样还 1 万，第 1 个月和第 120 个月的效果差多少？</p>
+                </a>
+                <a class="card" href="/blog/lpr-adjustment-2026">
+                    <span class="tag">LPR 利率</span>
+                    <h2>2026 LPR 调整全攻略</h2>
+                    <p>利率下调后，月供什么时候生效？两种重新定价日怎么选？</p>
+                </a>
+                <a class="card" href="/blog/combination-loan-strategy-2026">
+                    <span class="tag">组合贷款</span>
+                    <h2>组合贷款省钱方案</h2>
+                    <p>手里的 10 万块，该还商贷还是公积金？优先还高利率贷款。</p>
+                </a>
+                <a class="card" href="/blog/inflation-and-mortgage-logic">
+                    <span class="tag">宏观逻辑</span>
+                    <h2>通胀时代，房贷是资产还是负债？</h2>
+                    <p>用实际利率理解为什么“欠钱”有时反而更划算。</p>
+                </a>
+                <a class="card" href="/blog/mortgage-stories-2026">
+                    <span class="tag">真实故事</span>
+                    <h2>三个普通人的真实选择</h2>
+                    <p>有人省下 30 万利息，有人保留现金流反而赚更多。</p>
+                </a>
+            </div>
+
+            <footer>
+                <p>© 2026 Lifebook 房贷计算器 · <a href="/">开始计算</a></p>
+            </footer>
+        </div>
+    </body>
+</html>

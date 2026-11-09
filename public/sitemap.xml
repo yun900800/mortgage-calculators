@@ -2,71 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lifebook.ggff.net/</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://lifebook.ggff.net/about.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://lifebook.ggff.net/about</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://lifebook.ggff.net/privacy.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://lifebook.ggff.net/privacy</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://lifebook.ggff.net/terms.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://lifebook.ggff.net/terms</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/early-repayment-magic.html</loc>
-    <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://lifebook.ggff.net/blog/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/repayment-methods-comparison.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://lifebook.ggff.net/blog/first-principles-repayment</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/first-principles-repayment.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <loc>https://lifebook.ggff.net/blog/repayment-methods-comparison</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/combination-loan-strategy-2026.html</loc>
-    <lastmod>2026-03-18</lastmod>
+    <loc>https://lifebook.ggff.net/blog/early-repayment-magic</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/inflation-and-mortgage-logic.html</loc>
-    <lastmod>2026-03-18</lastmod>
+    <loc>https://lifebook.ggff.net/blog/lpr-adjustment-2026</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/lpr-adjustment-2026.html</loc>
-    <lastmod>2026-03-18</lastmod>
+    <loc>https://lifebook.ggff.net/blog/combination-loan-strategy-2026</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://lifebook.ggff.net/blog/mortgage-stories-2026.html</loc>
-    <lastmod>2026-03-23</lastmod>
+    <loc>https://lifebook.ggff.net/blog/inflation-and-mortgage-logic</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://lifebook.ggff.net/blog/mortgage-stories-2026</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

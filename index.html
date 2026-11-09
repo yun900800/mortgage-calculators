@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans">
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -7,14 +7,14 @@
             content="2026 房贷计算器 - 提前还贷省钱分析 & 等额本金/本息对比 | 计算月供、总还款额，探索提前还款节省的利息和时间。适用于不同还款方式，助您做出明智的贷款决策。 专业房贷提前还款计算器，支持 2026 最新 LPR 利率。通过等额本息与等额本金对比，精确计算提前还贷能省多少利息。"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="favicon.png" />
-        <link rel="alternate" hreflang="en" href="https://lifebook.ggff.net/" />
-        <link rel="alternate" hreflang="zh-Hans" href="https://lifebook.ggff.net/" />
-        <link rel="alternate" hreflang="ja" href="https://lifebook.ggff.net/" />
-        <link rel="alternate" hreflang="ko" href="https://lifebook.ggff.net/" />
-        <link rel="alternate" hreflang="ms" href="https://lifebook.ggff.net/" />
-        <link rel="alternate" hreflang="hi" href="https://lifebook.ggff.net/" />
-        <link rel="alternate" hreflang="x-default" href="https://lifebook.ggff.net/" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="canonical" href="https://lifebook.ggff.net/" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://lifebook.ggff.net/" />
+        <meta property="og:title" content="2026 房贷计算器 - 提前还贷省钱计算器 & 提前还款利息对比分析" />
+        <meta property="og:description" content="2026 房贷计算器 - 提前还贷省钱分析 & 等额本金/本息对比 | 计算月供、总还款额，探索提前还款节省的利息和时间。" />
+        <meta property="og:site_name" content="Lifebook 房贷计算器" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -85,35 +85,41 @@
                         <div class="sidebar-content">
                             <ul class="guide-list tab-content active" data-content="guide">
                                 <li>
-                                    <a href="/blog/first-principles-repayment.html">
+                                    <a href="/blog/first-principles-repayment">
                                         <span class="icon">📖</span>
                                         房贷的第一性原理：如何省下30万利息？
                                     </a>
-                                    <a href="/blog/repayment-methods-comparison.html">
+                                    <a href="/blog/repayment-methods-comparison">
                                         <span class="icon">📖</span>
                                         房贷还款的"三种姿势"
                                     </a>
-                                    <a href="/blog/early-repayment-magic.html">
+                                    <a href="/blog/early-repayment-magic">
                                         <span class="icon">📖</span>
                                         提前还款的时间魔术
                                     </a>
-                                    <a href="/blog/lpr-adjustment-2026.html">
+                                    <a href="/blog/lpr-adjustment-2026">
                                         <span class="icon">📖</span>
                                         2026 LPR 调整全攻略：房贷利率下调后，我的月供什么时候生效？
                                     </a>
-                                    <a href="/blog/combination-loan-strategy-2026.html">
+                                    <a href="/blog/combination-loan-strategy-2026">
                                         <span class="icon">📖</span>
                                         组合贷款省钱方案：手里的 10 万块，该还商贷还是公积金？
                                     </a>
-                                    <a href="/blog/inflation-and-mortgage-logic.html">
+                                    <a href="/blog/inflation-and-mortgage-logic">
                                         <span class="icon">📖</span>
                                         通胀时代，房贷是资产还是负债？为什么"欠钱"有时更划算？
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/blog/">
+                                        <span class="icon">📚</span>
+                                        查看全部房贷指南 →
                                     </a>
                                 </li>
                             </ul>
                             <ul class="guide-list tab-content" data-content="stories">
                                 <li>
-                                    <a href="/blog/mortgage-stories-2026.html">
+                                    <a href="/blog/mortgage-stories-2026">
                                         <span class="icon">📖</span>
                                         三个普通人的真实选择：有人省30万利息，有人反而赚更多
                                     </a>
@@ -371,7 +377,7 @@
                         </div>
 
                         <button class="calculate-btn" type="submit" form="my-form">
-                            <img src="assets/images/icon-calculator.svg" alt="icon" />
+                            <img src="/assets/images/icon-calculator.svg" alt="icon" />
                             <span data-i18n="calculate">Calculate Repayments</span>
                         </button>
                     </form>
@@ -379,7 +385,7 @@
 
                 <div class="right-content">
                     <div class="before-results-container">
-                        <img src="assets/images/illustration-empty.svg" alt="empty" />
+                        <img src="/assets/images/illustration-empty.svg" alt="empty" />
                         <h2 data-i18n="emptyTitle">Results shown here</h2>
                         <p data-i18n="emptyDesc">
                             Complete the form and click "calculate repayments" to see what your
@@ -664,9 +670,10 @@
         </div>
         <footer class="site-footer">
             <div class="footer-links">
-                <a href="about.html" data-i18n="aboutUs">About Us</a>
-                <a href="privacy.html" data-i18n="privacyPolicy">Privacy Policy</a>
-                <a href="terms.html" data-i18n="termsOfService">Terms of Service</a>
+                <a href="/about" data-i18n="aboutUs">About Us</a>
+                <a href="/blog/">房贷指南</a>
+                <a href="/privacy" data-i18n="privacyPolicy">Privacy Policy</a>
+                <a href="/terms" data-i18n="termsOfService">Terms of Service</a>
             </div>
             <p>
                 © 2026 <span data-i18n="footerTitle">Mortgage Calculator</span>. All rights
@@ -674,7 +681,6 @@
             </p>
         </footer>
 
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script
             id="MathJax-script"
             async
