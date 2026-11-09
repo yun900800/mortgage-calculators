@@ -29,6 +29,13 @@
   </url>
 
   <url>
+    <loc>https://lifebook.ggff.net/contact</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://lifebook.ggff.net/blog/</loc>
     <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
